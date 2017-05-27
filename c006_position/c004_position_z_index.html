@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>position z index</title>
+    <style>
+        
+        #container {
+            width: 400px;
+            height: 300px;
+            border: double blue;
+            position: relative;
+        }
+        
+        .item {
+            width: 200px;
+            height: 200px;
+        
+            position: absolute;
+        }
+        
+        #item1 {
+            background-color: lightgreen;
+            z-index: 1;
+        }
+        
+        #item2 {
+            background-color: skyblue;
+            top: 50px;
+            left: 50px;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div id="container">
+        <div id="item1" class='item'>Item1</div>
+        <div id="item2" class='item'>Item2</div>
+    </div>
+    
+</body>
+</html>

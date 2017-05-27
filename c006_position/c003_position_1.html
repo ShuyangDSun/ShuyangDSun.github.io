@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>postition 1</title>
+    <style>
+        
+        #container {
+            width: 600px;
+            height: 300px;
+            background-color: blue;
+            position: relative;
+        }
+        
+        #item {
+            width: 300px;
+            height: 150px;
+            background-color: yellow;
+        }
+        
+        .relative {
+            position: relative;
+/*            left: 100px;*/
+            right: 0px;
+        }
+        
+        #item.absolute {
+            position: absolute;
+            top: 0;
+            background-color: purple;
+            right: 0;
+        }
+        
+        #item.fixed {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            background-color: red;
+        }
+        
+    </style>
+</head>
+<body>
+    <h3>Relatice: Relative is the element relative to its own original position</h3>
+    <div id="container">
+        <div id="item" class=relative></div>
+    </div>
+    
+    <br>
+    <br>
+    
+    <h3>Absolute: Absolute is relative to the nearest ancestor, whose position is non-static.</h3>
+    <div id="container">
+        <div id="item" class=absolute></div>
+    </div>
+    
+    <h3>Fixed: Fixed is relative to the viewport</h3>
+    
+    <div id="container">
+        <div id="item" class=fixed>ads n'stuff</div>
+    </div>
+    
+</body>
+</html>

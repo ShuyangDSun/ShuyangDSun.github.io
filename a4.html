@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+    <style>
+        input[type=number] {
+            width: 30px;
+        }
+        
+        #samesize input {
+            width: 155px
+        }
+        img{
+            width: 11%
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <fieldset>
+            <legend><b>Your Information</b></legend>
+
+            <div id="samesize">
+
+                Full Name&nbsp;
+                <input id="Name" type="text" placeholder="Enter your Full Name">
+                <br> Phone # &nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="Phone #" type="tel" placeholder="Enter your Phone Number">
+                <br> Address &nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="Address #" type="text" placeholder="Enter your Address">
+                <br>
+
+            </div>
+
+            City: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <select name="" id="">
+                <option value="Toronto">Toronto</option>
+                <option value="Ottowa">Ottowa</option>
+                <option value="London">London</option>
+                <option value="Windsor">Windsor</option>
+                <option value="Hamilton">Hamilton</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <legend>
+                <b>Order Information</b>
+            </legend>
+            Enter order:
+            <br>
+            
+            
+            <img src="http://pizzahousenl.ca/wp-content/uploads/2016/04/pizza_trad_pepperoni.png" alt="">
+            &nbsp;&nbsp;&nbsp;
+            
+            <img src="http://rustlersonline.com/wp-content/uploads/HotDog.png" alt="">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            
+            <img src="http://www.pngmart.com/files/1/Burger-PNG.png" alt="">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            
+            <img src="http://www.myfries.ca/wp-content/uploads/2011/09/Fries3-1024x7681-1020x765.jpg" alt="">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            
+            <br>
+            
+            <input max="10" min="0" type="number"> Pizza&nbsp;&nbsp;
+            <input max="10" min="0" type="number"> Hotdog&nbsp;&nbsp;
+            <input max="10" min="0" type="number"> Burger&nbsp;&nbsp;
+            <input max="10" min="0" type="number"> Fries&nbsp;&nbsp;
+            <input max="1" min="0" type="number"> Babies
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;($5.00)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;($2.50)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;($3.00)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;($2.00)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;($10.00)
+
+            <br>
+            <br> Payment:
+            <br>
+            <input type="radio" name="payment"> Master Card&nbsp;&nbsp;
+            <input type="radio" name="payment"> Visa Card&nbsp;&nbsp;
+            <input type="radio" name="payment"> Paypal&nbsp;&nbsp;
+        </fieldset>
+        <br> Comments:
+        <br>
+        <textarea name="" id="" cols="50" rows="8" placeholder="Write any special orders here"></textarea>
+        <br>
+        <input type="submit">
+        <input type="reset">
+    </form>
+</body>
+
+</html>

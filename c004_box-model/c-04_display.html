@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>display</title>
+    <style>
+        .block {
+            border: solid;
+/*            width: 100px;
+            height: 100px;*/
+        }
+        .inline {
+            display: inline;
+            border: solid;
+            height: 100px;
+            width: 100px;
+        }
+        .inline-block {
+            display: inline-block;
+            border: solid;
+            height: 100px;
+            width: 100px;
+        }
+        .none {
+            display: none;
+            border: solid;
+        }
+        .notdisplay {
+            visibility: hidden;
+            border: solid
+        }
+    </style>
+</head>
+<body>
+    
+    <p>Block: height = 0</p>
+    <div class=block></div>
+    
+    <p>inline: no height, no width</p>
+    <p class=container></p>
+    <div class=inline>abc</div>
+    
+    <p>inline-block: changable width, height</p>
+    <div class=inline-block></div>
+
+    <p>none: no display</p>
+    <div class=none></div>
+    nothing there
+    
+    <br>
+    <br>
+    <p>visiblity: </p>
+    <div class=notdisplay></div>
+    transparent but there
+</body>
+</html>

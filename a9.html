@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>better looking form</title>
+    <style>
+        input {
+            margin-top: 15px;
+            padding-left: 3px;
+            height: 30px;
+            width: 400px;
+        }
+        .radio1 {
+            margin-top: 19px;
+            margin-left: 9px;
+            width: 15px;
+            height: 15px;
+        }
+        .radio {
+            margin-top: 15px;
+            margin-left: 45px;
+            width: 15px;
+            height: 15px
+        }
+        #dropdown {
+            margin-top: 15px;
+            margin-left: 98px;
+            height: 30px;
+            border-radius: 8px;
+            width: 410px;
+        }
+        #adjust {
+            margin-left: 90px;
+            font-size: 12px;
+        }
+        
+        #adjust1 {
+            margin-left: 92px;
+            font-size: 12px;
+        }
+        
+        .pre-text-thing {
+            display: inline-block;
+            margin-left: 5px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <fieldset>
+            <legend>Payment information</legend>
+            <div id="samesize">
+
+                <div class='pre-text-thing'>Name</div>
+                
+                <input id="adjust1" type="text" placeholder="Please enter your full name">
+                
+                <br>
+                <div class='pre-text-thing'>Email</div>
+                
+                <input id="adjust1" type="tel" placeholder="Please enter your phone number">
+                
+                <br> 
+                <div class='pre-text-thing'>Phone</div>
+                
+                <input id="adjust" type="text" placeholder="Please enter your address">
+                
+                <br>
+                <div class="pre-text-thing">City:</div>
+                <select name="City" id="dropdown">
+                    <option value="Toronto">Toronto</option>
+                    <option value="Ottowa">Somewhere</option>
+                    <option value="London">London</option>
+                    <option value="Windsor">Narnia</option>
+                    <option value="Hamilton">Regina</option>
+                </select>
+                
+                <br>
+                <div class="pre-text-thing">Payment options:</div>
+                
+                <input class="radio1" type="radio">
+                <label for="radio">Master Card</label>
+                
+                <input class=radio type="radio">
+                <label for="radio">Visa Card</label>
+                
+                <input class=radio type="radio">
+                <label for="radio">Paypal</label>
+            </div>
+        </fieldset>
+        
+    </form>
+</body>
+</html>

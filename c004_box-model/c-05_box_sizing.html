@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>box sizing</title>
+    <style>
+        #container {
+            
+            width: 400px;
+            background-color: black;
+            height: 200px;
+        }
+        
+        #left {
+            width: 200px;
+            height: 200px;
+            background-color: darkblue;
+            
+            display: inline-block;
+            
+            padding: 10px;
+            
+            box-sizing: border-box;
+            
+            border: solid 13px;
+        }
+        #right {
+            height: 200px;
+            width: 200px;
+            background-color: blue;
+            
+            display: inline-block;
+            
+            padding: 10px;
+            
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id=container>
+        <div id="left"></div
+        ><div id="right"></div>
+    </div>
+    
+</body>
+</html>

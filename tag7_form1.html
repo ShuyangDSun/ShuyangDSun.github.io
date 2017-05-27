@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <style>
+        input{
+            width: 169px;
+        }
+        #radiogroup input {
+            width: 20px;
+            
+        }
+        #checkboxgroup input{
+            width: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="#">
+        <input type="text" placeholder="Your name">
+        <br>
+        
+        <input type="password" placeholder="Password" required>
+        <br>
+        
+        <input type="hidden">
+        <br>
+        
+        <input max="10" min="0" type="number">
+        <br>
+        
+        <input type="text">
+        <br>
+        
+        <input type="email" placeholder="Email">
+        <br>
+        
+        <input type="url" placeholder="url">
+        <br>
+        
+        <input type="tel" placeholder="Phone #">
+        <br>
+        
+        0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4
+        <br>
+        
+        <input max="4" min="0" type="range">
+        <input type="text" id="rangeValue">
+        <br>
+        
+        <input type="color">
+        <br>
+        
+        <input type="file">
+        <br>
+        
+        <input type="search">
+        <br>
+        
+        <div id="radiogroup">
+        <input type="radio" name="drink">
+        <label for="">Pop &nbsp;</label>
+        <input type="radio" name="drink">
+        <label for="">Smoothy &nbsp;</label>
+        <input type="radio" name="drink">
+        <label for="">Milkshake &nbsp;</label>
+        <br>
+        </div>
+        <br>
+        
+        <div id="checkboxgroup">
+        <input type="checkbox">
+        <label for="">Burger &nbsp;</label><br>
+        <input type="checkbox">
+        <label for="">Pizza &nbsp;</label><br>
+        <input type="checkbox">
+        <label for="">Hotdog</label>
+        </div>
+        <br>
+        
+        
+        <input type="submit"><input type="reset">
+    </form>
+    
+    <script>
+        function updateTextInput(val) {
+            document.getElementById('rangeValue').value = val;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>margin padding inlineblock</title>
+    <style>
+        #first {
+            display: inline-block;
+            
+            width: 200px;
+            height: 100px;
+            background-color: cornflowerblue;
+            
+            margin-top: 100px;
+            margin-right: 1000000000000px;
+            margin-bottom: 100px;
+            margin-left: 100px;
+            
+            padding: 100px;
+            padding-right: 240px
+        }
+        
+        #second {
+            height: 100px;
+            background-color: purple;
+        }
+    </style>
+</head>
+<body>
+    
+    <h3>
+       <ul>
+           <li>set width: margin-right doesn't work if </li>
+       </ul>
+    </h3>
+    <div id=first>first</div>
+    <div id=second></div>
+    
+</body>
+</html>
