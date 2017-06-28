@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>layout by inline-block</title>
+    <style>
+        
+        #page {
+            border: solid 1px;
+            overflow: auto;
+        }
+        
+        nav {
+            width: 23%;
+            min-width: 150px;
+        }
+        
+        nav, #content {
+            display: inline-block;
+        }
+        
+        #content {
+            display: inline-block;
+            width: 75%;
+            vertical-align: top;
+        }
+        
+        article {
+            height: 100px;
+            border: solid 1px;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div id="page">
+        <nav>
+            <ul>
+                <li><a href="">About</a></li>
+                <li><a href="">Products</a></li>
+                <li><a href="">Community</a></li>
+            </ul>
+        </nav>
+        <div id=content>
+            <article>It's okay to be silly</article>
+            <article>It's okay to do nothing</article>
+            <article>It's okay to play some video games</article>
+        </div>
+    </div>
+    
+</body>
+</html>
