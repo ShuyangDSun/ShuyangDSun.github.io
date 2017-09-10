@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Page thing</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <style>
+        body {
+            margin: 0 0 0 0;
+            background-color: #e7e7e7;
+        }
         
         div {
             color: gray;
             font-family: sans-serif;
             font-weight: bold;
-            
             display: inline-block;
         }
         
-        #background {
+        .background {
             width: 100%;
-            height: 100%;
+            background-image: url(img/intro-bg.jpg);
+        }
+        
+        .fixed {
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            overflow: auto;
         }
         
         #nav {
             height: 50px;
             width: 100%;
-            background: linear-gradient(#f8f8f8, #e8e8e8);
+            background: #efefef;
         }
         
         #start {
@@ -47,42 +59,255 @@
             float: right;
         }
         
-        #page {
+        .page {
+            line-height: 65px;
+            padding: 200px 0 200px 0;
+            top: 50%;
             color: white;
-            text-shadow: 0.5px 0.5px  black;
-            font-size: 5em
-        }
-        
-        #template {
-            color: white;
-            text-shadow: 0.5px 0.5px  black;
+            text-shadow: 0.5px 0.5px black;
             font-size: 2em;
         }
         
-/*
-        #start:hover, #contact:hover, #services:hover, #about:hover {
-            cursor: pointer;
+        .temp {
+            margin: 0px;
+            line-height: 0px;
         }
-*/
         
+        .hr {
+            margin: 35px 0 35px 0;
+        }
+        
+        i.fa {
+            color: black;
+        }
+        
+        .b {
+            color: black;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 100;
+            text-shadow: 0px 0px 0px white;
+            letter-spacing: 1px;
+        }
+        
+        .button {
+            height: 45px;
+            width: 155px;
+            text-align: center;
+            line-height: 45px;
+            background-color: white;
+            border: solid 1px black;
+            border-radius: 8px;
+        }
+        
+        #container {
+            margin-top: 40px;
+            margin-left: 80px;
+            width: 88%;
+            background-color: white;
+        }
+        
+        #title {
+            color: black;
+            margin-left: 10px;
+        }
+        
+        #p {
+            color: black;
+            font-weight: 100;
+            margin-left: 10px;
+        }
+        
+        #bar {
+            width: 225px;
+            height: 3px;
+            background-color: #e7e7e7;
+            margin-top: 20px;
+            margin-left: 10px;
+        }
+        
+        #ipad {
+            margin-left: 200px;
+            margin-right: 20px;
+            width: 500px;
+            float: right;
+        }
+        
+        #contain {
+            margin-top: 70px;
+            width: 100%;
+            height: 500px;
+            background-color: white;
+        }
+        
+        #dog {
+            margin-left: 90px;
+            width: 500px;
+            float: left;
+        }
+        
+        #b-r {
+            width: 225px;
+            height: 3px;
+            background-color: #e7e7e7;
+            margin-top: 20px;
+            margin-left: 690px;
+        }
+        
+        #tightle {
+            color: black;
+            margin-right: 40px;
+            margin-left: 690px;
+        }
+        
+        #pea {
+            color: black;
+            font-weight: 100;
+            margin-right: 100px;
+            margin-left: 690px;
+        }
+        
+        #contane {
+            margin-top: 40px;
+            margin-left: 80px;
+            margin-bottom: 50px;
+            width: 88%;
+        }
+        
+        #baire {
+            width: 225px;
+            height: 3px;
+            background-color: #b5b5b5;
+            margin-top: 70px;
+            margin-left: 10px;
+        }
+        
+        #connect {
+            background-image: url(img/banner-bg.jpg);
+            width: 100%;
+        }
+        
+        .connectext {
+            display: inline-block;
+            color: white;
+            text-shadow: 1px 1px black;
+            padding: 60px 90px 60px 90px;
+            font-size: 40px;
+            letter-spacing: 1px;
+        }
+        
+        footer {
+            margin-left: 50px;
+        }
+        
+        footer p {
+            margin-left: 40px;
+            font-size: 12px;
+            color: #808080;
+            margin-bottom: 50px;
+        }
+        
+        footer li:first-child:before {
+            content: '';
+        }
+        
+        footer li:before {
+            content: ' ⋅ ';
+        }
+        
+        footer li {
+            margin-top: 20px;
+            display: inline-block;
+        }
+        
+        a {
+            text-decoration: none;
+        }
     </style>
-    
+
 </head>
+
 <body>
-    
+
     <div id=nav>
         <div id="start">Start Bootstrap</div>
         <div id="contact">Contact</div>
         <div id="services">Services</div>
         <div id="about">About</div>
     </div>
+
+    <div class="background fixed">
+        <center>
+            <div class="page">
+                <h1>Landing Page</h1>
+                <h5 class=temp>A Template by Start Bootstrap</h5>
+                <hr class=hr>
+
+
+                <div class="button"><a class="b" target="_blank" href=""><i class="fa fa-twitter" aria-hidden="true"></i> TWITTER</a></div>
+
+                <div class="button"><a class="b" target="_blank" href=""><i class="fa fa-github" aria-hidden="true"></i> GIT HUB</a></div>
+
+                <div class="button"><a class="b" target="_blank" href=""><i class="fa fa-linkedin" aria-hidden="true"></i> LINKEDIN</a>
+                </div>
+            </div>
+        </center>
+    </div>
+
+
+
+    <div id=container>
+        <div id=bar></div>
+        <img id=ipad src="img/ipad.png" alt="">
+
+        <h2 id=title>Death to the Stock Photo: <br> Special Thanks</h2>
+
+        <p id=p>A special thanks to Death to the Stock Photo for providing the photographs that you see in this template. Visit their website to become a member.</p>
+    </div>
+
+    <div id=contain>
+        <div id=b-r></div>
+        <img id=dog src="img/dog.png" alt="">
+
+        <h2 id=tightle>3D Device Mockups <br> by PSDCovers</h2>
+
+        <p id=pea>Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by PSDCovers! Visit their website to download some of their awesome, free photoshop actions!</p>
+    </div>
+
+    <div id=contane>
+        <div id=baire></div>
+        <img id=ipad src="img/phones.png" alt="">
+
+        <h2 id=title>Google Web Fonts and <br> Font Awesome Icons</h2>
+
+        <p id=p>This template features the 'Lato' font, part of the Google Web Font library, as well as icons from Font Awesome. a member.</p>
+    </div>
+
+    <div id=connect>
+
+        <h2 class=connectext>Connect to Start Bootstrap:</h2>
+
+        <div class="button"><a class="b" target="_blank" href=""><i class="fa fa-twitter" aria-hidden="true"></i> TWITTER</a></div>
+
+        <div class="button"><a class="b" target="_blank" href=""><i class="fa fa-github" aria-hidden="true"></i> GIT HUB</a></div>
+
+        <div class="button"><a class="b" target="_blank" href=""><i class="fa fa-linkedin" aria-hidden="true"></i> LINKEDIN</a>
+        </div>
+
+    </div>
     
-    <img id=background src="img/intro-bg.jpg" alt="">
-    <div id="page">Landing Page</div>
-    
-    <div id="template">A Template by Start Bootstrap</div>
-    
-    
-    
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Services</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+        </nav>
+        <p>Copyright &copy; Your Company 2014. All Rights Reserved</p>
+    </footer>
+
 </body>
+
 </html>
