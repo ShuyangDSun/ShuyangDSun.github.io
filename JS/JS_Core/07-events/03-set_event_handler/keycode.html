@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+<html lang="en">
+        #key, #keyName {
+            font-size: 100px;
+        }
+        
+        #keyName {
+            border-radius: 20px;
+            border: solid;
+            display: inline-block;
+            background-color: rgb(100, 100, 100);
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="key"></div>
+    <div id="keyName"></div>
+    
+    <script>
+        
+        document.addEventListener('keyup', function(e) {
+            var k = e.keyCode ||e.charCode;
+            
+            key.innerText = k;
+            
+            switch (k) {
+                case 18:
+                    KeyName.innerText = 'Alt';
+                    break;
+                case 17:
+                    keyName.innerText = 'Ctrl';
+                    break;
+                default:
+                    keyName.innerText = 'Other keys';
+            }
+        });
+        
+    </script>
+    
+</body>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="../main.css">
+</head>
+
+<body>
+
+	<audio src="../audio/Wallpaper.mp3" preload controls></audio>
+	<pre>
+        "Wallpaper" Kevin MacLeod (incompetech.com)
+        Licensed under Creative Commons: By Attribution 3.0 License
+        http://creativecommons.org/licenses/by/3.0/
+    </pre>
+	<br>
+	<canvas width=600 height=600></canvas>
+
+	<script>
+		canvas = document.querySelector('canvas');
+		context = canvas.getContext('2d');
+
+		// 
+		audio = document.querySelector('audio');
+		audioContext = new AudioContext();
+		analyser = audioContext.createAnalyser();
+		audioSource = audioContext.createMediaElementSource(audio);
+		audioSource.connect(analyser);
+		analyser.connect(audioContext.destination);
+		setInterval(function() {
+			draw();
+		}, 33);
+
+		function draw() {
+			var freqData = new Uint8Array(analyser.frequencyBinCount);
+			analyser.getByteFrequencyData(freqData);
+
+			context.clearRect(0, 0, 600, 600);
+			for (var i = 0; i < freqData.length; i++) {
+				var magnitude = freqData[i];
+				context.fillStyle = 'darkblue';
+				context.fillRect(i, 600, 1, -magnitude * 2);
+			}
+		}
+	</script>
+</body>
+
+</html>
+
+

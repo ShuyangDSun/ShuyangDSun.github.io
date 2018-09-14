@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>clock thing that is homework for tomorrow</title>
+
+    <style>
+        
+        body {
+            background-color: black
+        }
+        
+        .clock {
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            
+            border-radius: 50%;
+            
+            margin-top: 200px;
+            margin-left: 100px;
+        }
+        
+        .bigtic {
+            width: 8px;
+            height: 12px;
+            
+            background-color: gray;
+            position: relative;
+            
+            margin: auto;
+            margin-bottom: -12px;
+            
+            transform-origin: 50% 100px;
+        }
+        
+        .b1 {
+            transform: rotate(90deg);
+        }
+        
+        .b2 {
+            transform: rotate(180deg);
+        }
+        
+        .b3 {
+            transform: rotate(270deg)
+        }
+        
+        .b4 {
+            transform: rotate(360deg);
+        }
+        
+        .smatic {
+            width: 3px;
+            height: 12px;
+            
+            background-color: gray;
+            position: relative;
+            
+            margin: auto;
+            margin-bottom: -12px;
+            
+            transform-origin: 50% 100px;
+        }
+        
+        .s1 {
+            transform: rotate(30deg)
+        }
+        
+        .s2 {
+            transform: rotate(60deg)
+        }
+        
+        .s3 {
+            transform: rotate(120deg)
+        }
+        
+        .s4 {
+            transform: rotate(150deg)
+        }
+        
+        .s5 {
+            transform: rotate(210deg)
+        }
+        
+        .s6 {
+            transform: rotate(240deg)
+        }
+        
+        .s7 {
+            transform: rotate(300deg)
+        }
+        
+        .s8 {
+            transform: rotate(330deg)
+        }
+        
+        .pin {
+            width: 20px;
+            height: 20px;
+            
+            background: black;
+            border-radius: 50%;
+            
+            position: relative;
+            margin: auto;
+            
+            
+            top: 90px;
+        }
+        
+        .second {
+            width: 2px;
+            height: 70px;
+            
+            background-color: red;
+            
+            position: relative;
+            margin: auto;
+            margin-bottom: -70px;
+            
+            transform-origin: 50% 80px;
+            animation: linear infinite time 60s;
+            
+            animation-timing-function: steps(60)
+        }
+        
+        .minute {
+            width: 4px;
+            height: 50px;
+            
+            background-color: black;
+            
+            position: relative;
+            margin: auto;
+            margin-bottom: -50px;
+            top: 20px;
+            
+            transform-origin: 50% 60px;
+            animation: linear infinite time 360s;
+            
+            animation-timing-function: steps(60)
+        }
+        
+        .hour {
+            width: 6px;
+            height: 40px;
+            
+            background-color: black;
+            
+            position: relative;
+            margin: auto;
+            margin-bottom: -70px;
+            top: 30px;
+            
+            transform-origin: 50% 50px;
+            animation: linear infinite time 4320s;
+            
+            animation-timing-function: steps(60)
+        }
+        
+        @keyframes time{
+            0% {
+                transform: rotate(0);
+            }
+            
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    
+    <div class="clock">
+        <div class="bigtic b1"></div>
+        <div class="bigtic b2"></div>
+        <div class="bigtic b3"></div>
+        <div class="bigtic b4"></div>
+        
+        <div class="smatic s1"></div>
+        <div class="smatic s2"></div>
+        <div class="smatic s3"></div>
+        <div class="smatic s4"></div>
+        <div class="smatic s5"></div>
+        <div class="smatic s6"></div>
+        <div class="smatic s7"></div>
+        <div class="smatic s8"></div>
+        
+        <div class="pin"></div>
+        
+        <div class="second"></div>
+        <div class="minute"></div>
+        <div class="hour"></div>
+    </div>
+    
+</body>
+
+</html>

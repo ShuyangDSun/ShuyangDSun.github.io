@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <link rel="stylesheet" href="../../../canvas/main.css">
+</head>
+<body>
+    
+    <canvas width=600 height=600></canvas>
+    
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+        
+        var sheet = new Image();
+        sheet.src = 'mario_spritesheet.png'
+        
+        sheetWidth = 672;
+        sheetHeight = 128;
+        
+        spriteWidth = sheetWidth/21;
+        spriteHeight = sheetHeight/2;
+        
+        forward = false;
+        backward = false;
+        
+        mIndex = 0;
+        n = 0;
+        x = 0;
+        y = 200;
+        d = 1;
+        
+        ctx.drawImage(sheet, 0, 0, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight)
+        
+//        function SpriteSheet(sheetWidth, sheetHeight, spriteWidth, spriteHeight) {
+//            this.shw = sheetWidth;
+//            this.shh = sheetHeight;
+//            this.spw = spriteWidth;
+//            this.shw = spriteHeight;
+//            
+//            this.draw = function() {
+//                ctx.drawImage(sheet, this.spw*mIndex, 0, this.spw, this.sph, x, y, this.spw, this.sph)
+//            }
+//            
+//        }
+        
+        function Update() {
+            if (forward == true) {
+                x += 2;
+                
+                if (n % 10 == 1) {
+                    mIndex--;
+                }
+                
+                if (mIndex < 1) {
+                    mIndex = 3;
+                }
+            } else if (backward == true) {
+                x -= 2;
+                
+                if (n % 10 == 1) {
+                    mIndex--;
+                }
+                
+                if (mIndex < 1) {
+                    mIndex = 3;
+                }
+            }
+        };
+        
+        addEventListener('keydown', function(e) {
+            key = e.keyCode;
+            alert(key)
+            if (key === 68) {
+                forward = true;
+                d = -1;
+            } else if (key === 65) {
+                backward = true;
+                d = 1;
+            } else if (key === ) {
+                       
+                       }
+        });
+        addEventListener('keyup', function(e) {
+            key = e.keyCode;
+            if (key === 68) {
+                forward = false;
+            } else if (key === 65) {
+                backward = false;
+            }
+            mIndex = 0;
+        });
+        
+//        mario = new SpriteSheet(sheetWidth, sheetHeight, spriteWidth, spriteHeight);
+        function animation() {
+            requestAnimationFrame(animation)
+            
+            ctx.clearRect(0, 0, 600, 600)
+            
+            n++
+            Update()
+            
+            ctx.drawImage(sheet, spriteWidth*mIndex, 0, spriteWidth, spriteHeight, x, y, spriteWidth, spriteHeight)
+//            mario.draw()
+        }
+        animation()
+        
+    </script>
+</body>
+</html>
+
+

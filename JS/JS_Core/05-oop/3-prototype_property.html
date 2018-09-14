@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        function Animal() {
+            this.canRun = true;
+        }
+        
+        dog = new Animal();
+        dog1 = new Animal();
+        dog2 = new Animal();
+        dog3 = new Animal();
+        
+        console.log(dog.canRun);
+        
+        Animal.prototype.jump = 'yes, i can jump';
+        
+        console.log(dog.jump)
+        console.log(dog1.jump)
+        console.log(dog2.jump)
+        console.log(dog3.jump)
+    </script>
+    
+</body>
+</html>

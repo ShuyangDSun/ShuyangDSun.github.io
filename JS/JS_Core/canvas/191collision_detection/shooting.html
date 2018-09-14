@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../main.css">
+
+    <style>
+        div {
+            color: white;
+            font-family: monospace;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>Use left, right arrow keys to move and Space to shoot (incomplete)</div>
+
+    <canvas id="canvas" width="500" height="600"></canvas>
+
+    <script>
+        var ctx = canvas.getContext('2d');
+
+        function HitDetection(m, index) {
+            for (var i = 0; i < enemies.length; i++) {
+                var e = enemies[i];
+                if (e.x <= m.x && e.x + e.w >= m.x + m.w && e.y + e.h >= m.y) {
+                    enemies.splice(i, 1);
+                    launcher.missiles.splice(index, 1)
+                }
+            }
+        }
+
+        function Enemy(x, w, h, color) {
+            this.x = x;
+            this.y = 0;
+            this.w = w;
+            this.h = h;
+            this.color = color;
+
+            this.update = function() {
+                this.y += 0.5;
+            }
+
+            this.draw = function() {
+                this.update();
+
+                ctx.beginPath();
+                ctx.rect(this.x, this.y, w, h);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.closePath();
+            }
+
+        }
+
+        var enemies = [];
+        for (var i = 0; i <= 20; i++) {
+            var x = Math.random() * 500 + 1;
+            var w = Math.random() * 10 + 1;
+            var color = '#' + (Math.floor(Math.random() * 16777215 + 1)).toString(16);
+            var enemy = new Enemy(this.x, 20, 20, color);
+            enemies.push(enemy);
+        }
+
+        function Launcher() {
+            this.y = 550;
+            this.x = 500 / 2 - 25;
+            this.w = 50;
+            this.h = 50;
+            this.missiles = [];
+
+            this.update = function() {
+                if (right) {
+                    this.x += 5;
+                }
+                if (left) {
+                    this.x -= 5;
+                }
+            }
+            this.draw = function() {
+                this.update();
+
+                ctx.beginPath();
+                ctx.rect(this.x, this.y, this.w, this.h);
+                ctx.fillStyle = 'blue';
+                ctx.fill();
+
+                for (var i = 0; i < this.missiles.length; i++) {
+                    var m = this.missiles[i];
+                    ctx.beginPath();
+                    ctx.rect(m.x, m.y -= 5, m.w, m.h);
+                    ctx.fillStyle = 'red';
+                    ctx.fill();
+
+                    HitDetection(m, i)
+                }
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            var key = e.keyCode;
+            if (key === 32) {
+                console.log(key);
+                shoot = true;
+            } else if (key === 37) {
+                console.log(key);
+                left = true;
+            } else if (key === 39) {
+                right = true;
+                console.log(key);
+            }
+        });
+
+        var right = false;
+        var left = false;
+        document.addEventListener('keyup', function(e) {
+            var key = e.keyCode;
+            if (key == 32) {
+                shoot = false;
+            } else if (key == 39) {
+                right = false;
+            } else if (key == 37) {
+                left = false;
+            }
+            n = 0;
+        })
+
+        n = 0;
+        var launcher = new Launcher();
+        (function anim() {
+            requestAnimationFrame(anim);
+
+            //clear
+            ctx.clearRect(0, 0, 500, 800);
+
+            //draw
+            for (var i = 0; i < enemies.length; i++) {
+                enemies[i].draw();
+            }
+
+            launcher.draw();
+
+            if (shoot == true) {
+                if ((n % 20) == 0) {
+                    launcher.missiles.push({
+                        x: launcher.x + (launcher.w / 2),
+                        y: launcher.y,
+                        w: 2,
+                        h: 4
+                    });
+                }
+                n++;
+            }
+        }());
+    </script>
+</body>  
+</html>
+

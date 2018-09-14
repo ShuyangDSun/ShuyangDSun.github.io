@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>gradients radial</title>
+    
+    <link rel="stylesheet" href="../../main.css">
+</head>
+<body>
+    
+    <canvas width=600 height=600></canvas>
+    
+    <script>
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+        
+        c.arc(250, 250, 250, 0, Math.PI*2, false);
+        
+        g = c.createRadialGradient(250, 250, 100, 300, 250, 200)
+        
+        g.addColorStop(0, 'black')
+        g.addColorStop(1, 'blue')
+        
+        c.fillStyle = g
+        c.fill()
+    </script>
+</body>
+</html>

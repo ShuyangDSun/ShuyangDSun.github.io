@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+	<!-- tag name example -->
+	<div>I saw a golden retriver</div>
+
+	<script>
+		var elements = document.getElementsByTagName('div');
+
+		console.log(elements.length);
+		el = elements[0];
+		document.write('el.tagName: ', el.tagName, '<br>');
+		document.write('el.nodeName: ', el.nodeName, '<br>');
+
+		// there are other type of nodes which don't have tag such as comments or text or white space node. Then we use nodeName instead of TagName
+	</script>
+</body>
+
+</html>

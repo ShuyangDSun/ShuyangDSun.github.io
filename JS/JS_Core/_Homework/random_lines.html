@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <link rel="stylesheet" href="../canvas/main.css">
+</head>
+<body>
+    
+    <canvas width=600 height=600></canvas>
+    
+    <script>
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+        
+        firstPointX = 0;
+        firstPointY = 0;
+        
+        function write() {
+            requestAnimationFrame(write);
+            
+            c.moveTo(firstPointX, firstPointY);
+            
+            secondPointX = Math.floor(Math.random()*600)
+            secondPointY = Math.floor(Math.random()*600)
+            c.lineTo(secondPointX, secondPointY);
+            c.stroke();
+            
+            firstPointX = secondPointX;
+            firstPointY = secondPointY;
+        }
+        
+        write();
+    </script>
+</body>
+</html>

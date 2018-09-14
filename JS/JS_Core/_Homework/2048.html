@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+
+    <link rel="stylesheet" href="../canvas/main.css">
+</head>
+
+<body>
+
+    <canvas width=600 height=600></canvas>
+
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+
+        function init() {
+            sx = 20;
+            sy = 20;
+
+            space = 60;
+            width = 50;
+
+            squares = []
+            for (var a = 0; a < 4; a++) {
+                for (var b = 0; b < 4; b++) {
+                    squares.push(new Square(sx + (b * space), sy + (a * space), '43254'))
+                }
+            }
+        }
+        init()
+        
+        
+        function Square(x, y, value) {
+            this.x = x;
+            this.y = y;
+            this.v = value;
+            
+            this.draw = function() {
+                ctx.fillStyle = 'lightgray';
+                ctx.fillRect(this.x, this.y, width, width);
+            }
+            
+            this.number = function() {
+                ctx.font = '50px Arial';
+                ctx.fillStyle = '#fcfcfc';
+                ctx.fillText(String(this.v), this.x, this.y, 100)
+            }
+            this.move = function() {
+                this.left = function() {
+                    this.number();
+                    
+                }
+            }
+        }
+        
+        document.addEventListener('keyup', function(e) {
+            var key = e.keyCode;
+            if (key === 65) {
+                Square.move.left()
+            }
+        })
+        
+        function animation() {
+            requestAnimationFrame(animation);
+
+            for (var i = 0; i < squares.length; i++) {
+                squares[i].draw()
+            }
+        }
+
+        animation()
+
+    </script>
+</body>
+
+</html>

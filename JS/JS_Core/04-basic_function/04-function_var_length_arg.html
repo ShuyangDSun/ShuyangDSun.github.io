@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // varies length of arguments
+        function add() {
+            var total = 0;
+            
+            //build-in object in function
+            //arguments
+            for (var i=0; i<arguments.length; i++) {
+                total += arguments[i];
+            }
+            
+            return total;
+        }
+        
+        t = add(1, 2, 3, 4, 5)
+        
+        document.write('t: ', t, '<br>');
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gradients</title>
+    
+    <link rel="stylesheet" href="../../main.css">
+</head>
+<body>
+    
+    <canvas width=600 height=600></canvas>
+    
+    <script>
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+        
+        c.arc(200, 200, 200, 0, Math.PI*2, false);
+        g = c.createLinearGradient(0, 0, 400, 400)
+        g.addColorStop(0, 'blue');
+        g.addColorStop(0.6, 'purple');
+        c.fillStyle=g;
+        
+        c.fill()
+    </script>
+</body>
+</html>

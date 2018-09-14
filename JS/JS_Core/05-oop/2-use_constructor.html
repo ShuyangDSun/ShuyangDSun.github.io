@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        function Student(name, age) {
+            console.log(this);
+            this.name = name;
+            this.age = age;
+            this.info = function() {
+                return name + ' ' + age;
+            }
+        }
+        
+        stu1 = Student('jason', 25);
+        console.log(stu1);
+        
+        stu = new Student('john', 20);
+        console.log(stu);
+        
+    </script>
+    
+</body>
+</html>

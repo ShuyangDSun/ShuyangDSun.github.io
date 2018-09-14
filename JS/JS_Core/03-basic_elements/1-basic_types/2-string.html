@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>String</title>
+</head>
+<body>
+    
+    <script>
+        
+        s = 'hello';
+        console.log(s[4])
+        
+        // property
+        console.log(s.length)
+        
+        //methods
+        console.log(s.toUpperCase())
+        
+        console.log(s.split(' '))
+        
+        // string is immutable
+        s.replace('h', 'H')
+        console.log(s)
+        
+        //
+        s = 'abcdefg'
+        console.log(s.substring(2))
+        
+        //
+        console(s.slice(2))
+        
+        // count
+        s = 'abbccc'
+        count = (s.match(/c/g) || []).length
+        
+        // convert number into string
+        n = 100
+        sn = '' + n
+        
+    </script>
+    
+</body>
+</html>

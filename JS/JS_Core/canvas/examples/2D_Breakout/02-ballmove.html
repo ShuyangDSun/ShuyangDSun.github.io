@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="../../main.css">
+</head>
+
+<body>
+
+	<canvas width=700 height=500></canvas>
+	<script>
+		canvas = document.querySelector('canvas');
+		ctx = canvas.getContext('2d');
+
+		//
+		radius = 15;
+		x = 700 / 2;
+		y = 500 - radius;
+		dx = 2;
+		dy = 2;
+
+		function drawBall() {
+			ctx.beginPath();
+			ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+			ctx.fill();
+		}
+
+		function draw() {
+			requestAnimationFrame(draw);
+			//1. clear
+			ctx.clearRect(0, 0, 700, 500);
+
+			//2. draw
+			drawBall();
+
+			//3. update
+			if ((x > 700 - radius) || (x < radius)) {
+				dx = -dx;
+			}
+			if ((y > 500 - radius) || (y < radius)) {
+				dy = -dy;
+			}
+			x = x + dx;
+			y = y - dy;
+		}
+		draw();
+	</script>
+</body>
+
+</html>

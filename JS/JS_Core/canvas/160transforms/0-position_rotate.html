@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body>
+    
+    <canvas width=600 height=600></canvas>
+    
+    <script>
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+        
+        c.rect(0, 0, 200, 100);
+        c.stroke();
+        
+        //rotate radian or degree
+        c.rotate(45 * Math.PI / 180);
+        c.translate(250, 0);
+        c.rect(0, 0, 400, 300);
+        c.stroke();
+    </script>
+</body>
+</html>

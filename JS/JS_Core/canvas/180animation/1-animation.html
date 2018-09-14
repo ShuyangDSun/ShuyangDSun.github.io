@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <link rel="stylesheet" href="../main.css">
+    
+    <style>
+        
+        body {
+            background: #000;
+        }
+        
+        canvas {
+            background: #fff;
+        }
+        
+    </style>
+    
+</head>
+<body>
+    
+    <canvas width=600 height=600></canvas>
+    
+    <script>
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+        
+        x = 101;
+        
+        // vector
+        vx = 1;
+        
+        function moveBall() {
+            requestAnimationFrame(moveBall);
+            
+            c.clearRect(0, 0, 600, 600);
+            c.beginPath();
+            
+            if (x+100 == 600 || x-100 == 0) {
+                vx = -vx
+            }
+
+            c.strokeStyle = 'DarkRed';
+            c.arc(x, 100, 100, 0, Math.PI*2, false);
+            c.stroke();
+            
+            x+=vx;
+        }
+        
+        moveBall();
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>scale</title>
+    
+    <style>
+        
+        body {
+            background-color: black;
+        }
+        
+        .container {
+            height: 200px;
+            width: 200px;
+            border: solid 1px gray;
+            margin: 100px auto;
+            background-color: black;
+            
+            transition: 1s;
+        }
+        
+        .box {
+            height: 200px;
+            width: 100px;
+            background-color: white;
+            
+            transition: 1s
+            
+        }
+        
+        .box:hover {
+            transform: scale(2, 2)
+        }
+        
+    </style>
+    
+</head>
+<body>
+    
+    <div class="container">
+        <div class="box"></div>
+    </div>
+    
+</body>
+</html>

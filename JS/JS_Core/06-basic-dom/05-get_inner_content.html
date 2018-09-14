@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        em {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="one" class="food"><em>fresh</em> food</div>
+
+    <script>
+        var d = document.getElementById('one');
+        console.log(d.textContent); // fresh food
+        console.log(d.innerText); // food
+        console.log(d.innerHTML); // <em>fresh</em> food
+        console.log(d.outerHTML);
+
+        console.log(escapeHTML(d.innerHTML));
+        console.log(escapeHTML(d.outerHTML));
+
+        //        d.innerHTML = 'zzz';
+
+        function escapeHTML(s) {
+            return s.replace(/&/g, '&amp;')
+                .replace(/"/g, '&quot;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+    </script>
+</body>
+
+</html>
+
+

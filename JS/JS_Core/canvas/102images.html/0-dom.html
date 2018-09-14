@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #container {
+            height: 300px;
+        }
+
+        #container * {
+            position: absolute;
+            border: solid 1px;
+            font-size: 20px;
+        }
+
+        #line1,
+        #line2 {
+            width: 147px;
+            top: 50px;
+        }
+
+        #line1 {
+            border-color: red;
+            transform: rotate(57deg);
+            transform-origin: left;
+            left: 100px;
+        }
+
+        #line2 {
+            border-color: blue;
+            left: 300px;
+            transform: rotate(121deg);
+            transform-origin: left;
+        }
+
+        #imgtag {
+            left: 50px;
+        }
+
+        #jsGeneratedImg {
+            left: 200px;
+        }
+
+        #imgdom {
+            top: 200px;
+            left: 130px;
+        }
+
+        #imgdom {}
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div id="imgtag">&lt;img src='...'></div>
+        <div id="jsGeneratedImg">Javascript generates image object <br>new Image();</div>
+        <div id="line1"></div>
+        <div id="line2"></div>
+
+        <div id="imgdom">Image DOM object</div>
+    </div>
+    <dl>
+        <dt>DOM</dt>
+        <dd>Document Object Model</dd>
+    </dl>
+</body>
+</html>
+

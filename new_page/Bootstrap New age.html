@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>New Age</title>
+
+    <!-- Custom fonts for this template -->
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./device-mockups/device-mockups.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:300" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+
+    <style>
+        body {
+            font-family: Muli, Helvetica, Arial, sans-serif;
+        }
+
+        /*        navbar */
+
+        div {
+            letter-spacing: 1px;
+        }
+
+        .navbar-default .navbar-brand {
+            padding-left: 90px;
+            color: black;
+        }
+
+        .padding {
+            margin-right: 60px;
+        }
+
+        .navbar-default .navbar-nav>li>a {
+            color: black;
+        }
+
+        .navbar-default .navbar-toggle .icon-bar {
+            background-color: white;
+        }
+
+        .navbar-toggle {
+            margin-right: 50px;
+        }
+
+        .navbar-default .navbar-brand:focus,
+        .navbar-default .navbar-brand:hover {
+            color: orange;
+        }
+
+        .navbar-default .navbar-nav>li>a:focus,
+        .navbar-default .navbar-nav>li>a:hover {
+            color: orange;
+        }
+
+        .navbar-default .navbar-toggle:focus,
+        .navbar-default .navbar-toggle:hover {
+            background-color: transparent;
+        }
+
+        .background {
+            background: url(img/bg-pattern.png), linear-gradient(to right, #dc2430, #7b4397);
+        }
+
+        /*        banner */
+
+        div>h1 {
+            color: white;
+            font-size: 48px;
+            font-family: catamaran;
+        }
+
+        .text {
+            letter-spacing: 0;
+        }
+
+        .text h1 {
+            font-size: 30px;
+            width: 80%;
+        }
+
+        .btn-primary:hover {
+            color: #fff;
+            background-color: #fdcc52;
+            border-color: #fdcc52;
+        }
+
+        .btn-primary {
+            background-color: transparent
+        }
+
+        .btn {
+            margin: 50px 0px;
+            border: 1px solid white;
+            border-radius: 900px;
+            padding: 10px 40px;
+            color: white;
+        }
+
+        .device-wrapper {
+            max-width: 325px;
+        }
+
+        #banner {
+            padding-top: 140px;
+        }
+
+        .yellow {
+            background: linear-gradient(to right, #fdcc52, #fdc539);
+            padding: 150px 0;
+        }
+
+        #discover {
+            padding: 0px 50px;
+            font-size: 50px;
+            font-family: catamaran;
+            margin-bottom: 8px;
+            line-height: 60px;
+        }
+
+        #app {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .badges img {
+            display: block;
+            margin: auto;
+            height: 60px;
+        }
+
+        .badges img:first-child {
+            margin-bottom: 25px;
+        }
+
+        /*      mockups  */
+
+        .white {
+            background: white;
+            padding: 100px 0px;
+            text-align: center
+        }
+
+        #unlimited {
+            margin: 0px;
+            margin-bottom: 8px;
+            text-align: center;
+            font-size: 50px;
+            font-family: catamaran;
+            line-height: 60px;
+        }
+
+        .check {
+            text-align: center;
+            color: rgb(134, 142, 150);
+            font-size: 18px;
+            letter-spacing: 0;
+        }
+
+        .margin {
+            margin-bottom: 100px;
+        }
+
+        i {
+            font-size: 83px;
+            background: linear-gradient(to left, #7b4397, #dc2430);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .mockups {
+            padding: 50px 0px;
+            margin: auto;
+            text-align: center;
+            width: 325px;
+        }
+
+        .h3 {
+            font-size: 30px;
+            font-family: catamaran
+        }
+
+        .contain {
+            background-image: url(img/bg-cta.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .overlay {
+            height: 100%;
+            width: 100%;
+            padding: 250px 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .button-text {
+            margin-left: auto;
+            margin-right: auto;
+            width: 510px;
+            padding: 0px 15px;
+        }
+
+        .cta-text {
+            width: 100%;
+            margin: 0px;
+            margin-bottom: 25px;
+            line-height: 60px;
+            font-family: Catamaran, Helvetica, Arial, sans-serif;
+            font-size: 50px;
+            color: white;
+        }
+
+        a.btn {
+            margin: 0px;
+            font-family: Lato, Helvetica, Arial, sans-serif;
+        }
+
+        .lovefriends {
+            margin: 0;
+            color: white
+        }
+
+        .row {
+            margin: 0;
+        }
+
+        /*      Yellow background part  */
+
+        .yellow-back {
+            background: #fdc539;
+            padding: 100px 0px;
+        }
+
+        .lovefriends {
+            color: rgb(33, 37, 41);
+            font-family: Catamaran, Helvetica, Arial, sans-serif;
+            font-size: 50px;
+            margin-bottom: 25px;
+        }
+
+        i.fa-heart {
+            background: #dd4b39;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .baton {
+            vertical-align: middle;
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            border-radius: 100px;
+            padding: 20px;
+            margin-right: 5px;
+        }
+
+        #twitter {
+            background-color: #1da1f2;
+        }
+
+        #facebook {
+            background-color: #3b5998;
+        }
+
+        #google {
+            background-color: #dd4b39;
+        }
+
+        i.fa-twitter,
+        i.fa-facebook,
+        i.fa-google-plus {
+            background: white;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 40px;
+        }
+
+        .contain-stuff {
+            text-align: center;
+        }
+
+        /*      footer  */
+
+        footer {
+            background-color: #222;
+            padding: 25px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+        }
+        
+        footer>ul>li {
+            display: inline-block;
+        }
+
+        li>a {
+            color: rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        li>a:focus,
+        li>a:hover {
+            color: #fcbd20;
+            text-decoration: none;
+        }
+
+        @media screen and (min-width:768px) {
+            .cta-text {
+                font-size: 80px;
+                margin-right: 900px
+            }
+        }
+
+        @media screen and (min-width:992px) {
+            .text h1 {
+                font-size: 50px;
+                text-align: left;
+                width: 100%;
+            }
+
+            .background {
+                height: 900px;
+            }
+
+            .badges img {
+                display: inline-block;
+                vertical-align: top;
+                margin: 0;
+            }
+
+            .badges {
+                text-align: center;
+            }
+
+            .mockups {
+                display: inline-block;
+                margin: 0;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="background container-fluid">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                <a class="navbar-brand" href="#">Start Bootstrap</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Technologies</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#" class='padding'>Contact</a></li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+            <!-- /.container-fluid -->
+        </nav>
+        <div id='banner'>
+            <div class="row">
+                <div class='text col-xs-12 col-sm-7 text-center'>
+                    <h1 class='center-block'>New Age is an app landing page that will help you beautifully showcase your new mobile app, or anything else!</h1>
+
+                    <div class="btn btn-primary">START NOW FOR FREE!</div>
+                </div>
+                <div class="col-xs-12 col-sm-5">
+                    <div class="device-wrapper center-block">
+                        <div class="device" data-device="iPhoneSE" data-orientation="portrait" data-color="black">
+                            <div class="screen">
+                                <img class='img-responsive' src="img/demo-screen-1.jpg" alt="">
+                            </div>
+                            <div class="button">
+                                <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="yellow">
+        <h2 id="discover" style="text-align: center;">Discover what all the buzz is about!</h2>
+        <p id="app" style="text-align: center;">
+            Our app is available on any mobile device! Download now to get started!
+        </p>
+        <div class="badges">
+            <img src="img/google-play-badge.svg" alt="">
+            <img src="img/app-store-badge.svg" alt="">
+        </div>
+    </div>
+
+    <div class="white">
+        <h2 id="unlimited">Unlimited Features, Unlimited Fun</h2>
+        <p class="check">Check out what you can do with this app theme!</p>
+        <hr style="width:100px; height:1px; border-color:rgba(34, 34, 34, 0.1); margin-top:25px; margin-bottom: 100px;">
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <div class="margin">
+                    <div class="device-wrapper center-block">
+                        <div class="device" data-device="iPhoneSE" data-orientation="portrait" data-color="black">
+                            <div class="screen">
+                                <img class='img-responsive' src="img/demo-screen-1.jpg" alt="">
+                            </div>
+                            <div class="button">
+                                <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mockups">
+                <i class="icon-screen-smartphone"></i>
+                <h3 class="h3">Device Mockups</h3>
+                <p class="check">Ready to use HTML/CSS device mockups, no Photoshop required!</p>
+            </div>
+            <div class="mockups">
+                <i class="icon-camera"></i>
+                <h3 class="h3">Flexible Use</h3>
+                <p class="check">Put an image, video, animation, or anything else in the screen!</p>
+            </div>
+            <div class="mockups">
+                <i class="icon-present"></i>
+                <h3 class="h3">Free to Use</h3>
+                <p class="check">As always, this theme is free to download and use for any purpose!</p>
+            </div>
+            <div class="mockups">
+                <i class="icon-lock-open"></i>
+                <h3 class="h3">Open Source</h3>
+                <p class="check">Since this theme is MIT licensed, you can use it commercially!</p>
+            </div>
+        </div>
+    </div>
+    <div class="contain">
+        <div class="overlay">
+            <div class="button-text">
+                <div class="cta-contain">
+                    <h2 class="cta-text">
+                        Stop waiting.
+                        <br> Start building.
+                    </h2>
+                </div>
+                <a href="#contact" class="btn btn-outline btn-xl js-scroll-trigger">Let's Get Started!</a>
+            </div>
+        </div>
+    </div>
+    <div class="yellow-back">
+        <div class="contain-stuff">
+            <h2 class="lovefriends"> We
+                <i class="fa fa-heart" aria-hidden="true"></i> new friends!
+            </h2>
+            <div id='twitter' class="baton"><i class="fa fa-twitter"></i></div>
+            <div id='facebook' class="baton"><i class="fa fa-facebook"></i></div>
+            <div id='google' class="baton"><i class="fa fa-google-plus"></i></div>
+        </div>
+    </div>
+
+    <footer>
+        <p class='copyright'>
+            © 2017 Start Bootstrap. All Rights Reserved.
+        </p>
+        <ul>
+            <li><a href="">Privacy</a></li>
+            <li><a href="">Terms</a></li>
+            <li><a href="">FAQ</a></li>
+        </ul>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

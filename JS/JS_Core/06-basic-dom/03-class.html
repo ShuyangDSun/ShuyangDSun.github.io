@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style>
+		.text {
+			width: 200px;
+			height: 100px;
+			background-color: tomato;
+		}
+
+		.red {
+			background-color: darkcyan;
+		}
+
+		.big {
+			height: 200px;
+		}
+	</style>
+</head>
+
+<body>
+
+	<p class="text">Text1</p>
+	<p class="text">Text2</p>
+	<!--	CRUD, create, read, update, delete-->
+
+	<script>
+		var p = document.getElementsByClassName('text');
+		console.log('p:', p);
+		console.log('p.length:', p.length);
+
+		// get first ele
+		var p1 = p[0];
+		console.log('p1.innerText:', p1.innerText);
+
+		// set new class for the first ele
+		p1.className = 'red';
+
+		// class list
+		console.log('p1.classList:', p1.classList);
+		p1.classList.add('big');
+		console.log('p1.classList:', p1.classList);
+		console.log('p1.classList[0]:', p1.classList[0]);
+		console.log('p1.classList.contains("big"):', p1.classList.contains("big"));
+		// how to remove
+		// how to update
+	</script>
+
+</body>
+</html>
+
+

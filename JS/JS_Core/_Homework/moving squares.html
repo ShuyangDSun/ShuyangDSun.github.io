@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="../canvas/main.css">
+</head>
+
+<body>
+
+	<canvas width=700 height=500></canvas>
+	<script>
+		canvas = document.querySelector('canvas');
+		ctx = canvas.getContext('2d');
+
+		function Square(x, y, size) {
+			this.x = x;
+			this.y = y;
+			this.size = size;
+			this.selected = false;
+			this.color = "#" + Math.floor(
+				Math.random() * 16777215
+			).toString(16);
+
+			this.render = function() {
+				ctx.beginPath();
+				ctx.rect(this.x, this.y, this.size, this.size);
+				ctx.fillStyle = this.color;
+				ctx.fill();
+
+				if (this.selected) {
+					ctx.strokeStyle = 'red';
+					ctx.lineWidth = 8;
+					ctx.stroke();
+				}
+			}
+		}
+
+		function getSelectedSquare(mx, my) {
+			var selectedSquares = [];
+
+			for (index in squares) {
+				var square = squares[index];
+				var sx = square.x;
+				var sy = square.y;
+
+				if (mx >= sx && mx <= sx + square.size && my >= sy && my <= sy + square.size) {
+					selectedSquares.push(square);
+				}
+			}
+			return null || selectedSquares[selectedSquares.length - 1];
+		}
+
+		// input
+		var selectedSquare = null;
+		canvas.addEventListener('mousedown', function(e) {
+			var square = getSelectedSquare(e.offsetX, e.offsetY);
+			if (square) {
+				selectedSquare = square;
+				square.selected = true;
+			}
+		});
+		canvas.addEventListener('mouseup', function(e) {
+			selectedSquare.selected = false;
+		}, false);
+		canvas.addEventListener('mousemove', function(e) {
+			if (selectedSquare != null && selectedSquare.selected) {
+				selectedSquare.x = e.offsetX - selectedSquare.size / 2;
+				selectedSquare.y = e.offsetY - selectedSquare.size / 2;
+				selectedSquare.render();
+			}
+		}, false);
+
+		squares = [];
+		for (var i = 0; i < 20; i++) {
+			var x = Math.floor(Math.random() * 700);
+			var y = Math.floor(Math.random() * 500);
+			var size = Math.floor(Math.random() * 50) + 40;
+			var square = new Square(x, y, size);
+			squares.push(square);
+		}
+
+		function loop() {
+			requestAnimationFrame(loop);
+			ctx.clearRect(0, 0, 700, 500);
+
+			squares.forEach(function(s) {
+				s.render();
+			});
+		}
+		loop();
+	</script>
+</body>
+</html>
+
+

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <link rel="stylesheet" href="../../main.css">
+</head>
+<body>
+    
+    <canvas width=600 height=600></canvas>
+    
+    <script>
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+        
+        image = new Image();
+        
+        image.src = 'https://vignette.wikia.nocookie.net/erbparodies/images/f/f2/200px-Ash_anime.png/revision/latest/scale-to-width-down/360?cb=20151110110623'
+        
+        image.onload = function() {
+            c.drawImage(image, 0, 0, 600, 600)
+            c.font = '100px Arial';
+            c.strokeStyle = 'white'
+            c.strokeText('Age?', 150, 120)
+        }
+    </script>
+</body>
+</html>

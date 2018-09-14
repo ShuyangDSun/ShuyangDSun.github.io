@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="../main.css">
+
+</head>
+
+<body>
+    <canvas id="canvas" width="700" height="500">
+        Your browser does not support the HTML5 canvas tag.</canvas>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+
+        function Circle(x, y, dx, dy, radius, color) {
+            this.x = x;
+            this.y = y;
+            this.dx = dx;
+            this.dy = dy;
+            this.radius = radius;
+            this.color = color;
+
+            this.update = function() {
+
+                if (this.x + this.radius > 700 || this.x - this.radius < 0) {
+                    this.dx = -this.dx;
+                }
+                if (this.y + this.radius > 500 || this.y - this.radius < 0) {
+                    this.dy = -this.dy;
+                }
+                this.x += this.dx;
+                this.y += this.dy;
+
+                var dis = ((mousepos.x - this.x) ** 2 + (mousepos.y - this.y) ** 2) ** 0.5;
+                if (dis <= this.radius) {
+                    this.radius += 1;
+                } else {
+                    if (this.radius > radius) {
+                        this.radius -= 1;
+                    }
+                }
+            }
+
+            this.draw = function() {
+                this.update();
+
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        mousepos = {
+            x: null,
+            y: null
+        }
+
+        canvas.addEventListener('mousemove', function(e) {
+            mousepos.x = e.offsetX;
+            mousepos.y = e.offsetY;
+        });
+
+        var circles = [];
+        for (var i = 0; i < 10; i++) {
+            var radius = Math.random() * 50 + 5;
+            var x = Math.random() * (700 - radius * 2) + radius;
+            var y = Math.random() * (500 - radius * 2) + radius;
+            var dx = Math.random() * 2;
+            var dy = Math.random() * 2;
+            var color = '#' + ('000000' + (Math.floor(Math.random() * 2 ** (4 * 6))).toString(16)).slice(-6);
+
+            circle = new Circle(x, y, dx, dy, radius, color);
+            circles.push(circle);
+        }
+
+        function anim() {
+            requestAnimationFrame(anim);
+            ctx.clearRect(0, 0, 700, 500);
+
+            for (var i = 0; i < 10; i++) {
+                circles[i].draw();
+            }
+        }
+        anim();
+    </script>
+</body>
+
+</html>
+
+

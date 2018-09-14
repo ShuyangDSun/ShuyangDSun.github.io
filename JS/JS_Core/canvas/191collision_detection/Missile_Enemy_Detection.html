@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../main.css">
+</head>
+
+<body>
+
+    <canvas width=600 height=600></canvas>
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+
+        function Rect(x, y, w, h, color) {
+            this.x = x;
+            this.y = y;
+            this.color = color;
+
+            this.draw = function() {
+                ctx.beginPath();
+                ctx.rect(this.x, this.y, w, h);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            this.updatePos = function(mx, my) {
+                this.x = mx;
+                this.y = my;
+            }
+            this.updateColor = function(misx, misy) {
+                if (this.x <= misx + 50 && this.x + w >= misx && this.y + h >= misy) {
+                    this.color = 'darkgray';
+                } else {
+                    this.color = color;
+                }
+            }
+
+        }
+
+        var enemy = new Rect(100, 200, 200, 100, 'blue');
+        var missile = new Rect(100, 0, 50, 100, 'red');
+
+        canvas.addEventListener('mousemove', function(e) {
+            var mx = e.offsetX;
+            var my = e.offsetY;
+
+            missile.updatePos(mx, my);
+            enemy.updateColor(missile.x, missile.y);
+        });
+
+        function anim() {
+            requestAnimationFrame(anim);
+
+            ctx.clearRect(0, 0, 600, 600);
+
+            enemy.draw();
+            missile.draw();
+        }
+
+        anim();
+
+    </script>
+</body>
+
+

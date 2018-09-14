@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>function properties</title>
+</head>
+<body>
+    
+    <script>
+        
+        var a = function (n1, n2, n3) {
+            document.write('n1, n2, n3: ', n1, n2, n3, '<br>');
+        }
+        
+        a(10, 20, 30);
+        
+        document.write('a instanceof Object: ', a instanceof Object, '<br>');
+        
+        document.write('document.body: ', document.body, '<br>');
+        
+        document.write('a.length: ', a.length, '<br>')
+        document.write('a.name: ', a.name, '<br>');
+        
+        function add(n1, n2) {
+            return n1+n2;
+        }
+        
+        function empty(cb) {
+            var n1 = 100;
+            var n2 = 200;
+            document.write('cb.name: ', cb.name, '<br>')
+            return add(n1, n2);
+        }
+        
+        t = empty(add);
+        document.write('t: ', t, '<br>');
+        
+    </script>
+    
+</body>
+</html>

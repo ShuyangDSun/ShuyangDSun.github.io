@@ -1,0 +1,66 @@
+https://rmorochove.wordpress.com/2012/01/30/spritesheet-animation/
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="../main.css">
+</head>
+
+<body>
+
+	<canvas width=600 height=500></canvas>
+	<script>
+		canvas = document.querySelector('canvas');
+		ctx = canvas.getContext('2d');
+
+		// extract sprite sheet information
+		var sheetWidth = 320;
+		var sheetHeight = 64;
+		var cols = 5;
+		var rows = 1;
+		var spriteWidth = sheetWidth / cols;
+
+		// load sheet
+		var sheet = new Image();
+		sheet.src = 'Fire.png';
+
+		// draw sprite
+		ctx.drawImage(sheet, 0, 0, sheetWidth, sheetHeight);
+
+		// closure
+		function getNextSprite() {
+			var currSpriteIndex = -1;
+
+			return {
+				getIndex: function() {
+					currSpriteIndex++;
+					currSpriteIndex = currSpriteIndex % cols;
+					return currSpriteIndex;
+				},
+				getSrcX: function() {
+					var i = this.getIndex();
+					return i * spriteWidth;
+				}
+			}
+		}
+
+		nextSprite = getNextSprite();
+
+		// loop
+		function anim() {
+			setTimeout(function() {
+				requestAnimationFrame(anim);
+				ctx.clearRect(0, 0, 700, 500);
+
+				var srcX = nextSprite.getSrcX();
+
+				ctx.drawImage(sheet, srcX, 0, spriteWidth, sheetHeight, 0, 0, spriteWidth * 2, sheetHeight * 2);
+			}, 100);
+		}
+		anim();
+	</script>
+</body>
+</html>

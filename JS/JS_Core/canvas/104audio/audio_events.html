@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>asdjfkl</title>
+</head>
+<body>
+    
+    <audio controls id='sound' src="../audio/Wallpaper.mp3"></audio>
+    
+    <script>
+        
+        sound.volume=0.5;
+//        sound.src
+        
+        // methods
+        sound.load();
+        sound.play();
+        sound.pause();
+        
+        // events
+        sound.addEventListener('play', function(){
+            console.log('playing')
+        });
+        
+        sound.addEventListener('pause', function(){
+            console.log('paused')
+        });
+        
+        sound.addEventListener('loadmetadata', function(){
+            console.log(sound.src, sound.length)
+        });
+        
+        sound.addEventListener('timeupdate', function(){
+            console.log(sound.currentTime)
+        });
+        
+        sound.addEventListener('ended', function(){
+            console.log('sound ended')
+        });
+        
+        sound.addEventListener('volumechange', function(){
+            console.log(sound.volume*100)
+        });
+    </script>
+    
+</body>
+</html>

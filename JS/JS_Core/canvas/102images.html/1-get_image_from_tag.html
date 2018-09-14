@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <link rel="stylesheet" href="../../main.css">
+</head>
+<body>
+
+    <img src="https://vignette.wikia.nocookie.net/erbparodies/images/f/f2/200px-Ash_anime.png/revision/latest/scale-to-width-down/360?cb=20151110110623" alt="">
+    
+    <script>
+        
+        // 1 way
+        img1 = document.querySelector('img');
+        console.log(img1);
+        img1.width = 200;
+        
+        
+        // 2 way
+        img2 = new Image();
+        img2.src = 'https://vignette.wikia.nocookie.net/erbparodies/images/f/f2/200px-Ash_anime.png/revision/latest/scale-to-width-down/360?cb=20151110110623';
+        img2.style = 'border: solid red 10px';
+        document.body.appendChild(img2);
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+
+    <link rel="stylesheet" href="../main.css">
+</head>
+
+<body>
+
+    <canvas width=600 height=600></canvas>
+    <img src="" alt="">
+    <script>
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+
+        image = new Image();
+        document.write('image: ', image, '<br>')
+
+        img = document.querySelector('img');
+        document.write('img: ', img, '<br>');
+
+        image.src = 'http://atgbcentral.com/data/out/101/4825238-desktop-image.jpg';
+
+        image.onload = function() {
+            c.drawImage(image, 0, 0, 600, 600);
+        }
+    </script>
+</body>
+</html>

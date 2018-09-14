@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <link rel="stylesheet" href="../canvas/main.css">
+</head>
+<body>
+    
+    <canvas width=600 height=600></canvas>
+    
+    <script>
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+        
+        c.arc(300, 300, 300, 0, Math.PI*2, false);
+        c.fillStyle = 'darkred';
+        c.fill()
+        
+        canvas.addEventListener('click', function(e) {
+            console.log('aksldjflk');
+            
+            x = e.offsetX
+            y = e.offsetY
+            
+            console.log(x, y);
+            
+            c.clearRect(x-20, y-20, 40, 40)
+        })
+        
+    </script>
+</body>
+</html>

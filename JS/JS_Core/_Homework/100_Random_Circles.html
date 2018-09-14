@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Random circles</title>
+
+    <link rel="stylesheet" href="../../main.css">
+</head>
+
+<body>
+
+    <canvas width=600 height=600></canvas>
+
+    <script>
+        
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+
+        for (i = 0; i < 100; i++) {
+            
+            c.beginPath()
+            c.lineWidth=Math.random()*10;
+            
+            c.arc(Math.random()*600, Math.random()*600, Math.random()*100, Math.PI*2, false)
+            c.strokeStyle='DarkBlue'
+            c.stroke()
+        }
+
+    </script>
+</body>
+
+</html>

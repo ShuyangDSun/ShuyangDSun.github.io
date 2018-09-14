@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+   	<h3><a href="https://github.com/latentflip/loupe">https://github.com/latentflip/loupe</a></h3>
+    
+    <script>
+        
+        function print(){
+            console.log('print after 2 secs');
+        }
+        
+        setTimeout(print, 2000);
+        
+        setTimeout(function() {
+            console.log('print after 2 secs');
+        }, 2000);
+        
+        //
+        
+        i = 0
+        setInterval(function() {
+            console.log('i:', i++);
+        }, 1000)
+        
+    </script>
+    
+</body>
+</html>

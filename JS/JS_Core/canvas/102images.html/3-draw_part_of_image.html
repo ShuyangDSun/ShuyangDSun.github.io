@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="../main.css">
+</head>
+
+<body>
+	<canvas id="canvas" width="500" height="500">
+        Your browser does not support the HTML5 canvas tag.</canvas>
+
+	<script>
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d');
+
+		var imageObj = new Image();
+		imageObj.src = 'https://vignette.wikia.nocookie.net/erbparodies/images/f/f2/200px-Ash_anime.png/revision/latest/scale-to-width-down/360?cb=20151110110623';
+
+		imageObj.onload = function() {
+			// obj, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight
+			ctx.drawImage(imageObj, 50, 50, 300, 200, 0, 0, 300, 200);
+		}
+	</script>
+</body>
+
+</html>
+

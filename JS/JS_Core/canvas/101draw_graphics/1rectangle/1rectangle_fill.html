@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <link rel="stylesheet" href="../../main.css">
+</head>
+<body>
+    
+    <canvas width=600 height=500></canvas>
+    
+    <script>
+        
+        canvas = document.querySelector('canvas')
+        
+        context = canvas.getContext('2d')
+        
+        context.fillStyle='darkblue'
+        context.fillRect(0, 0, 200, 200);
+        
+        // stroke
+        context.beginPath();
+        context.rect(250, 250, 300, 300);
+        context.strokeStyle='DarkRed';
+        context.lineWidth=30;
+        context.stroke();
+        
+        // clear
+        context.clearRect(50, 50, 100, 100);
+        
+    </script>
+</body>
+</html>

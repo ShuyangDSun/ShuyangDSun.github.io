@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    
+    <script>
+        o = {};
+        console.log(o);
+        console.log(o.__proto__);
+        
+        console.log(o.toString());
+        
+        //
+        john = {
+            name: 'John',
+            age: 20,
+            hair: {
+                color: 'black',
+                length: 10
+            },
+            hobbies: ['soccer', 'tennis'],
+            say: function() {
+                console.log('I am', this.name, 'and I am', this.age, 'years old')
+            }
+            
+        }
+        
+        // read, create, update, delete
+        console.log(john.name);
+        console.log(john['hair info']); // use if has special characters
+        
+        // create
+        john.address='London';
+        
+        // update
+        john.name = 'john backer'
+        
+        // delete
+        delete john.address;
+        console.log(john);
+        
+        // query
+        'name' in john // true or false
+        john.hasOwnProperty('name')
+        
+        //get all keys
+        console.log(Object.keys(john));
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+
+    <link rel="stylesheet" href="../canvas/main.css">
+</head>
+
+<body>
+
+    <canvas id="canvas" width=1200 height=600></canvas>
+
+    <script>
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+        
+        circles = []
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function Circle(x, y, radius, sx, sy, color) {
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.sx = sx;
+            this.sy = sy;
+
+            this.move = function() {
+                if (this.x + this.radius > 1200 || this.x - this.radius < 0) {
+                    this.sx = -this.sx;
+                }
+                if (this.y + this.radius > 600 || this.y - this.radius < 0) {
+                    this.sy = -this.sy;
+                }
+                this.x += this.sx;
+                this.y += this.sy;
+            }
+
+            this.draw = function() {
+                this.move();
+
+                c.beginPath();
+                c.fillStyle = color
+                c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+
+                c.fill();
+            }
+        }
+        
+        canvas.addEventListener('mousemove', function(e) {
+            x = e.offsetX
+            y = e.offsetY
+        })
+        
+        for (var circ = 0; circ < 30; circ++) {
+            circles.push(new Circle(Math.random() * 900 + 200, Math.random() * 300 + 200, Math.random() * 100, Math.random() * 6, Math.random() * 6, getRandomColor()));
+        }
+
+        function animation() {
+            requestAnimationFrame(animation);
+            
+            c.clearRect(0, 0, 1200, 600)
+            
+            for (var index in circles)
+            circles[index].draw()
+        }
+        animation()
+    </script>
+</body>
+</html>

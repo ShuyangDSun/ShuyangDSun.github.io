@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+    <script>
+        // Hoisting is moving all declarations to the top of the current scope (to the top of the current script or the current function).
+        // Javascript interpreter 'looks ahead' to find all the variable declarations
+        // and 'hoists' them 
+
+        // Hoisting only hoist declarations, not initializations.
+        // the function expression is initialization
+
+        // use variable before it is declared
+        (function() {
+            "use strict";
+            abc = 'abc';
+            console.log(abc);
+            var abc;
+
+            // equals
+            var abc;
+            abc = 'abc';
+            console.log(abc);
+
+            // use variable before it is initialized 
+            console.log('bcd is: ' + bcd);
+            var bcd = 'bcd';
+
+            // Because 'hoists', the code equals to:
+            //		 var bcd;
+            //		 console.log(bcd);
+            //		 bcd = "bcd";
+
+            // because 'hoists', the following will output like this:
+            var name = "john";
+
+            function overridename() {
+                // output: outer name is undefined
+                // instead of "john"
+                //			console.log("outer name is " + window.name);
+                console.log("outer name is " + name);
+
+                var name = "joe";
+                console.log("inner name is " + name);
+            }
+            overridename();
+            // this is why jslint recommend to declare variables at the top of its scope such as
+            // at the top of the function or top of script
+        }());
+    </script>
+
+
+</body>
+
+</html>
+
+

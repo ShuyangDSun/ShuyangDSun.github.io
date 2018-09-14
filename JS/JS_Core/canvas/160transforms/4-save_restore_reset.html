@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="../main.css">
+</head>
+
+<body>
+    <canvas id="canvas" width="600" height="600">
+        Your browser does not support the HTML5 canvas tag.</canvas>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        // save to a stack
+        ctx.save();
+        ctx.translate(100, 200);
+        ctx.fillStyle = 'lime';
+        ctx.fillRect(0, 0, 100, 100);
+
+        ctx.translate(100, 100);
+        ctx.fillStyle = 'red';
+        ctx.fillRect(0, 0, 100, 100);
+
+        // restore: pop
+        ctx.restore();
+        ctx.translate(100, 100);
+        ctx.rotate(45 * Math.PI / 180);
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(0, 0, 100, 100);
+
+        // reset
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.fillStyle = 'tomato';
+        ctx.fillRect(0, 0, 100, 100);
+    </script>
+</body>
+
+</html>
+
+

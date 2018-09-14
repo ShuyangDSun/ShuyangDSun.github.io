@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>translateZ</title>
+
+    <style>
+        
+        .container {
+            border: solid 4px blue;
+            width: 300px;
+            height: 300px;
+            
+            margin: 180px;
+        }
+        
+        img {
+            width: 300px;
+
+            transition: 1s
+        }
+
+        .surface {
+            perspective: 100px;
+        }
+
+        img:hover {
+/*            transform: translateY(200px) translateZ(50px);*/
+            transform: translate3d(0, 200px, 50px);
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="surface">
+        <div class="container">
+            <img src="/img/Sans%20brows%20emoji.gif" alt="">
+        </div>
+    </div>
+
+</body>
+</html>

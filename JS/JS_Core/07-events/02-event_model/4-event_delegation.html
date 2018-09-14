@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        td {
+            width: 80px;
+            height: 80px;
+            background-color: rgb(100, 200, 0);
+        }
+
+    </style>
+</head>
+
+<body>
+    <table border="1">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <script>
+        // use event delegation, I don't need attach event handler for each cell 
+        // instead I just need attach one on the table
+
+        var table = document.getElementsByTagName('table')[0];
+        table.addEventListener('click', handleEvent);
+
+        var target;
+
+        function handleEvent(e) {
+            e = e || window.event;
+            target = e.target || e.srcElement;
+
+            var color = getComputedStyle(target).backgroundColor;
+            //            var color = getComputedStyle(target)['background-color'];
+
+            if (color !== "rgb(0, 0, 0)") {
+                target.style.backgroundColor = "rgb(0, 0, 0)";
+            } else {
+                target.style.backgroundColor = "rgb(100, 200, 0)";
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <link rel="stylesheet" href="../main.css">
+    
+    <style>
+        
+        canvas {
+            /* display size */
+            width: 350px;
+            height: 500px;
+        }
+        
+        img {
+            width: 200px;
+            height: 200px;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <canvas width=600 height=600 style = 'width:300px'></canvas>
+    
+    <img src="https://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg" alt="">
+    <script>
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+        
+        c.fillRect(20, 20, 200, 200);
+        
+        document.write('canvas.width: ', canvas.width, '<br>');
+        
+        document.write('canvas.style.width: ', canvas.style.width, '<br>')
+        
+        document.write('getComputedStyle(Canvas).width: ', getComputedStyle(canvas).width, '<br>')
+        
+    </script>
+</body>
+</html>

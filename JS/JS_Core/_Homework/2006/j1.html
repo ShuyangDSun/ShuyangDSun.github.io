@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2006 j1</title>
+</head>
+<body>
+    
+    <script>
+        
+        burger = prompt('Please enter a burger choice:')
+        side_order = prompt('Please enter a side order choice:')
+        drink = prompt('Please enter a drink choice:')
+        dessert = prompt('Please enter a dessert choice:')
+        
+        c = 0
+        if (burger == 1) {
+            c += 461
+        }
+        else if (burger == 2) {
+            c += 431
+        }
+        else if (burger == 3) {
+            c += 420
+        }
+        
+        if (side_order == 1) {
+            c += 100
+        }
+        else if (side_order == 2) {
+            c += 57
+        }
+        else if (side_order == 3) {
+            c += 70
+        }
+        
+        if (drink == 1) {
+            c += 130
+        }
+        else if (drink == 2) {
+            c += 160
+        }
+        else if (drink == 3) {
+            c += 118
+        }
+        
+        if (dessert == 1) {
+            c += 167
+        }
+        else if (dessert == 2) {
+            c += 266
+        }
+        else if (dessert == 3) {
+            c += 75
+        }
+        
+        alert('Your total Calorie count is '+ c)
+        
+    </script>
+    
+</body>
+</html>

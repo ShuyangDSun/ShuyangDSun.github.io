@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tab</title>
+    
+    <style>
+        
+        a {
+            font-size: 3em;
+            padding: 5px 50px;
+            background-color: aquamarine;
+            text-decoration: none;
+            border-radius: 50px;
+            
+        }
+        
+        a:not(:last-child) {
+            margin-right: 5px;
+        }
+        
+        img {
+            position: absolute;
+            width: 500px;
+            height: 400px;
+            
+            transition: opacity 1s;
+        }
+        
+        .tab img {
+            opacity: 0;
+        }
+        
+        img:target {
+            opacity: 1;
+        }
+        
+    </style>
+    
+</head>
+<body>
+    
+    <div class="tab">
+        <a href="#item1">&nbsp;I&nbsp;</a>
+        <a href="#item2">II</a>
+        <a href="#item3">III</a>
+        <br>
+        <img src="/img/dog.png" alt="" id="item1">
+        <img src="/img/Sans%20brows%20emoji.gif" alt="" id="item2">
+        <img src="/img/Ok.png" alt="" id="item3">
+    </div>
+       
+    
+        
+</body>
+</html>

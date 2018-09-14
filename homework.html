@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>turning picture thing</title>
+    <style>
+        img {
+            height: 100px;
+            width: 200px;
+        }
+
+        .container {
+            width: 400px;
+            height: 200px;
+            margin-top: 200px;
+            perspective: 1000px;
+
+            transform-style: preserve-3d;
+            perspective-origin: top;
+        }
+
+        .card {
+            position: absolute;
+
+            height: 200px;
+            width: 400px;
+
+            transform-style: preserve-3d;
+
+            animation-name: rotate;
+            transform-origin: right;
+            animation-iteration-count: infinite;
+            animation-duration: 5s;
+
+            animation-timing-function: linear;
+        }
+
+        .picture1.front {
+            background-image: url(https://www.petmd.com/sites/default/files/salmonella-infection-dogs.jpg);
+        }
+
+        .picture1.back {
+            backface-visibility: hidden;
+            
+            transform: rotateY(180deg);
+            background-image: url(http://cdn.attackofthecute.com/July-15-2014-22-44-09-j.jpg);
+        }
+
+        .picture2.front {
+            background-image: url(https://i.ytimg.com/vi/es5EZHt1414/maxresdefault.jpg);
+        }
+
+        .picture2.back {
+            backface-visibility: hidden;
+            
+            background-image: url(https://i.barkpost.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-20-at-1.33.59-PM.png?q=70&fit=crop&crop=entropy&w=808&h=500);
+        }
+
+        .picture3.front {
+            background-image: url(https://s3-media1.fl.yelpcdn.com/bphoto/dnHh7186XR0y2GGV_KuLBw/o.jpg);
+        }
+
+        .picture3.back {
+            backface-visibility: hidden;
+            
+            background-image: url(https://i.amz.mshcdn.com/2xXpy52DS30uKJBrQm-qI1JDAbc=/fit-in/1200x9600/https%3A%2F%2Fblueprint-api-production.s3.amazonaws.com%2Fuploads%2Fcard%2Fimage%2F454852%2Fc149fd02-3174-46f9-9b58-d7026cc5ada9.jpg);
+        }
+
+        .picture4.front {
+            background-image: url(https://lh4.ggpht.com/zqUp3hcDn_SMq4oDy0U0PoGFHxvUTgukoFJ3harV6NvJEsWmQjpg5pTG4S_huiVjLEeB=h900);
+        }
+
+        .picture4.back {
+            backface-visibility: hidden;
+            
+            background-image: url(https://vignette.wikia.nocookie.net/pokemon/images/3/38/Cheren_Stoutland.png/revision/latest?cb=20150828043840)
+        }
+
+        .picture1 {
+            position: absolute;
+
+            height: 100%;
+            width: 100%;
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .picture2 {
+            position: absolute;
+
+            height: 100%;
+            width: 100%;
+
+            transform: rotateY(90deg);
+            transform-origin: right;
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .picture3 {
+            position: absolute;
+
+            height: 100%;
+            width: 100%;
+
+            transform: rotateY(180deg);
+            transform-origin: right;
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .picture4 {
+            position: absolute;
+
+            height: 100%;
+            width: 100%;
+
+            transform: rotateY(270deg);
+            transform-origin: right;
+
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .container:hover .card {
+            animation-play-state: paused;
+        }
+
+        @keyframes rotate {
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+            <div class="picture1 front"></div>
+            <div class="picture1 back"></div>
+        </div>
+        <div class="card">
+            <div class="picture2 front"></div>
+            <div class="picture2 back"></div>
+        </div>
+        <div class="card">
+            <div class="picture3 front"></div>
+            <div class="picture3 back"></div>
+        </div>
+        <div class="card">
+            <div class="picture4 front"></div>
+            <div class="picture4 back"></div>
+        </div>
+
+    </div>
+
+</body>
+</html>

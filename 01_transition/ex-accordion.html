@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex-accordion</title>
+    
+    <style>
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        li a {
+            border: solid 1px;
+            margin-bottom: 2px;
+            text-decoration: none;
+            display: block;
+            font-size: 30px;
+        }
+        
+        div {
+            height: 0;
+            overflow: hidden;
+            
+            transition: all 0.2s ease;
+        }
+        
+        div img {
+            width: 300px;
+        }
+        
+        a:target+div {
+            height: 300px;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <ul>
+        <li>
+            <a href="#item1" id="item1">Item1</a>
+            <div>
+                <img src="/img/dog.png" alt="">
+            </div>
+        </li>
+        <li>
+            <a href="#item2" id="item2">Item2</a>
+            <div>
+                <img src="/img/pikachu%20animation1.png" alt="">
+            </div>
+        </li>
+    </ul>
+    
+</body>
+</html>

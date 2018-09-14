@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <link rel="stylesheet" href="../../main.css">
+</head>
+<body>
+    
+    <pre>
+        "Wallpaper" Kevin MacLeod (incompetech.com)
+        Licensed under Creative Commons: By Attribution 3.0 License
+        http://creativecommons.org/licenses/by/3.0/
+    </pre>
+    
+<!--    <audio id="asdfjkl" src="../audio/Wallpaper.mp3" controls></audio>-->
+    
+    <canvas width=600 height=600></canvas>
+    
+    <script>
+        
+        // from html
+        // sound is automatic global variable
+//        asdfjkl.play();
+        
+        // from js
+        k = new Audio('../audio/Wallpaper.mp3')
+        k.play()
+        
+        //properties
+        k.volume = 0.2; // 0 to 1
+        console.log(k.src)
+        k.preload = 'auto;'
+        
+        // methods
+        k.load()
+        k.play()
+        setTimeout(function() {
+            k.pause()
+        }, 4000)
+        
+    </script>
+</body>
+</html>

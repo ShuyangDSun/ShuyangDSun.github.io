@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number</title>
+</head>
+<body>
+    
+    <script>
+        
+        i = 100
+        i = NaN
+        console.log(typeof i)//NaN is number
+        
+        i = Infinity
+        if (99999 < i) {
+            console.log('99999 < infinity')
+        }
+        
+        // methods
+        var n=10.34567;
+        console.log(n.tofix(3));
+        console.log(n.toPrecision(3));
+        
+        // increment, decrement
+        var i = 3;
+        
+        i++;
+        i--;
+        ++i;
+        --i;
+        console.log('i: ' + i);
+        console.log('i++: ' + (i++));
+        console.log('i: ' + i);
+        console.log('++i: ' + (++i));
+        
+        // convert any thing to a number
+        s = '100';
+        n=+s;;
+        s='abc';
+        console.log(+s);
+        s='1 2';
+        console.log(+s);
+        
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+
+    <link rel="stylesheet" href="../main.css">
+</head>
+
+<body>
+
+    <canvas width=600 height=600></canvas>
+
+    <script>
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+
+        // draw vertical line
+        pos = 300;
+        c.moveTo(pos, 0);
+        c.lineTo(pos, 500);
+        c.stroke();
+
+        // vertical align
+        c.textAlign = 'left'
+        c.textAlign = 'center'
+        c.textAlign = 'right'
+
+        // draw text
+        c.font = '50px monospace';
+        c.fillText('ABC', pos, 100);
+        c.fillText('ABCDE', pos, 200);
+    </script>
+</body>
+</html>

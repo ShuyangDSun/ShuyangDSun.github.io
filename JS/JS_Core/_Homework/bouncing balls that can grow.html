@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>rectangle_fill.html</title>
+	<style>
+		body {
+			background-color: #cd5c5c;
+			text-align: center;
+		}
+		
+		canvas {
+			background-color: white;
+		}
+
+	</style>
+</head>
+
+<body>
+	<canvas width=800 height=500></canvas>
+
+	<script>
+		canvas = document.querySelector('canvas');
+		c = canvas.getContext('2d');
+
+		x = 220;
+		xs = 5;
+		y = 115;
+		ys = 5;
+		r = 40;
+		balls = 100
+		
+		maxxsp = 6
+		maxysp = 6
+		maxbr = 50
+		
+		mx = 0;
+		my = 0;
+
+		ballinf = []
+
+		for (var i = 0; i < balls; i++) {
+			var bx = Math.floor(Math.random() * (700 - 100 + 1)) + 100;
+			var by = Math.floor(Math.random() * (400 - 100 + 1)) + 100;
+			var bxs = Math.floor(Math.random() * (maxxsp - 0 + 1)) + 0;
+			var bys = Math.floor(Math.random() * (maxysp - 0 + 1)) + 0;
+			var br = Math.floor(Math.random() * (maxbr - 5 + 1)) + 5;
+			var bcol = "#" + ((1 << 24) * Math.random() | 0).toString(16);
+			var bbr = br;
+			var specballinf = [bx, by, bxs, bys, br, bcol, bbr];
+			ballinf.push(specballinf);
+		}
+
+		function handler(e) {
+			mx = e.offsetX;
+			my = e.offsetY;
+		}
+		function handlerr(e) {
+			mx = 100000;
+			my = 100000;
+		}
+		canvas.addEventListener('mousemove', handler);
+		canvas.addEventListener('mouseleave', handlerr);
+
+
+		function moveBall() {
+			requestAnimationFrame(moveBall);
+			c.clearRect(0, 0, 800, 500);
+			
+			for (var i = 0; i < ballinf.length; i++) {
+				ball = ballinf[i]
+				
+				
+				// 0 is x
+				// 1 is y
+				// 2 is x speed
+				// 3 is y speed
+				// 4 is current radius
+				// 5 is colour
+				// 6 is original radius
+				
+				if (mx > ball[0] - ball[4] && mx < ball[0] + ball[4] && my > ball[1] - ball[4] && my < ball[1] + ball[4]) {
+					ball[4]+=1
+				}
+
+				else if (ball[4]>ball[6]) {
+					ball[4]-=1
+				}
+
+				c.beginPath();
+				c.arc(ball[0], ball[1], ball[4], 0, Math.PI * 2, false);
+				c.fillStyle = ball[5];
+				c.fill();
+				ball[0] += ball[2];
+				ball[1] += ball[3];
+				if (ball[0] >= 800 - ball[4] || ball[0] <= ball[4]) {
+					ball[2] = -ball[2];
+				}
+				if (ball[1] >= 500 - ball[4] || ball[1] <= ball[4]) {
+					ball[3] = -ball[3];
+				}
+				
+				if (ball[0]-ball[4]<0) {
+					ball[0]+=5
+				}
+				if (ball[0]+ball[4]>800) {
+					ball[0]-=5
+				}
+				if (ball[1]-ball[4]<0) {
+					ball[1]+=5
+				}
+				if (ball[1]+ball[4]>500) {
+					ball[1]-=5
+				}
+			}
+		}
+
+		moveBall();
+
+	</script>
+</body>
+
+</html>
+
+
+

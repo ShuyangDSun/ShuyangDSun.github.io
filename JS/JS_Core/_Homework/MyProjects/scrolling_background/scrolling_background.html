@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+
+    <link rel="stylesheet" href="../../../canvas/main.css">
+</head>
+
+<body>
+
+    <canvas width=600 height=600></canvas>
+
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+
+        var sheet = new Image()
+        sheet.src = 'bg-darkworld(cropped).png'
+
+        bx1 = 0;
+        bx2 = -600;
+
+
+        ctx.drawImage(sheet, bx1, 0, 600, 600)
+
+
+        function animation() {
+            requestAnimationFrame(animation)
+            
+            ctx.clearRect(0, 0, 600, 600)
+
+            bx1--
+            
+            if (bx1 < -600) {
+                bx1 += 600;
+            }
+            
+            ctx.drawImage(sheet, bx1, 0, 600, 600)
+            ctx.drawImage(sheet, bx1+600, 0, 600, 600)
+        }
+
+        animation()
+    </script>
+</body>
+</html>
+
+

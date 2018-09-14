@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Night to Day</title>
+    <style>
+        
+        div {
+            margin: 0;
+        }
+        
+        .container {
+            width: 650px;
+            height: 500px;
+            
+            background-color: aqua
+        }
+        
+        .ground {
+            width: 650px;
+            height: 200px;
+            top: 300px;
+            
+            position: absolute;
+            
+            background-color: lime;
+        }
+        
+        .s {
+            width: 200px;
+            height: 200px;
+            
+            top: 240px;
+            left: 100px;
+            
+            position: absolute;
+            background-color: blue;
+            
+            transform: rotate(45deg);
+        }
+        
+        .two {
+            top: 200px;
+            left: 337px;
+        }
+        
+        .sun {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            
+            background-color: yellow;
+            
+            position: absolute;
+            
+            top: 310px;
+            left: 1;
+            
+            transition: transform 4s ease;
+        }
+        
+        .overlay {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            
+            background-color: rgba(0, 0, 0, 0.9);
+            
+            transition: 4s;
+        }
+        
+        .container:hover .sun{
+            transform: translate(200px, -300px);
+        }
+        
+        .container:hover .overlay {
+            background-color: transparent;
+        }
+        
+    </style>
+</head>
+<body>
+    <h2>Hover over the black screen</h2>
+    
+    <div class="container">
+        <div class="overlay">
+            <div class="sun"></div>
+            <div class="s one"></div>
+            <div class="s two"></div>
+            <div class="ground"></div>
+        <div class="overlay"></div>
+        </div>
+    </div>
+</body>
+</html>

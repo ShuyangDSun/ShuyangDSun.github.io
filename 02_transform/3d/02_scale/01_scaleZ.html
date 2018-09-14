@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>scale Z</title>
+    
+    <style>
+        
+        .surface {
+            width: 300px;
+            height: 200px;
+            border: double blue;
+            margin-bottom: 200px;
+            margin-left: 200px;
+            perspective: 400px;
+        }
+        
+        .panel {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            
+            transition: 1s;
+        }
+        
+        .first {
+            transform: translateZ(200px);
+        }
+        
+        .second {
+            transform: scaleZ(2) translateZ(100px);
+        }
+        
+    </style>
+    
+</head>
+<body>
+    
+    <div class="surface">
+        <div class="panel first"></div>
+    </div>
+    
+    <div class="surface">
+        <div class="panel second"></div>
+    </div>
+    
+</body>
+</html>2

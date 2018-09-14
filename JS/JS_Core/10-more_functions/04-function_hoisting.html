@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <script>
+        // because function hoisting, the following code doesn't throw error.
+        hello1('Joe'); // use function before definition
+
+        function hello1(name) {
+            console.log('hello ' + name);
+        }
+        // interpreter will hoist the actual function declaration
+
+        // but 'function hoisting' only for function declaration, not function expression because the function expression is initialization
+        hello2('John');
+        var hello2 = function(name) {
+            console.log("hello " + name);
+        }
+        // TypeError: undefined is not a function 
+        // because hello2 variable is hoisted and it is 'undefined', not the function definition
+    </script>
+</body>
+</html>
+
+

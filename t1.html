@@ -1,71 +1,43 @@
-<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<!-- saved from url=(0073)https://cemc.math.uwaterloo.ca/contests/computing/1996/stage1/b-prob.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
 
-	<link rev="made" href="mailto:kryee@uwaterloo.ca"><title>CCC 1996 Stage 1: Problem B</title></head><body bgcolor="#ffffff">
-<h1>Problem B: Divisibility by 11</h1>
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
+    
+    <style>
+        img {
+            width: 300px;
+        }
+    </style>
+</head>
 
-<p><strong>Input file:</strong> <code>div.in</code>
-<br><strong>Output file:</strong> <code>div.out</code>
+<body>
+    <div class="container">
+        <h1 class="page-header">Practice grid</h1>
+        <p class="lead">Create grid for 8 images, you can choose your images.</p>
+        <blockquote class='blockquote-reverse'>
+<!--        <blockquote class='blockquote'>-->
+            <p>Work hard. Guys. Grid is fun.</p>
+            <footer>Teens Programming</footer>
+        </blockquote>
+        
+        <h4>In extra small screen (display 1 column)</h4>
+        <img src="./ex-small.png" alt="">
+        <h4>In small screen (display 2 columns)</h4>
+        <img src="./small.png" alt="">
+        <h4>In median screen (display 3 columns)</h4>
+        <img src="./median.png" alt="">
+        <h4>In large screen (display 4 columns)</h4>
+        <img src="./large.png" alt="">
+    </div>
 
-</p><p>Write a program which accepts as input a positive integer and
-checks, using the algorithm described below, to see whether or not
-the integer is divisible by 11.  This particular test for
-divisibility by 11 was given in 1897 by Charles L. Dodgson
-(Lewis Carroll).
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-</p><dl><dt>Algorithm:
-</dt><dd>As long as the number being tested has more than two digits,
-form a new number by:
-<ul><li>deleting the units digit
-</li><li>subtracting the deleted digit from the shortened number
-</li></ul>
-The remaining number is divisible by 11 if and only if the
-original number is divisible by 11.
-</dd><dt>Note:
-</dt><dd>Leading zeroes are not considered part of the number and
-should not be printed.
-</dd></dl>
-
-<p>As usual, the first number in the input indicates the number
-of positive integers that follow.  Each positive integer has a
-maximum of 50 digits.  You may assume no leading zeroes exist
-in the positive integers.
-
-</p><p>For each positive integer in the input, the output consists
-of a series of numbers formed as a digit is deleted and
-subtracted, followed by a message indicating whether or not the
-original number is divisible by 11.  Outputs for different
-positive integers are separated by blank lines.
-
-</p>
-<hr>
-<h2>Sample input</h2>
-<pre>1
-12345678901234567900</pre>
-
-<hr>
-<h2>Sample output</h2>
-<pre>12345678901234567900
-1234567890123456790
-123456789012345679
-12345678901234558
-1234567890123447
-123456789012337
-12345678901226
-1234567890116
-123456789005
-12345678995
-1234567884
-123456784
-12345674
-1234563
-123453
-12342
-1232
-121
-11
-The number 12345678901234567900 is divisible by 11.
-</pre>
-	</body></html>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js" crossorigin="anonymous"></script>
+</body>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>direction</title>
+    <style>
+        
+        img {
+            width: 100px;
+        }
+        
+        @keyframes direction {
+            0% {
+                transform: translateX(0px);
+            }
+            
+            100% {
+                transform: translateX(80vw);
+            }
+        }
+        
+        img {
+            animation-name: direction;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            
+            animation-direction: alternate;
+        }
+        
+        img:hover {
+            animation-play-state: paused;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <img src="/img/Sans%20brows%20emoji.gif" alt="">
+    
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+
+	<script>
+		// closure is a function returned from another function.
+		function addNumberFunc() {
+			var total = 0;
+
+			function addNumber(n) {
+				total += n;
+				return total;
+			}
+
+			return addNumber;
+		}
+
+		var addNumber = addNumberFunc();
+
+		console.log(addNumber(100));
+		console.log(addNumber(100));
+
+		function addNumberFunc1() {
+			var total = 0;
+
+			function addNumber(n) {
+				total += n;
+				return total;
+			}
+
+			return {
+				total: total,
+				addN: addNumber
+			};
+		}
+
+		var o = addNumberFunc1();
+
+		console.log(o.addN(100));
+		console.log(o.total);
+		console.log(o.addN(100));
+		console.log(o.total);
+	</script>
+
+</body>
+
+</html>
+
+
+

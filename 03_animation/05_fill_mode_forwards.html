@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>fill mode forwards</title>
+    <style>
+        
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            border-radius: 50%;
+            
+            animation: move 1s linear;
+            animation-delay: 2s;
+
+            font-size: 40px;
+            text-align: center;
+            line-height: 200px;
+        }
+        
+        #one {
+            animation-fill-mode: forwards;
+        }
+        
+        #two {
+            animation-fill-mode: backwards;
+        }
+        #thr {
+            animation-fill-mode: both;
+        }
+        
+        @keyframes move {
+            0% {
+                transform: translateX(100px);
+            }
+            
+            100% {
+                transform: translateX(400px);
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div id='one'>Forwards</div>
+    <div id='two'>Backwards</div>
+    <div id='thr'>Both</div>
+    
+</body>
+</html>

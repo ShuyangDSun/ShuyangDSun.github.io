@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="../main.css">
+</head>
+
+<body>
+
+	<canvas width=700 height=500></canvas>
+	<script>
+		canvas = document.querySelector('canvas');
+		ctx = canvas.getContext('2d');
+
+		//
+		x = 200;
+		y = 200;
+		radius = 100;
+
+		ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+		ctx.fillStyle = 'red';
+		ctx.fill();
+
+		//
+		mx = undefined;
+		my = undefined;
+		canvas.addEventListener('mousemove', function(e) {
+			mx = e.offsetX;
+			my = e.offsetY;
+			console.log(mx, my);
+		});
+
+		//
+		function changeSize() {
+			requestAnimationFrame(changeSize);
+
+			// clear
+			ctx.clearRect(0, 0, 700, 500);
+			// update
+			distance = ((mx - x) ** 2 + (my - y) ** 2) ** 0.5;
+			console.log('distance', distance);
+
+			if (distance <= radius) {
+				radius += 2;
+			} else {
+				if (radius > 100) {
+					radius -= 2;
+				}
+			}
+
+			// redraw
+			ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+			ctx.fill();
+		}
+
+		changeSize();
+	</script>
+</body>
+</html>
+

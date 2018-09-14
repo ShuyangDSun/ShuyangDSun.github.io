@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>timing function</title>
+    
+    <style>
+        
+        body {
+            border: solid
+        }
+        
+        body, html {
+            height: 100%;
+        }
+        
+        div {
+            height: 200px;
+            width: 0px;
+            
+            position: relative;
+            
+            border: red 4px solid;
+            border-radius: 50px;
+            
+            left: 0;
+            
+            transition: left 1s;
+            transition-timing-function: cubic-bezier(0, 1.5, 1, .85);
+        }
+        
+        body:hover div {
+            left: 300px;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div></div>
+    
+</body>
+</html>

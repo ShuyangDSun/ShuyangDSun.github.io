@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>transition delay</title>
+    
+    <style>
+        
+        body {
+            height: 100px;
+        }
+        
+        p {
+            position: relative;
+            
+            left: 40px;
+            top: -195px;
+            
+            margin: 0;
+            
+            font-size: 3em;
+            
+            transition: top 2s ease-out;
+        }
+        
+        p.second {
+            left: 60px;
+            transition-delay: 1s;
+        }
+        
+        body:hover p {
+            top: 40px;
+        }
+        
+    </style>
+    
+</head>
+<body>
+    
+    <p class="first">First</p>
+    <p class="second">Second</p>
+    
+</body>
+</html>

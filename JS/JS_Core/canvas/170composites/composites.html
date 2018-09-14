@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="../main.css">
+
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500">
+        Your browser does not support the HTML5 canvas tag.</canvas>
+    <h1><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation">globalCompositeOperation</a></h1>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        ctx.fillStyle = "blue";
+        ctx.fillRect(150, 150, 300, 200);
+        ctx.font = '100px Arial';
+        ctx.textBaseline = 'top';
+        ctx.fillStyle = 'black';
+        ctx.fillText('dest', 150, 150);
+
+        // composite a circle
+        ctx.globalCompositeOperation = 'source-over'; // default
+        ctx.globalCompositeOperation = 'source-in';
+        ctx.globalCompositeOperation = 'source-out';
+        ctx.globalCompositeOperation = 'source-atop';
+        
+        ctx.globalCompositeOperation = 'destination-over';
+        ctx.globalCompositeOperation = 'destination-in';
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.globalCompositeOperation = 'destination-atop';
+        
+        //
+//        ctx.globalCompositeOperation = 'copy'; // show only source 
+//        ctx.globalCompositeOperation = 'lighten';
+//        ctx.globalCompositeOperation = 'darken';
+//        ctx.document.getElementById('id');lobalCompositeOperation= 'xor';
+        
+        // not easy to understand
+//        ctx.globalCompositeOperation= 'multiply';
+//        ctx.globalCompositeOperation= 'screen';
+        
+        ctx.globalAlpha = 0.5;
+
+        // note: source is the last added pixels, so after composite operation.
+        // destination is the already existed pixels, so before composite operation.
+        ctx.beginPath();
+        ctx.arc(150, 150, 150, 0, 2 * Math.PI, false);
+        ctx.fillStyle = 'lime';
+        ctx.fill();
+    </script>
+</body>
+
+</html>
+
+

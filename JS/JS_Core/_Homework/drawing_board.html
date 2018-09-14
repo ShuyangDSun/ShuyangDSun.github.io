@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <link rel="stylesheet" href="../canvas/main.css">
+    <style>
+        
+        button {
+            padding: 10px;
+            width: 100px;
+            border-radius: 100px;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <button id='button'>Clear</button>
+    
+    <canvas width=600 height=600></canvas>
+    
+    <script>
+        button = document.querySelector('button')
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+        
+        firstPointX = 0;
+        firstPointY = 0;
+        
+        button.addEventListener('click', function(e) {
+            c.clearRect(0, 0, 600, 600);
+        })
+        
+        canvas.addEventListener('mousedown', function(e) {
+            draw = true;
+            
+            firstPointX = e.offsetX;
+            firstPointY = e.offsetY;
+        })
+        
+        canvas.addEventListener('mouseup', function(e) {
+            draw = false;
+        })
+        
+        canvas.addEventListener('mousemove', function(e) {
+            secondPointX = e.offsetX;
+            secondPointY = e.offsetY;
+        })
+        
+        function write() {
+            requestAnimationFrame(write);
+            
+            if (draw) {
+                c.beginPath()
+            
+            c.moveTo(firstPointX, firstPointY);
+            
+            c.lineTo(secondPointX, secondPointY)
+            c.stroke()
+            
+            firstPointX = secondPointX;
+            firstPointY = secondPointY;
+            }
+        }
+        
+        write();
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <link rel="stylesheet" href="../../main.css">
+</head>
+<body>
+    
+    <canvas width=600 height=600></canvas>
+    
+    <script>
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+        
+        c.moveTo(100, 100);
+        c.lineTo(200, 100);
+        c.lineTo(200, 300);
+        
+        c.lineWidth=30;
+        c.lineCap='round';
+        c.lineJoin='round'
+        
+        c.strokeStyle='DarkBlue';
+        c.stroke();
+        
+        // draw another
+        c.beginPath();
+        c.moveTo(400, 400);
+        c.lineTo(600, 400);
+        c.strokeStyle='DarkRed'
+        c.stroke();
+        
+    </script>
+</body>
+</html>

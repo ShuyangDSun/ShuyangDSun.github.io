@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>click div</title>
+    <style>
+        
+        #anchor {
+            width: 200px;
+            background-color: darkblue;
+            border-radius: 10px;
+            
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: white;
+            font-size: 20px;
+            
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div id='anchor'>kjladskjlsdfa</div>
+    
+    <script>
+        
+        anchor.addEventListener('click', function() {
+            console.log('clicked')
+        })
+        
+        anchor.addEventListener('dblclick', function() {
+            console.log('double click')
+        })
+        
+        // button down
+        anchor.addEventListener('mousedown', function() {
+            console.log('mouse down')
+        })
+        
+        anchor.addEventListener('mouseup', function() {
+            console.log('mouse up')
+        })
+        
+        anchor.addEventListener('mouseover', function() {
+            console.log('mouse over')
+        })
+        
+        anchor.addEventListener('mouseout', function() {
+            console.log('mouse out')
+        })
+        
+        anchor.addEventListener('mousemove', function() {
+            console.log('mouse move')
+        })
+        
+        anchor.addEventListener('wheel', function() {
+            console.log('wheel')
+        })
+        
+    </script>
+    
+</body>
+</html>

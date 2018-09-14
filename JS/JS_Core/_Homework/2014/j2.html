@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2014 j2</title>
+</head>
+<body>
+    
+    <script>
+        
+        c = prompt()
+        i = prompt()
+        
+        a = 0
+        for (var index in i){
+            if (i[index] == 'A'){
+                a++
+            }
+        }
+        if (a == c/2){
+            alert('tie')
+        }else if (a > c/2 - 2){
+            alert('A')
+        }
+        else{
+            alert('B')
+        }
+        
+    </script>
+    
+</body>
+</html>

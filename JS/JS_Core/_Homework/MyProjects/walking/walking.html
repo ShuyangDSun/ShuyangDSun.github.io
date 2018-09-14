@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+
+    <link rel="stylesheet" href="../../../canvas/main.css">
+    
+    <style>
+        div {
+            color: white;
+            font-size: 35px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <div>Use WASD keys to move around</div>
+    
+    <canvas width=600 height=600></canvas>
+    
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+
+        i = 0;
+        n = 0;
+        direction = 0;
+        x = 0;
+        y = 0;
+
+        function index() {
+            i += 1;
+            if (i > 3) {
+                i = 0
+            }
+        }
+
+        addEventListener('keydown', function(e) {
+            key = e.keyCode
+
+            keyDown = true
+            if (key === 87) { //UP
+                direction = 3;
+
+            } else if (key === 83) { //DOWN
+                direction = 0;
+
+            } else if (key === 68) { //RIGHT
+                direction = 2;
+
+            } else if (key === 65) { //LEFT
+                direction = 1;
+            }
+
+        });
+        addEventListener('keyup', function(e) {
+            key = e.keyCode;
+
+            i = 0;
+
+            keyDown = false;
+            ctx.clearRect(0, 0, 600, 600);
+            ctx.drawImage(sheet, 0, direction * spriteHeight, spriteWidth, spriteHeight, x, y, spriteWidth, spriteHeight);
+        })
+
+        var sheetHeight = 256;
+        var sheetWidth = 256;
+
+        var roco = 4;
+        var spriteHeight = sheetHeight / roco;
+        var spriteWidth = sheetWidth / roco;
+
+        var sheet = new Image();
+        sheet.src = 'Red_spritesheet.png';
+
+        //        ctx.drawImage(sheet, 0, 0, sheetWidth, sheetHeight)
+
+        ctx.drawImage(sheet, 0, 0, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight);
+
+        function animation() {
+            requestAnimationFrame(animation)
+            if (keyDown == true) {
+                ctx.clearRect(0, 0, 600, 600)
+
+                if (direction == 0) {
+                    y += 1;
+                } else if (direction == 1) {
+                    x -= 1;
+                } else if (direction == 2) {
+                    x += 1;
+                } else {
+                    y -= 1;
+                }
+
+                ctx.drawImage(sheet, i * spriteWidth, direction * spriteHeight, spriteWidth, spriteHeight, x, y, spriteWidth, spriteHeight)
+
+                n++;
+
+                if (n % 10 == 1) {
+                    index();
+                }
+            }
+        };
+        animation()
+    </script>
+</body>
+</html>
+
+

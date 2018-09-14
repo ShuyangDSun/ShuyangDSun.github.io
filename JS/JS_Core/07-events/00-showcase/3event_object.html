@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div {
+			width: 300px;
+			height: 300px;
+			border: solid;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id='block'></div>
+
+	<script>
+		block.addEventListener('mousedown', function(e) {
+
+			// position: screen, window, page, element
+			// position in element scope
+			console.log('e.offsetX, e.offsetY:', e.offsetX, e.offsetY);
+			// relative to window (viewport) (e.clientX === e.x)
+			console.log('e.clientX, e.clientY:', e.clientX, e.clientY);
+			console.log('e.x, e.y:', e.x, e.y);
+
+			// if no scroll, it is same as viewport
+			console.log('e.pageX, e.pageY:', e.pageX, e.pageY);
+			// depends on physical monitor and which is main monitor
+			console.log('e.screenX, e.screenY:', e.screenX, e.screenY);
+
+		});
+	</script>
+
+</body>
+</html>
+
+

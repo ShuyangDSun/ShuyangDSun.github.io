@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+
+    <link rel="stylesheet" href="../canvas/main.css">
+</head>
+
+<body>
+
+    <canvas width=600 height=600></canvas>
+
+    <script>
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+
+
+        var boxColor = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+
+        c.translate(300, 300);
+        var i = 0;
+        function anim() {
+            requestAnimationFrame(anim)
+            var degrees = 0;
+            var index = 0;
+            
+            i++;
+            c.fillStyle = boxColor[i%7]
+            
+            c.rotate(1 * Math.PI / 180)
+
+            c.fillRect(0, 0, 1, 200)
+            b.beginPath();
+        }
+
+        anim()
+    </script>
+</body>
+</html>

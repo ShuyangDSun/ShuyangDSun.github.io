@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    
+    <script>
+        
+        dogdad = {
+            fur: 'brown',
+            type: 'husky'
+        }
+        
+        dog = {
+            name: 'k.'
+        }
+        
+        console.log(dog);
+        
+        for (var asdfjkl in dog) {
+            console.log(asdfjkl)
+        }
+        
+        dog.__proto__ = dogdad;
+        for (var qwerty in dog) {
+            if (dog.hasOwnProperty){
+                console.log(qwerty);
+            }
+        }
+        
+    </script>
+    
+</body>
+</html>

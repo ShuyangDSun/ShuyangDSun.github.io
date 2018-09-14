@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="../main.css">
+
+</head>
+
+<body>
+    <canvas id="canvas" width="600" height="600">
+        Your browser does not support the HTML5 canvas tag.</canvas>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        ctx.save();
+        ctx.translate(250, 250);
+        ctx.beginPath();
+        ctx.arc(0, 0, 200, 0, 2 * Math.PI, false);
+
+        // define clip path
+        // clip:剪了之后，剩下的东西
+        ctx.clip();
+        ctx.beginPath();
+        ctx.rect(0, 100, 300, 200);
+        
+        // draw
+        ctx.fillStyle = "tomato";
+        ctx.fill();
+
+        // restore to draw things outside of clip path
+        ctx.restore();
+        ctx.fillStyle = "blue";
+        ctx.fillRect(0, 0, 300, 200);
+    </script>
+</body>
+
+</html>
+

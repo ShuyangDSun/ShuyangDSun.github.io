@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>alskdjf</title>
+</head>
+
+<body>
+
+    <script>
+        i = prompt('enter something')
+
+        if (i < 50) {
+            alert('i < 50')
+        } else if (i == 50) {
+            alert('i = 50')
+        } else {
+            alert('i > 50')
+        }
+
+        d = new Date()
+        day = d.getDay()
+        switch (day) {
+            case 0:
+                console.log('Sunday');
+                break;
+            case 1:
+                console.log('Monday');
+                break;
+            case 6:
+                console.log('Saturday');
+                break;
+            default:
+                console.log("I don't know what day it is")
+        }
+    </script>
+
+</body>
+</html>

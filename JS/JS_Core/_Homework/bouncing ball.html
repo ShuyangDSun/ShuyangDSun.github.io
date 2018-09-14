@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="../canvas/main.css">
+
+</head>
+
+<body>
+    <canvas id="canvas" width="700" height="500">
+        Your browser does not support the HTML5 canvas tag.</canvas>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+
+        function Circle(x, y, radius) {
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.dx = 4;
+            this.dy = 4;
+
+            this.move = function() {
+
+                if (this.x + radius > 700 || this.x - radius < 0) {
+                    this.dx = -this.dx;
+                }
+                if (this.y + radius > 500 || this.y - radius < 0) {
+                    this.dy = -this.dy;
+                }
+                this.x += this.dx;
+                this.y += this.dy;
+            }
+
+            this.draw = function() {
+                this.move();
+
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                ctx.stroke();
+            }
+        }
+
+        circle = new Circle(100, 450, 30);
+        circle1 = new Circle(90, 110, 20);
+        circle2 = new Circle(600, 200, 60);
+        circle3 = new Circle(70, 300, 70);
+
+        function anim() {
+            requestAnimationFrame(anim);
+            //            console.log('abc');
+            ctx.clearRect(0, 0, 700, 500);
+            circle.draw();
+            circle1.draw();
+            circle2.draw();
+            circle3.draw();
+
+        }
+        anim();
+    </script>
+</body>
+
+</html>
+
+
+

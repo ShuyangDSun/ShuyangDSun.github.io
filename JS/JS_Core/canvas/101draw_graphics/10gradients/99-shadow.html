@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <link rel="stylesheet" href="../../main.css">
+</head>
+<body>
+    
+    <canvas width=600 height=600></canvas>
+    
+    <script>
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+        
+        c.rect(100, 100, 300, 200);
+        c.fill();
+        
+        c.shadowOffsetX=10;
+        c.shadowOffsetY=10;
+        
+        c.shadowBlur = 20;
+        c.shadowColor = 'grey';
+        c.fill()
+    </script>
+</body>
+</html>

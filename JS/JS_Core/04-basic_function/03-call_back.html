@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        function me() {
+            console.log('I can do hard work')
+        }
+        
+        function boss(callback) {
+            console.log('I can not do, but I can delegate to other people')
+            callback()
+        }
+        
+        boss(me)
+        
+    </script>
+    
+</body>
+</html>

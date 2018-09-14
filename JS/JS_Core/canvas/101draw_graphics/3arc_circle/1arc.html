@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <link rel="stylesheet" href="../../main.css">
+</head>
+<body>
+    
+    <a href="https://www.html5canvastutorials.com/demos/tutorials/html5-canvas-arcs/html5-canvas-arcs-diagram.png
+">what is randian</a>
+    
+    <canvas width=600 height=600></canvas>
+    
+    <script>
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+        
+        c.lineWidth=30;
+        
+        c.arc(200, 200, 100, 0, Math.PI*2, false);
+        c.strokeStyle='DarkBlue';
+        c.stroke();
+
+        c.beginPath();
+        c.arc(400, 200, 150, 0, Math.PI*2, false);
+        c.strokeStyle='DarkRed';
+        
+        c.stroke();
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../main.css">
+</head>
+
+<body>
+
+    <canvas width=600 height=600></canvas>
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+
+        // translate
+        // draw rect
+        ctx.rect(0, 0, 200, 100);
+        ctx.stroke();
+
+        // rotate
+        // 2 ways to represent an angle
+        // 1: degree
+        // 2: radian
+        // 2*PI radian = 360 degrees 
+        // 1 radian = Math.PI/180
+
+        ctx.rotate(35 * Math.PI / 180);
+        ctx.translate(250, 0);
+        ctx.rect(0, 0, 400, 300);
+        ctx.stroke();
+
+    </script>
+</body>
+
+
+

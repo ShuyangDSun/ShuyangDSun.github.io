@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body>
+    
+    <canvas width=600 height=600></canvas>
+    
+    <script>
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+        
+        // horizontal line
+        c.moveTo(100, 300);
+        c.lineTo(500, 300);
+        c.stroke()
+        
+        // baseline
+        c.textBaseline='ideographic'
+        
+        c.textAlign = 'center'
+        
+        // text
+        posy = 250
+        c.font = '50px monospace'
+        c.fillText('ygqpt', 300, 300)
+        
+        
+    </script>
+</body>
+</html>

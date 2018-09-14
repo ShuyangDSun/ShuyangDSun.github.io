@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2 states</title>
+    <style>
+        
+        img {
+            width: 200px;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        @keyframes move {
+            from {
+                left: 0;
+            }
+            
+            50% {
+                top: 100;
+            }
+            
+            to {
+                left: 500px;
+            }
+            
+        }
+        
+        img {
+            animation-name: move;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <img src="/img/animation%20background.jpg" alt="">
+    
+</body>
+</html>
