@@ -3,50 +3,84 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>MyWebsite</title>
+    <title>Daniel Sun</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
+    </style>
+
     <style>
         body {
             margin: 0;
+            font-family: 'Lato', sans-serif;
         }
 
+        li {
+            list-style-type: none;
+            padding-bottom: 15px;
+        }
+        
+        .badge {
+            position: absolute;
+            display: inline-block;
+            width: 200px;
+        }
+        
         .profile {
             background-image: url(Screen%20Shot%202020-02-06%20at%2012.55.52%20PM.jpg);
             background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
             text-align: center;
+            height: 100vh;
         }
-        
+
         .banner {
             display: inline-block;
             background: rgba(0, 0, 0, 0.8);
-            padding-top: 100px;
-            padding-bottom: 50px;
             padding-right: 50px;
             padding-left: 50px;
+
+            height: 100%;
         }
 
         .center {
             text-align: center;
-            display: block;
         }
 
         .font {
             color: white;
             font-family: sans-serif;
+            /*            font-family: 'Lato', sans-serif;*/
         }
 
         .main-font {
-            font-family: sans-serif;
+            /*            font-family: sans-serif;*/
+            /*            font-family: 'Lato', sans-serif;*/
         }
 
-        #profilePic {
-            border-radius: 50%;
-            background: url("https://www.w3schools.com/w3css/img_lights.jpg") 50% 50% no-repeat;
-            width: 250px;
-            height: 250px;
-        }
-
-        .aboutTable {
+        .tables {
             text-align: left;
+            font-family: 'Lato', sans-serif;
+            font-weight: lighter;
+        }
+
+        .tables> :first-child {
+            /*            font-family: sans-serif;*/
+        }
+
+        .table-rows {
+            margin-bottom: 50px;
+        }
+
+        .table-rows> :first-child {
+            width: 160px;
+            padding-right: 50px;
+        }
+
+        .table-cols {
+            vertical-align: top;
+            padding-bottom: 20px;
         }
 
         .elementspacing td {
@@ -54,16 +88,17 @@
             padding-bottom: 5px;
         }
 
-        a {
+        .dark-links {
             color: white;
+            transition: color 0.25s linear;
             text-decoration: none;
         }
 
-        a:hover {}
-
+        /*
         .last td {
             padding-bottom: 15px;
         }
+*/
 
         .jot:before {
             content: "\A";
@@ -77,12 +112,63 @@
         }
 
         /*      Main body stuff   */
-        .main-body {}
+        .main-body:nth-child(odd) {
+            background: #F3EFE0;
+        }
+
+        /*   profile pic   */
+        .circlePic {
+            display: inline-block;
+            vertical-align: middle;
+
+            border-radius: 50%;
+            background: url("https://www.w3schools.com/w3css/img_lights.jpg") 50% 50% no-repeat;
+
+            display: absolute;
+
+            border: 10px solid #F3EFE0;
+
+            width: 190px;
+            height: 190px;
+
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .header {
+            text-align: center;
+            font-family: 'Lato', sans-serif;
+            color: #22A39F;
+
+            padding: 40px 0px;
+            margin: 0;
+        }
+
+        .title {
+            font-family: 'Lato', sans-serif;
+            color: #22A39F;
+        }
+
+        .subtitle {
+            font-family: 'Nunito', sans-serif;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
 
         .content {
-            width: 600px;
-            margin: auto;
-            margin-top: 50px;
+            width: 60vw;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+
+        /*  */
+        .block {
+            display: inline-block;
+            text-align: left;
+            vertical-align: top;
+
+            min-width: 250px;
+            width: 20vw;
         }
 
         .paragraph {
@@ -90,16 +176,171 @@
             font-size: 20px;
         }
 
+        .description {}
+
+        .section {
+            padding-bottom: 100px;
+        }
+
+        .halfs-wrapper {
+            /*            line-height: 500px;*/
+            padding-bottom: 100px;
+        }
+
+        .full {
+            width: 100%;
+        }
+
+        .big {
+            line-height: normal;
+            vertical-align: top;
+            display: inline-block;
+            width: 44vw;
+        }
+
+        .half {
+            vertical-align: top;
+            display: inline-block;
+            text-align: left;
+            width: 49%;
+        }
+
+        .small {
+            vertical-align: middle;
+            display: inline-block;
+            width: 15vw;
+        }
+
+        /*        buttons   */
+        .wrap {
+            display: flex;
+            justify-content: center;
+            margin-top: 60px;
+        }
+
+        .button {
+            min-width: 300px;
+            min-height: 60px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 22px;
+            font-weight: bold;
+            background: linear-gradient(90deg, rgba(129, 230, 217, 1) 0%, rgba(79, 209, 197, 1) 100%);
+            border: none;
+            border-radius: 100px;
+            box-shadow: 12px 12px 24px rgba(79, 209, 197, .64);
+            transition: all 0.3s ease-in-out 0s;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+        }
+
+        .button:hover {
+            color: #313133;
+            transform: translateY(-6px);
+        }
+
+        .button::before {
+            content: '';
+            border-radius: 100px;
+            min-width: calc(300px + 12px);
+            min-height: calc(60px + 12px);
+            border: 6px solid #00FFCB;
+            box-shadow: 0 0 60px rgba(0, 255, 203, .64);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: all .3s ease-in-out 0s;
+        }
+
+        .button:hover::before {
+            opacity: 1;
+        }
+
+        .button::after {
+            content: '';
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 6px solid #00FFCB;
+            position: absolute;
+            opacity: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .button.ring::after {
+            animation: ring 0.5s 1;
+        }
+
+        @keyframes ring {
+            0% {
+                width: 30px;
+                height: 30px;
+                opacity: 1;
+            }
+
+            100% {
+                width: 300px;
+                height: 300px;
+                opacity: 0;
+            }
+        }
+
+        .footer-button {
+            display: inline-flex;
+            /*            width: 100%;*/
+            align-items: center;
+        }
+
+        .fill {
+            width: 100%;
+            border: solid 2px white;
+            border-radius: 1000px;
+
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .fill::before {
+            content: '';
+            width: 246px;
+            height: 0px;
+
+            border-radius: 1000px;
+
+            position: absolute;
+            background: white;
+
+            transition: height 0.25s linear;
+            z-index: 0;
+        }
+
+        .footer-button:hover .dark-links {
+            color: black;
+        }
+
+        .footer-button:hover .fill::before {
+            opacity: 1;
+            height: 50px;
+        }
+
+        .button-component {
+            z-index: 1;
+        }
+
+        /* button stuff end */
+
         /*      Footer stuff   */
         .footer {
             background-color: rgb(20, 20, 20);
+            padding-bottom: 200px;
         }
 
-        .end-block {
-            display: inline-block;
-            vertical-align: top;
-            width: 280px;
-            padding-left: 10px;
+        .footer-font {
+            color: white;
         }
 
         .end-container {
@@ -108,33 +349,82 @@
             padding: 50px;
         }
 
-        .end-font {
-            font-family: sans-serif;
-            color: rgb(173, 173, 173);
-            font-size: 15px;
+        /*   transitions   */
+        .fade-in {
+            opacity: 0;
+            transform: translate(0, 10vh);
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
 
-        li {
-            list-style-type: none;
-            padding-bottom: 15px;
+        .fade-in.visible {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        /*   screen widths   */
+        @media screen and (max-height:800px) {
+            .profile {
+                height: 800px;
+            }
+        }
+
+        @media screen and (max-width:1280px) {
+            .block {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .circlePic {
+                display: block;
+                margin: auto;
+            }
+
+            .content {
+                width: 40vw;
+            }
+
+            .small {
+                width: 10vw;
+            }
+
+            .big {
+                width: 29vw;
+            }
+
+        }
+
+        @media screen and (max-width:800px) {
+            .content {
+                width: 80vw;
+            }
+
+            .small {
+                width: 20vw;
+            }
+
+            .big {
+                width: 59vw;
+            }
+
         }
     </style>
 </head>
 
 <body>
     <div class="profile">
+        <img src=https://images.credly.com/size/680x680/images/a9848abf-f8bd-474d-a9b4-6086da11a916/Oracle_Associates_Badge__1_.png alt="" class="badge">
         <div class="banner">
             <div class="container center">
-                <div id="profilePic" style="margin: auto;"></div>
+                <div class="circlePic" style="margin: 50px auto;"></div>
                 <h1 class="font">Daniel Sun</h1>
             </div>
 
-            <table class="aboutTable" style="margin: auto;">
+            <table class="tables" style="margin: auto;">
                 <tr class="font elementspacing" style="vertical-align: top;">
                     <th rowspan="2">Contacts</th>
 
                     <td>Email</td>
-                    <td><a href="mailto:shuyangdanielsun@gmail.com">shuyangdanielsun@gmail.com</a></td>
+                    <td><a class="dark-links" href="mailto:shuyangdanielsun@gmail.com">shuyangdanielsun@gmail.com</a></td>
                 </tr>
                 <tr class="font elementspacing last">
                     <td>Phone</td>
@@ -144,7 +434,7 @@
 
                 <tr class="font elementspacing last" style="vertical-align: top;">
                     <th>Github</th>
-                    <td colspan="2"><a href="https://github.com/UnripedBanana/UnripedBanana.github.io">UnripedBanana</a></td>
+                    <td colspan="2"><a class="dark-links" href="https://github.com/UnripedBanana/UnripedBanana.github.io">UnripedBanana</a></td>
                 </tr>
 
 
@@ -172,9 +462,6 @@
 
                     <td colspan="2">CrossCountry and Track</td>
                 </tr>
-                <tr class="font elementspacing" style="vertical-align: top;">
-                    <td class="jot" colspan="2">asdfasdfasdf</td>
-                </tr>
 
                 <tr class="font elementspacing">
                     <td colspan="2">Tennis</td>
@@ -190,39 +477,283 @@
             </table>
         </div>
     </div>
+
+    <div class="main-body" style="margin-bottom: 0px;">
+        <div class="content fade-in">
+            <h1 class="header">Profile</h1>
+            <hr class="rounded">
+        </div>
+
+        <div class="content fade-in center" style="margin-bottom: 70px;">
+
+            <div class="block">
+                <h2 class="title">About me</h2>
+                <p class="description">#####I've volunteered at various children's events such as our FLL library introductory program that our Robotics team hosts every summer. The library program teaches kids how to build and program lego robots. I have also participated in many extra curriculars outside of school such as our schools cross country and track team as well as a robotics team at Western University.</p>
+            </div>
+
+            <div class="circlePic"></div>
+
+            <div class="block">
+                <h2 class="title">Details</h2>
+                <h4 class="subtitle">Name:</h4>
+                <div class="description">Daniel Sun</div>
+                <h4 class="subtitle">Age:</h4>
+                <div class="description">18 years</div>
+            </div>
+
+        </div>
+
+    </div>
+
     <div class="main-body">
+
+        <!--    Experiences section    -->
+        <div class="content fade-in">
+            <h1 class="header">Experiences</h1>
+            <hr class="rounded">
+        </div>
+
         <div class="content">
-            <div class="about-me">
-                <h1 class="main-font">About Me</h1>
-                <p class="paragraph">My name is Daniel, I am currently in my grade 11 year of highschool. Most people would say I'm a very laidback and relaxing. However, most would also say that I'm smart and workhard. This is reflected in my volunteering and club activities. I always prepare myself for the task I am about to do and am also very careful at it. I've volunteered at various children's events such as our FLL library introductory program that our Robotics team hosts every summer. The library program teaches kids how to build and program lego robots. I also participate in many extra curriculars outside of school such as our schools cross country and track team as well as a robotics team at Western University. Our Robotics team builds robots to compete at FRC competitions. At the beginning of each year, FRC reveals a new game and teams are given 6 weeks to build their robot. This year, I've helped design a few parts of the robot as well as coding the robot. However, during preseason, around September to December, teams contact sponsors and arrange outreaches. Outreaches can involve hosting events, volunteering at other events, or anything to help the local community. One of the outreaches I've organized is volunteering at toys for tots which is meant for giving toys to famillies with lower incomes who might not be able to afford presents.</p>
-            </div>
+            <h2 class="title fade-in">Educations</h2>
+
+            <table class="fade-in tables">
+                <tr class="table-rows">
+                    <th class="table-cols">University of Waterloo</th>
+                    <th class="table-cols">Bachelor - Mathematics</th>
+                </tr>
+                <tr class="table-rows">
+                    <th class="table-cols">Sept 2021 - current</th>
+                    <th class="table-cols">####The education was mainly Java-based programming, but I also learned about SQL, PHP, MVC, UML and more. During my time in college, I specialized in multimedia. Here I learned about gaming -the importance of OOP-, web- and user experience and design.</th>
+                </tr>
+            </table>
+
+            <table class="fade-in tables">
+                <tr class="table-rows">
+                    <th class="table-cols">London Central S.S</th>
+                    <th class="table-cols">Highschool - OSSD</th>
+                </tr>
+                <tr class="table-rows">
+                    <th class="table-cols">Sept 2017 - June 2021</th>
+                    <th class="table-cols">####I graduated highschool, where I enjoyed doing science, math, biology and arts. I realized in my third year of school that I wanted to do something with websites, and so I started making small flash/actionscript applications.</th>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="content fade-in">
+            <hr class="rounded">
         </div>
         <div class="content">
-            <div class="interests">
-                <h1 class="main-font">Interests</h1>
-                <p class="paragraph">I have always liked video games. As a result I also became interested in coding. Usually, if I'm not playing games, I'm trying to code a new project that I've been working on. For example, I have recreated walking in pokemon and the movement from Super Mario Bros. Currently, I'm trying to create a typing bot for the online typing game, typeracer. Overtime, I've also gained an interest in robotics and other STEM areas. Because of this interest, I've joined a robotics team and have now learned how to use the 3D modelling program, Solidworks.</p>
+            <h2 class="title fade-in">Projects and Extracurriculars</h2>
+
+            <div class="section">
+                <table class="fade-in tables">
+                    <tr class="table-rows">
+                        <th class="table-cols">FRC 4814 Western Engineering Robotics Team</th>
+                        <th class="table-cols">FIRST Robotics Canada - Highschool Robotics Team</th>
+                    </tr>
+                    <tr class="table-rows">
+                        <th class="table-cols">Role</th>
+                        <th class="table-cols">Programmer, Mechanical, and Presenter</th>
+                    </tr>
+                    <tr class="table-rows">
+                        <th class="table-cols">Duration</th>
+                        <th class="table-cols">Sept 2017 - June 2021</th>
+                    </tr>
+                </table>
+                <p class="description fade-in">
+                    ####I graduated highschool, where I enjoyed doing science, math, biology and arts. I realized in my third year of school that I wanted to do something with websites, and so I started making small flash/actionscript applications.
+                </p>
+                <img src="Screen%20Shot%202020-02-06%20at%2012.55.52%20PM.jpg" alt="" class="fade-in full">
             </div>
+            <div class="section">
+                <table class="fade-in tables">
+                    <tr class="table-rows">
+                        <th class="table-cols">FRC 4814 Western Engineering Robotics Team</th>
+                        <th class="table-cols">FIRST Robotics Canada - Highschool Robotics Team</th>
+                    </tr>
+                    <tr class="table-rows">
+                        <th class="table-cols">Role</th>
+                        <th class="table-cols">Programmer, Mechanical, and Presenter</th>
+                    </tr>
+                    <tr class="table-rows">
+                        <th class="table-cols">Duration</th>
+                        <th class="table-cols">Sept 2017 - June 2021</th>
+                    </tr>
+                </table>
+                <p class="description fade-in">
+                    ####I graduated highschool, where I enjoyed doing science, math, biology and arts. I realized in my third year of school that I wanted to do something with websites, and so I started making small flash/actionscript applications.
+                </p>
+                <img src="Screen%20Shot%202020-02-06%20at%2012.55.52%20PM.jpg" alt="" class="fade-in full">
+            </div>
+
         </div>
+    </div>
+
+    <!--    Skills section   -->
+    <div class="main-body">
+        <div class="content fade-in">
+            <h1 class="header">Skills</h1>
+            <hr class="rounded">
+        </div>
+
+        <div class="content" style="margin-bottom: 100px;">
+            <table class="fade-in tables">
+                <tr class="table-rows">
+                    <th class="table-cols">Programming Languages</th>
+                    <th class="table-cols">Python, Java, HTML, CSS, Javascript, C</th>
+                </tr>
+                <tr class="table-rows">
+                    <th class="table-cols">Web Technology</th>
+                    <th class="table-cols">JQuery, Bootstrap; Python</th>
+                </tr>
+                <tr class="table-rows">
+                    <th class="table-cols">Java Technology</th>
+                    <th class="table-cols">Core Java, classloading, memory management, reflection;
+                        JSF (MyFaces, Trinidad, OraFormsFaces), Servlets, JSP;
+                        Spring, Spring MVC, Struts; AppFuse
+                        Web services (JAX-RPC, JAX-WS, Restful); Apache Axis, Apache CXF; EJB;
+                        JPA, JDO, Hibernate, JDBC; Ehcache; Dozer;
+                        JAXB; Java Mail; Apache commons;
+                        SLF4j/Logback, Log4j;
+                        Bouncy Castle Crypto (OpenPGP);
+                        Apache POI, OpenCSV, Fixedformat4j;
+                        ***********</th>
+                </tr>
+                <tr class="table-rows">
+                    <th class="table-cols">Libraries</th>
+                    <th class="table-cols">JGraphX, WPILib, JS Canvas, Bootstrap, requests, smtplib, speech_recognition</th>
+                </tr>
+                <tr class="table-rows">
+                    <th class="table-cols">Other Tools</th>
+                    <th class="table-cols">PyCharm, Eclipse, Brackets, Chrome Dev Tools, Arduino IDE, VS Code, Git, SolidWorks, Regular expression</th>
+                </tr>
+                <tr class="table-rows">
+                    <th class="table-cols">OS</th>
+                    <th class="table-cols">Mac, Windows</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!--   Developments   -->
+    <div class="main-body">
+        <div class="content fade-in">
+            <h1 class="header">Developments</h1>
+            <hr class="rounded">
+        </div>
+
+        <!--    Games section    -->
         <div class="content">
-            <div class="future-plans">
-                <h1 class="main-font">Future Plans</h1>
-                <p class="paragraph">Due to my interest in coding and STEM, I plan to become a mechanical or mechatronics engineer or go into the computer science field. In order to achieve this, I'm trying to improve my grades in highschool to be able to enter a good University. I've also been constantly improving my knowledge of different areas of coding.</p>
+            <h2 class="title fade-in">My Games</h2>
+
+            <div class="halfs-wrapper">
+                <div class="big">
+                    <h3 class="fade-in">Tetris</h3>
+                    <p class="description fade-in" style="padding-right: 20px;">The goal is to drop blocks, called tetrominoes, down into a playing field to make lines. Tetriminoes are made of four connected squares each There are seven different types of tetrominoes.Levels have a set goal, or number of lines to clear. When the goal number reaches zero, the player moves to the next level. As the levels go up, the tetrominoes fall faster. A player receives bonus points if he can clear more than one line with a single tetromino. Clearing four lines is called a "tetris", three lines a "triple" and two lines a "double". Clearing two tetrises in a row is called a back-to-back tetris. The player can also turn a T-shaped tetromino into a hole, called a T-slot, to get more points. This move is called a "T-spin". A player loses when the tetrominoes make it to the top of the playing field.</p>
+
+                    <div class="wrap fade-in">
+                        <button class="button" onclick="window.open('Old_Stuff/JS/JS_Core/canvas/_canvasStuff/Tetris/tetris.html', '_blank')">PLAY HERE!</button>
+                    </div>
+
+                </div>
+                <img class="small fade-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Typical_Tetris_Game.svg/220px-Typical_Tetris_Game.svg.png" alt="">
+            </div>
+
+            <div class="halfs-wrapper">
+                <img class="small fade-in" src="https://images-na.ssl-images-amazon.com/images/I/4185TYGqIIL.png" alt="">
+                <div class="big">
+                    <h3 class="fade-in" style="padding-left: 20px">Brick Breaker</h3>
+                    <p class="description fade-in" style="padding-left: 20px;">In Brick Breaker, the player must smash a wall of bricks by deflecting a bouncing ball with a paddle. The paddle may move horizontally which is controlled using the Left and Right Arrow keys. When all the bricks have been destroyed, the player wins. When the ball touches the bottom, the game is over. There are many versions of brick breaker, mine only consists of a single level with basic functionality.</p>
+
+                    <div class="wrap fade-in">
+                        <button class="button" onclick="window.open('Old_Stuff/JS/JS_Core/canvas/_canvasStuff/BrickBreaker/BrickBreaker.html', '_blank')">PLAY HERE!</button>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </div>
     <div class="footer">
-        <div class="end-container">
-            <div class="end-block" style="">
-                <h1 class="font">Contact</h1>
-                <li class="end-font"><a href="mailto:shuyangdanielsun@gmail.com">shuyangdanielsun@gmail.com</a></li>
-                <li class="end-font">519-701-7985</li>
+        <div class="content">
+            <h1 class="header footer-font">Contact</h1>
+            <hr class="rounded">
+        </div>
+
+        <div class="content" style="text-align: center">
+
+            <div class="half" style="">
+                <!--
+                <div class="footer-button">
+                    <div class="fill">
+                        <img src="MailIcon.png" alt="" width="50px" class="button-component">
+
+                        <h2 class="title footer-font button-component" style="margin: 0px 60px 0px 10px;">
+                            <a class="dark-links" href="mailto:shuyangdanielsun@gmail.com">shuyangdanielsun@gmail.com</a>
+                        </h2>
+                    </div>
+                </div>
+                
+                <div class="footer-button">
+                    <div class="fill">
+                        <img src="MailIcon.png" alt="" width="50px" class="button-component">
+
+                        <h2 class="title footer-font button-component" style="margin: 0px 60px 0px 10px;">519-701-7985</h2>
+                    </div>
+                </div>
+-->
+                <h2 class="title footer-font">
+                    Email:
+                </h2>
+                <h3 class="title footer-font button-component" style="margin: 0px 60px 0px 0px;">
+                    <a class="dark-links" href="mailto:shuyangdanielsun@gmail.com">shuyangdanielsun@gmail.com</a>
+                </h3>
             </div>
-            <div class="end-block">
-                <h1 class="font">Github</h1>
-                <li class="end-font"><a href="https://github.com/UnripedBanana/UnripedBanana.github.io">UnripedBanana</a></li>
+
+            <div class="half">
+                <h2 class="title footer-font">Github:</h2>
+
+                <div class="footer-button">
+                    <div class="fill">
+                        <img src="GithubIcon.png" alt="" width="50px" class="button-component">
+
+                        <h3 class="title footer-font button-component" style="margin: 0px 60px 0px 10px;">
+                            <a class="dark-links" href="https://github.com/UnripedBanana/">UnripedBanana</a>
+                        </h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</body>
 
-</html>
+    <script>
+        var buttons = document.querySelectorAll('.button');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener("mousedown", function(e) {
+                this.classList.remove('ring');
+            });
+
+            buttons[i].addEventListener("mouseup", function(e) {
+                this.classList.add('ring');
+            });
+        }
+
+
+        document.addEventListener("scroll", function(e) {
+
+            var pageTop = window.scrollY;
+            var pageBottom = pageTop + window.innerHeight;
+            var tags = document.querySelectorAll(".fade-in");
+
+            for (var i = 0; i < tags.length; i++) {
+                var tag = tags[i];
+                if (tag.offsetTop < pageBottom) {
+                    tag.classList.add("visible");
+                } else {
+                    tag.classList.remove("visible");
+                }
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+
+    <style>
+        canvas {
+            border-style: solid;
+            background-color: white;
+        }
+
+        body {
+            background-color: blueviolet;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <canvas width=600 height=600></canvas>
+
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.globalCompositeOperation = 'source-atop';
+        ctx.globalCompositeOperation = 'source-in';
+        ctx.globalCompositeOperation = 'source-out';
+
+        ctx.globalCompositeOperation = 'destination-over';
+        ctx.globalCompositeOperation = 'destination-atop';
+        ctx.globalCompositeOperation = 'destination-in';
+        ctx.globalCompositeOperation = 'destination-out';
+
+    </script>
+</body>
+
+</html>

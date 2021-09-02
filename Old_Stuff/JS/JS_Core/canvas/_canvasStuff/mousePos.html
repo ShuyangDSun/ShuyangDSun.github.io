@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: solid 10px #66ba66;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id='canvas' width=700 height=500></canvas>
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+
+        function drawRect(x, y, size) {
+            ctx.rect(x, y, size, size);
+            ctx.fillStyle = 'red';
+            ctx.fill();
+        }
+        //        drawRect(100, 200, 60);
+
+        window.addEventListener('click', function(e) {
+            e1 = e;
+            var x = e.offsetX;
+            console.log(x, y);
+            var y = e.offsetY;
+            drawRect(x, y, 60);
+        });
+    </script>
+
+</body></html>
+
+
+

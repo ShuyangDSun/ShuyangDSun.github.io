@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+
+    <style>
+        canvas {
+            border-style: solid;
+            background-color: white;
+        }
+
+        body {
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas width=600 height=600></canvas>
+
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+
+        function box(x, y, sideLength, color) {
+            this.x = x;
+            this.y = y;
+            this.length = sideLength;
+            this.color = color;
+            this.selected = false;
+
+            this.draw = function() {
+                ctx.beginPath();
+                ctx.rect(this.x, this.y, this.length, this.length);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+
+                if (this.selected) {
+                    ctx.beginPath();
+                    ctx.rect(this.x, this.y, this.length, this.length);
+                    ctx.strokeStyle = 'red';
+                    ctx.lineWidth = 10;
+                    ctx.stroke();
+                }
+            }
+
+            this.move = function(x, y) {
+                this.x += x;
+                this.y += y;
+            }
+        }
+
+        var x = 0;
+        var y = 0;
+        var prevx;
+        var prevy;
+        canvas.addEventListener('mousedown', function(e) {
+            x = e.offsetX;
+            y = e.offsetY;
+
+            //            console.log(x, y);
+            for (var i = 0; i < boxes.length; i++) {
+                boxes[i].selected = false;
+            }
+            boxSelected = false;
+
+            for (var i = boxes.length - 1; i >= 0; i--) {
+                if (boxes[i].x <= x && x <= boxes[i].x + boxes[i].length && boxes[i].y <= y && y <= boxes[i].y + boxes[i].length) {
+                    boxes[i].selected = true;
+                    boxSelected = true;
+                    break;
+                }
+            }
+
+            ctx.clearRect(0, 0, 600, 600);
+            for (var i = 0; i < 10; i++) {
+                boxes[i].draw();
+            }
+        });
+        canvas.addEventListener('mousemove', function(e) {
+            prevx = x;
+            prevy = y;
+            x = e.offsetX;
+            y = e.offsetY;
+
+            //            console.log(x - prevx, y - prevy);
+            if (boxSelected) {
+                for (var i = 0; i < boxes.length; i++) {
+                    if (boxes[i].selected) {
+                        boxes[i].move(x - prevx, y - prevy);
+                    }
+                }
+                ctx.clearRect(0, 0, 600, 600);
+                for (var i = 0; i < 10; i++) {
+                    boxes[i].draw();
+                }
+            }
+        });
+        canvas.addEventListener('click', function(e) {
+            for (var i = 0; i < boxes.length; i++) {
+                boxes[i].selected = false;
+            }
+            boxSelected = false;
+
+            ctx.clearRect(0, 0, 600, 600);
+            for (var i = 0; i < 10; i++) {
+                boxes[i].draw();
+            }
+        });
+
+        var boxes = []
+        for (var i = 0; i < 10; i++) {
+            var x = parseInt(Math.random() * 550);
+            var y = parseInt(Math.random() * 550);
+            var sideLength = parseInt(Math.random() * 100 + 50);
+
+            var r = parseInt(Math.random() * 256);
+            var g = parseInt(Math.random() * 256);
+            var b = parseInt(Math.random() * 256);
+            var opacity = Math.random();
+            var color = "rgba(" + r + "," + g + "," + b + ")";
+            boxes.push(new box(x, y, sideLength, color));
+        }
+
+        var boxSelected = false;
+
+        ctx.clearRect(0, 0, 600, 600);
+        for (var i = 0; i < 10; i++) {
+            boxes[i].draw();
+        }
+
+//        function frame() {
+//            ctx.clearRect(0, 0, 600, 600);
+//            for (var i = 0; i < 10; i++) {
+//                boxes[i].draw();
+//            }
+//
+//            requestAnimationFrame(frame);
+//        }
+//        frame();
+    </script>
+</body></html>
+
+

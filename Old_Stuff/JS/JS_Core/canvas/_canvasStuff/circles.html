@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Circles</title>
+    <style>
+        #canvas{
+            border: solid 5px blue;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width=900 height=550></canvas>
+    <script>
+        var canvas=document.querySelector('#canvas');
+        var ctx = canvas.getContext('2d');
+        
+        balls={
+            
+            move(num){
+                var dx=balls[num][4];
+                var dy=balls[num][5];
+                var x=balls[num][2];
+                var y=balls[num][3];
+                var r=balls[num][1];
+                
+                balls[num][2]+=dx;
+                balls[num][3]+=dy;
+                if (x+dx<r||x+dx+r>900){
+                    balls[num][4]=-dx;
+                }
+                if (y+dy<r||y+dy+r>550){
+                    balls[num][5]=-dy;
+                }     
+            },
+            
+            drawBall(num){
+                ctx.beginPath();
+                ctx.strokeStyle=balls[num][0];
+                ctx.globalAlpha=balls[num][6];
+                ctx.lineWidth=balls[num][7];
+                var x=balls[num][2];
+                var y=balls[num][3];
+                var r=balls[num][1];
+                ctx.moveTo(x+r,y)
+                ctx.arc(x,y,r,0,Math.PI*2);
+                ctx.stroke();
+            }
+        }
+        
+        movingBalls={
+            __proto__: balls,
+            
+            makeBall(num){
+                var rgb=Math.round(Math.random()*16581375);
+                var rgb_hex='#'+rgb.toString(16);
+                var r=Math.round(Math.random()*75)+10;
+                var x=Math.round(Math.random()*(canvas.width+1-r*2)+r);
+                var y=Math.round(Math.random()*(canvas.height+1-r*2)+r);
+                
+                var nums=Math.round(Math.random());
+                var spead= Math.random()*(5)+1;
+                var xSpeed=(nums==1)? spead: -spead;
+                nums=Math.round(Math.random());
+                spead= Math.random()*(5)+1;
+                var ySpeed=(nums==1)? spead: -spead;
+                
+                var gA=Math.random()*0.91+0.1;
+                var lW=Math.round(Math.random()*15)+1;
+                
+                balls[num]=[rgb_hex,r,x,y,xSpeed,ySpeed,gA,lW];
+            },
+            
+            ballMove(num){
+                ctx.clearRect(0,0,900,550);
+                for (var i=0; i<num; i++){
+                    balls.move(i);
+                    balls.drawBall(i);
+                }
+            }
+        }
+        
+        var num_c=Math.round(Math.random()*10)+10;
+        
+        for (var i=0; i<num_c; i++){
+            movingBalls.makeBall(i);
+        }
+        
+        (function anim(){
+            movingBalls.ballMove(num_c);
+            
+            requestAnimationFrame(anim);
+        })(); 
+        
+    </script>
+</body>
+</html>
+
+

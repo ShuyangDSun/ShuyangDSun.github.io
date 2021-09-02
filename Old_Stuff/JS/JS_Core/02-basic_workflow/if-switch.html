@@ -1,39 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>alskdjf</title>
-</head>
 
 <body>
 
     <script>
-        i = prompt('enter something')
-
-        if (i < 50) {
-            alert('i < 50')
-        } else if (i == 50) {
-            alert('i = 50')
+        v = 100;
+        if (v < 200) {
+            document.write('v<200: ', v < 200, '<br>');
+        } else if (v == 200) {
+            document.write('v==200: ', v == 200, '<br>');
         } else {
-            alert('i > 50')
+            document.write('v>200: ', v > 200, '<br>');
         }
 
-        d = new Date()
-        day = d.getDay()
+        // switch
+        day = new Date().getDay();
         switch (day) {
             case 0:
-                console.log('Sunday');
+                document.write('Sunday', '<br>');
                 break;
-            case 1:
-                console.log('Monday');
-                break;
-            case 6:
-                console.log('Saturday');
-                break;
-            default:
-                console.log("I don't know what day it is")
-        }
-    </script>
 
-</body>
-</html>
+            case 1:
+                document.write('Monday: not good', '<br>');
+                break;
+
+            case 2:
+                document.write('Tuesday', '<br>');
+                break;
+
+            case 3:
+                document.write('Wedesday', '<br>');
+                break;
+
+            case 4:
+                document.write('Thurday', '<br>');
+                break;
+
+            case 5:
+                document.write('Friday: good', '<br>');
+                break;
+
+            case 6:
+                document.write('Saturday', '<br>');
+                break;
+
+            default:
+                document.write('not valid', '<br>');
+        }
+
+        // ternary
+        if (100 < 50) {
+            document.write('100<50', '<br>');
+        } else {
+            document.write('100>=50', '<br>');
+        }
+        t = (100 < 50) ? "100>50" : "100<=50";
+        document.write('t: ', t, '<br>');
+    </script>
+</body></html>
+
+
+

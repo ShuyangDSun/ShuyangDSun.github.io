@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: solid 10px #66ba66;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id='canvas' width=700 height=500></canvas>
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+
+        /* Path: a series of path commands (moveTo, lineTo, arc, rect etc.)*/
+
+        // beginPath begins a path and collects sub-paths to a list, or resets the current path by emptying the list of sub-paths
+        //
+        ctx.moveTo(100, 100);
+        ctx.lineWidth = 20;
+        ctx.strokeStyle = 'blue';
+        ctx.lineTo(400, 100);
+        ctx.stroke();
+
+        // without beginPath(), the first shape get draw again, 
+        // because the stroke will draw not only the new sub-paths, but also the previous sub-paths even they are already stroked.
+        ctx.beginPath();
+        ctx.moveTo(100, 300);
+        ctx.strokeStyle = 'red';
+        ctx.lineTo(400, 300);
+        ctx.stroke();
+
+        //        ctx.beginPath();
+    </script>
+
+</body></html>
+
+
+

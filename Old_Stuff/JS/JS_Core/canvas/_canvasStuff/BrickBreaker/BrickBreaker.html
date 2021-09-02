@@ -3,39 +3,36 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>create canvas</title>
+    <title>Brick Breaker</title>
 
-    <link rel="stylesheet" href="../canvas/main.css">
-    
+    <link rel="stylesheet" href="../../../canvas/main.css">
+
     <style>
-        
         div {
             font-family: monospace;
             font-size: 20px;
             color: white;
-            
+
         }
-        
     </style>
 </head>
 
 <body>
     <div>Break all the Bricks to win, use A and D keys to move</div>
-    
+
     <canvas width=600 height=600></canvas>
 
     <script>
         canvas = document.querySelector('canvas');
         c = canvas.getContext('2d');
 
-        canvasHeight = 600;
-        canvasWidth = 600;
+        canvasHeight = canvas.height;
+        canvasWidth = canvas.width;
 
         function Sound(file) {
             this.sound = new Audio(file);
             this.play = function() {
-                this.sound.load();
-                this.sound.play();
+                this.sound.cloneNode().play();
             }
         }
 
@@ -64,7 +61,7 @@
 
             for (var a = 0; a < row; a++) {
                 for (var b = 0; b < column; b++) {
-                    blocks.push(new Block(bX, bY, bW, bH));
+                    blocks.push(new Block(b, a, bW, bH));
                     bX += bSpaceX;
                 }
                 bY += bSpaceY;
@@ -101,38 +98,85 @@
             this.restart = function() {
                 init();
 
-                circle.x = Math.random() * 500 + 50
-                circle.y = Math.random() * 200 + 50
+                ball.x = parseInt(Math.random() * (600 - 40) + 20);
+                ball.y = parseInt(Math.random() * (80) + 220);
             };
         };
 
         function Block(x, y, w, h) {
-            this.x = x
-            this.y = y
-            this.w = w
-            this.h = h
+            /*
+            var column = 8;
+        var row = 3;
+
+        var bSpaceY = 30;
+        var bY = 10;
+        var bH = 20;
+
+        var bSpaceX = (canvasWidth - 10) / column
+        var bW = bSpaceX - 10;
+        var bX = 10;
+            */
+
+            this.x = x * ((canvasWidth - 10) / 8) + 10;
+            this.y = y * (30) + 110;
+            this.w = w;
+            this.h = h;
+            this.row = y;
+            this.col = x;
 
             this.draw = function() {
                 c.fillStyle = 'Darkred';
                 c.fillRect(this.x, this.y, this.w, this.h)
             }
 
-            this.hitDetection = function(cx, cy, i) {
-                if (this.x <= cx && cx <= this.x + this.w && cy - 20 <= this.y + this.h && this.y <= cy + 20) {
-                    circle.ys = -circle.ys;
-                    sound.play();
+            this.break = function(i) {
+                sound.play();
 
-                    blocks.splice(i, 1)
-                };
+                blocks.splice(i, 1);
+                //                console.log("block: (", this.x, this.y, "), (", this.x + this.w, this.y + this.h, ")");
+                //                console.log("block pos: ", this.row, this.col);
+                //                console.log("ball: ", cx, cy, r, i);
+            }
 
-                if (this.y <= cy && cy <= this.y + this.h && cx + 20 >= this.x && this.x + bW >= cx - 20) {
-                    circle.xs = -circle.xs;
-                    sound.play();
+            this.hitDetection = function(cx, cy, r, i) {
+                if (this.x <= cx && cx <= this.x + this.w && cy - r <= this.y + this.h && this.y <= cy + r) {
+                    ball.ys = -ball.ys;
 
-                    blocks.splice(i, 1)
+                    this.break(i);
+
+                } else if (this.y <= cy && cy <= this.y + this.h && cx - r <= this.x + this.w && this.x <= cx + r) {
+                    ball.xs = -ball.xs;
+
+                    this.break(i);
+
+                } else {
+                    var corners = [
+                        [this.x, this.y],
+                        [this.x, this.y + this.h],
+                        [this.x + this.w, this.y + this.h],
+                        [this.x + this.w, this.y]
+                    ];
+                    for (var j = 0; j < corners.length; j++) {
+
+                        var x1 = corners[j][0];
+                        var y1 = corners[j][1];
+
+                        var distance = Math.sqrt((x1 - cx) ** 2 + (y1 - cy) ** 2);
+                        if (distance <= r) {
+                            ball.xs = -ball.xs;
+                            ball.ys = -ball.ys;
+
+                            this.break(i);
+
+                            break;
+                        }
+                    }
                 }
             }
         }
+
+        // block: ( 378.75 70 ), ( 442.5 90 )
+        // ball:  454.7134425793942 105.09873453678591 20 2
 
         function Paddle(x, y, w, h) {
             this.x = x
@@ -141,10 +185,10 @@
             this.h = h
 
             this.move = function() {
-                if (left == true && this.x > 0) {
+                if (left == true && this.x + this.w > 0) {
                     this.x -= 8;
                 }
-                if (right == true && this.x + 100 < 600) {
+                if (right == true && this.x < 600) {
                     this.x += 8;
                 }
             }
@@ -155,9 +199,13 @@
                 c.fillRect(this.x, this.y, this.w, this.h);
             }
 
-            this.hitDetection = function(x, y) {
-                if (this.x < x + 20 && x - 20 < this.x + 100 && 584 >= y + 20 && y + 20 >= 580) {
-                    circle.ys = -circle.ys;
+            this.hitDetection = function(x, y, r) {
+                if (this.x < x + ball.r && x - ball.r < this.x + 100 && 584 >= y + ball.r && y + ball.r >= 580) {
+                    var degree = ((x - this.x) / 100) * 120 + 30;
+
+                    ball.xs = -8 * Math.cos(degree * (Math.PI / 180))
+                    ball.ys = -8 * Math.sin(degree * (Math.PI / 180));
+
                     sound.play();
                 }
             }
@@ -167,6 +215,15 @@
         var right = false
         document.addEventListener('keydown', function(e) {
             key = e.keyCode;
+
+            if (key === 27) { // pause
+                play = play ^ true;
+
+                if (play) {
+                    requestAnimationFrame(anim);
+                }
+            }
+
             if (key === 65 || key === 37) {
                 left = true;
             } else if (key === 68 || key === 39) {
@@ -195,7 +252,7 @@
             mousepos.y = e.offsetY
         });
 
-        function Circle(x, y, r) {
+        function Ball(x, y, r) {
             this.x = x
             this.y = y
             this.r = r
@@ -215,10 +272,10 @@
                 if (this.y + 20 >= 600) {
                     cancelAnimationFrame = true
                 }
-                paddle.hitDetection(this.x, this.y);
+                paddle.hitDetection(this.x, this.y, this.r);
 
                 for (var i = 0; i < blocks.length; i++) {
-                    blocks[i].hitDetection(this.x, this.y, i);
+                    blocks[i].hitDetection(this.x, this.y, this.r, i);
                 }
 
                 this.x += this.xs;
@@ -226,7 +283,7 @@
             }
 
             this.draw = function() {
-                circle.update();
+                ball.update();
 
                 c.beginPath();
 
@@ -244,68 +301,47 @@
         }
 
         //////////// Column, Row for blocks ////////////
-        var column = 8;
-        var row = 3;
-
-        var bSpaceY = 30;
-        var bY = 10;
-        var bH = 20;
-
-        var bSpaceX = (canvasWidth - 10) / column
-        var bW = bSpaceX - 10;
-        var bX = 10;
-
-        blocks = []
-
-        for (var a = 0; a < row; a++) {
-            for (var b = 0; b < column; b++) {
-                blocks.push(new Block(bX, bY, bW, bH));
-                bX += bSpaceX;
-            }
-            bY += bSpaceY;
-            bX = 10
-        };
-
-        win = false;
+        init();
 
         paddle = new Paddle(250, 580, 100, 10);
 
-        circle = new Circle(Math.random() * 500 + 50, Math.random() * 200 + 50, 20);
+        ball = new Ball(parseInt(Math.random() * (600 - 40) + 20), parseInt(Math.random() * (80) + 220), 20);
 
         cancelAnimationFrame = false;
 
+        play = true
+
         function anim() {
-            requestAnimationFrame(anim)
+            if (play) {
+                if (blocks.length === 0) {
+                    c.font = "50px Arial";
+                    c.textBaseline = 'hanging';
+                    c.fillStyle = 'Black';
+                    c.fillText('You Win!', 200, 300, 180);
 
-            if (blocks.length === 0) {
-                c.font = "50px Arial";
-                c.textBaseline = 'hanging';
-                c.fillStyle = 'Black';
-                c.fillText('You Win!', 200, 300, 180);
+                    restart = new Restart(250, 360, 100, 40);
+                    restart.draw();
+                } else if (cancelAnimationFrame === false) {
+                    c.clearRect(0, 0, 600, 600);
+                    paddle.draw();
+                    ball.draw();
 
-                restart = new Restart(250, 360, 100, 40);
-                restart.draw();
-            } else if (cancelAnimationFrame === false) {
-                c.clearRect(0, 0, 600, 600);
-                paddle.draw();
-                circle.draw();
+                    for (var i = 0; i < (blocks.length); i++) {
+                        blocks[i].draw();
+                    }
+                } else {
+                    c.font = "50px Arial";
+                    c.textBaseline = 'hanging';
+                    c.fillStyle = 'Black';
+                    c.fillText('Game Over!', 200, 300, 200);
 
-                for (var i = 0; i < (blocks.length); i++) {
-                    blocks[i].draw();
+                    restart = new Restart(250, 360, 100, 40);
+                    restart.draw();
+
                 }
-            } else {
-                c.font = "50px Arial";
-                c.textBaseline = 'hanging';
-                c.fillStyle = 'Black';
-                c.fillText('Game Over!', 200, 300, 200);
-
-                restart = new Restart(250, 360, 100, 40);
-                restart.draw();
-
+                requestAnimationFrame(anim)
             }
         }
         anim()
     </script>
-</body>
-
-</html>
+</body></html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id='playBtn'>Play</button>
+    <button id='pauseBtn'>Pause</button>
+
+    <script>
+        // dom (document object model) element
+        btn = document.querySelector('#playBtn');
+        btn.disabled = true;
+        //
+        pause = document.querySelector('#pauseBtn')
+
+        // object: properties, functions, events
+        audio = document.createElement('audio');
+        audio.src = 'audio/Level_Complete.mp3';
+
+        //
+        btn.addEventListener('click', function() {
+            copy = audio.cloneNode();
+            copy.play();
+        });
+        pause.addEventListener('click', function() {
+            copy.pause();
+        })
+
+        // register 7 events for the audio object
+        audio.addEventListener('loadedmetadata', function() {
+            console.log('loadedmetadata');
+            btn.disabled = false;
+        });
+        audio.addEventListener('play', function() {
+            console.log('play', audio.duration);
+        });
+        audio.addEventListener('playing', function() {
+            console.log('playing');
+        });
+        audio.addEventListener('pause', function() {
+            console.log('pause');
+        });
+        audio.addEventListener('timeupdate', function() {
+            console.log('timeupdate', audio.currentTime);
+        });
+        audio.addEventListener('ended', function() {
+            console.log('ended');
+        });
+        audio.addEventListener('volumnchange', function() {
+            console.log('volumnchange');
+        });
+    </script>
+
+</body></html>
+
+
+

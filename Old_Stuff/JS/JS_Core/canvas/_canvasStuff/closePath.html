@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: solid 10px #66ba66;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id='canvas' width=700 height=500></canvas>
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+
+        // closePath creates a path from the current point back to the starting point of current subpaths.
+        //
+        ctx.moveTo(100, 100);
+        ctx.lineTo(150, 200);
+        ctx.lineTo(250, 50);
+        ctx.lineTo(400, 200);
+        ctx.closePath();
+        ctx.stroke();
+    </script>
+
+</body></html>
+
+
+

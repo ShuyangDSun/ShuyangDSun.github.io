@@ -1,0 +1,44 @@
+ 
+Define a function to draw a square
+Loop and call function to draw board 10X20
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // closure is a function returned by another function
+        function add() {
+            var total = 0;
+
+            function addNumber(num) {
+                total += num;
+                return total;
+            }
+
+            return addNumber;
+        }
+
+        // use closure
+        addNum = add();
+        console.log(addNum instanceof Function);
+
+        console.log(addNum(100));
+        console.log(addNum(100));
+        console.log(addNum(100));
+
+        // closure remember its outer function state: use dir(addNum) to see the state
+        // normal functions will forget its state after called
+    </script>
+
+</body></html>
+
+
+
+

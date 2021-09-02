@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        canvas {
+            border: solid 4px #66ba66;
+            vertical-align: top;
+        }
+
+        span {
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width=300 height=720></canvas>
+    <span>Score: <span id='score'>0</span></span>
+
+    <script src='tetriminos.js'></script>
+    <script>
+        var scoreEle = document.querySelector('#score');
+        var score = 0;
+
+        var pause = false;
+        var canvas = document.querySelector('canvas');
+        var ctx = canvas.getContext('2d');
+
+        // board
+        size = canvas.width / 10;
+
+        topMargin = 4;
+
+        function drawSquare(row, col, color) {
+            ctx.beginPath();
+            ctx.lineWidth = 1;
+            ctx.rect(col * size, (row + topMargin) * size, size, size);
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+        }
+        board = []
+        for (var r = 0; r < 20; r++) {
+            board[r] = [];
+            for (var c = 0; c < 10; c++) {
+                board[r][c] = 'white';
+            }
+        }
+
+        function drawBoard() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (var r = 0; r < 20; r++) {
+                for (var c = 0; c < 10; c++) {
+                    drawSquare(r, c, board[r][c]);
+                }
+            }
+        }
+
+        // test
+        drawBoard();
+        drawSquare(0, 0, 'red');
+
+        // draw tetrimino
+        function drawTetrimino(row, col, pattern, color) {
+            var s = pattern.length;
+            // draw a border
+            ctx.beginPath();
+            ctx.strokeStyle = 'red';
+            ctx.lineWidth = 5;
+            ctx.strokeRect(col * size, (row + topMargin) * size, size * s, size * s);
+
+            //
+            for (var r = 0; r < s; r++) {
+                for (var c = 0; c < s; c++) {
+                    if (pattern[r][c]) {
+                        drawSquare(row + r, col + c, color);
+                    }
+                }
+            }
+        }
+        // test
+        drawBoard();
+        drawTetrimino(1, 2, S.patterns[1], S.color);
+
+        // clear tetrimino 
+        function clearTetrimino(row, col, pattern) {
+            // draw a border
+            //            drawTetrimino(row, col, pattern, 'white');
+            //
+            //            ctx.beginPath();
+            //            ctx.strokeStyle = 'black';
+            //            var s = pattern.length;
+            //            ctx.strokeRect(col * 35, row * 35, 35 * s, 35 * s);
+
+            drawBoard();
+
+        }
+
+        // test
+        clearTetrimino(0, 0, S.patterns[1], S.color);
+
+        // tetrimino moves down
+        currTetrimino = I;
+        currIndex = 0
+        currPattern = currTetrimino.patterns[currIndex];
+        currColor = currTetrimino.color;
+        currRow = -3;
+        currCol = 2;
+        //        drawBoard();
+
+        prev = Date.now();
+
+        function tetriMovesDown() {
+            curr = Date.now();
+            if (curr - prev > 1000 && !pause) {
+                clearTetrimino(currRow, currCol, currPattern);
+
+                if (!isCollisionOnBottom(currPattern) && !isCollisionWithOtherPatterns('down')) {
+                    currRow++;
+                } else {
+                    stamp(currPattern);
+                    removeRow();
+                    drawBoard();
+                    createRandomTetrimino();
+                }
+
+                drawTetrimino(currRow, currCol, currPattern, currColor);
+                prev = curr;
+            }
+            if (!gameOver) {
+                requestAnimationFrame(tetriMovesDown);
+            }
+        }
+        tetriMovesDown();
+
+        // move tetrimino left and right
+        window.addEventListener('keydown', function(event) {
+            if (event.keyCode == 37) {
+                if (!isCollisionOnLeft(currPattern)) {
+                    clearTetrimino(currRow, currCol, currPattern);
+                    currCol--;
+                    drawTetrimino(currRow, currCol, currPattern, currColor);
+                }
+            }
+            if (event.keyCode == 39) {
+                if (!isCollisionOnRight(currPattern)) {
+                    clearTetrimino(currRow, currCol, currPattern);
+                    currCol++;
+                    drawTetrimino(currRow, currCol, currPattern, currColor);
+                }
+            }
+            if (event.keyCode == 32) {
+                pause = !pause;
+                console.log('space');
+            }
+
+            // rotate
+            if (event.keyCode == 38) {
+                clearTetrimino(currRow, currCol, currPattern);
+
+                currIndex++;
+                currIndex %= currTetrimino.patterns.length;
+                currPattern = currTetrimino.patterns[currIndex];
+
+                // check if stuck in wall
+                for (var r = 0; r < currPattern.length; r++) {
+                    for (var c = 0; c < currPattern.length; c++) {
+                        if (currPattern[r][c]) {
+                            if (currCol + c < 0) {
+                                currCol += Math.abs(currCol + c);
+                            } else if (currCol + c > 9) {
+                                currCol -= (currCol + c - 9)
+                            }
+                        }
+                    }
+                }
+
+                drawTetrimino(currRow, currCol, currPattern, currColor);
+            }
+
+            if (event.keyCode == 40) {
+                if (!isCollisionOnBottom(currPattern) && !isCollisionWithOtherPatterns('down')) {
+                    clearTetrimino(currRow, currCol, currPattern);
+
+                    currRow++;
+
+                    drawTetrimino(currRow, currCol, currPattern, currColor);
+                } else { // stamp
+                    stamp(currPattern);
+                    removeRow();
+                    //    
+                    drawBoard();
+
+                    // generate new tetrimino
+                    createRandomTetrimino();
+                }
+            }
+        });
+
+        function isCollisionOnLeft(pattern) {
+            var s = pattern.length;
+            // cross left boundary
+            if (isCrossBoundary('left')) {
+                return true;
+            }
+            if (isCollisionWithOtherPatterns('left')) {
+                console.log('collision on left');
+                return true;
+            }
+            return false;
+        }
+
+        function isCollisionOnRight(pattern) {
+            var s = pattern.length;
+            if (isCrossBoundary('right')) {
+                return true;
+            }
+            if (isCollisionWithOtherPatterns('right')) {
+                console.log('collision on right');
+                return true;
+            }
+            return false;
+        }
+
+        function isCrossBoundary(dir) {
+            var newRow = currRow;
+            var newCol = currCol;
+            if (dir == 'left') {
+                newCol = currCol - 1;
+            } else if (dir == 'right') {
+                newCol = currCol + 1;
+            }
+            // find square with colors
+            for (var r = 0; r < currPattern.length; r++) {
+                for (var c = 0; c < currPattern.length; c++) {
+                    if (currPattern[r][c]) {
+                        if (newCol + c < 0 || newCol + c > 10) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        function isCollisionOnBottom(pattern) {
+            for (var r = 0; r < pattern.length; r++) {
+                for (var c = 0; c < pattern.length; c++) {
+                    if (pattern[r][c] && currRow + r + 1 > 19) {
+                        console.log('collision on bottom');
+                        return true;
+                    }
+                }
+            }
+        }
+
+        // stamp
+        function stamp(pattern) {
+            for (var r = 0; r < pattern.length; r++) {
+                for (var c = 0; c < pattern.length; c++) {
+                    if (pattern[r][c]) {
+                        if (currRow + r >= 0) {
+                            board[currRow + r][currCol + c] = currColor;
+                        }
+                    }
+                }
+            }
+        }
+
+        function isRowFull(row) {
+            for (var col = 0; col < 10; col++) {
+                if (board[row][col] == 'white') {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function removeRow() {
+            for (var r = 0; r < 20; r++) {
+                if (isRowFull(r)) {
+                    // move rows down
+                    for (var rr = r; rr > 0; rr--) {
+                        for (var col = 0; col < 10; col++) {
+                            board[rr][col] = board[rr - 1][col];
+                        }
+                    }
+                    // set the first row
+                    for (var col = 0; col < 10; col++) {
+                        board[0][col] = 'white';
+                    }
+                    score += 10;
+                    scoreEle.innerText = score;
+                }
+            }
+        }
+        // random generate currTetrimino and populate variables
+        function createRandomTetrimino() {
+            var ind = Math.floor(Math.random() * 7);
+            currTetrimino = tetriminos[ind];
+            currIndex = 0;
+            currPattern = currTetrimino.patterns[currIndex];
+            currColor = currTetrimino.color;
+            currRow = -3;
+            currCol = 2;
+        }
+        // test
+        //        createRandomTetrimino();
+
+        // collision with other patterns in board
+        var gameOver = false;
+
+        function isCollisionWithOtherPatterns(dir) {
+            var newRow = currRow;
+            var newCol = currCol;
+            if (dir == 'down') {
+                newRow = currRow + 1;
+            } else if (dir == 'left') {
+                newCol = currCol - 1;
+            } else if (dir == 'right') {
+                newCol = currCol + 1;
+            }
+            // find square with colors
+            for (var r = 0; r < currPattern.length; r++) {
+                for (var c = 0; c < currPattern.length; c++) {
+                    if (currPattern[r][c] && newRow + r >= 0 &&
+                        board[newRow + r][newCol + c] != 'white') {
+
+                        // game over
+                        if (currRow < 0) {
+                            gameOver = true;
+                            console.log('Game over');
+                        }
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+    </script>
+
+    <!--    
+tetris_1.html
+1. draw board
+2. draw tetrimino/clear tetrimino
+3. tetrimino moves down (clear tetrimino)
+4. move tetrimino (left, right)
+5. pause anim
+6. rotate tetrimino
+7. move tetrimino (down)
+8. draw tetrimino border
+9. collision detection on left and on right, and bottom
+10. stamp when collision on bottom, then draw the board
+
+tetris_2.html
+11. generate new pattern after stamp
+12. collision with other patterns in board
+13. after stamp, remove rows if it is full
+14. update score
+15. game over
+-->
+
+</body></html>
+
+
+

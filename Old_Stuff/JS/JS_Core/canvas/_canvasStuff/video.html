@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+
+    <style>
+        canvas {
+            border-style: solid;
+            background-color: white;
+        }
+
+        body {
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas width=600 height=600></canvas>
+    <button id="play">Play</button>
+    <button id="pauseBtn">Pause</button>
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+
+        var pause = false;
+
+        play.onclick = function() {
+            video.play();
+        }
+
+        pauseBtn.onclick = function() {
+            video.pause();
+            if (!pause) {
+                video.pause();
+                pause = true;
+            } else {
+                video.play();
+                pause = false;
+            }
+        }
+
+        var video = document.createElement('video');
+        video.src = 'http://movietrailers.apple.com/movies/sony_pictures/alpha/alpha-trailer-2_h480p.mov';
+
+        video.onloadedmetadata = function() {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+        }
+
+        video.addEventListener('play', function() {
+            draw();
+        });
+
+        function draw() {
+            if (!pause) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(video, 0, 0)
+
+                ctx.font = '50px monospace';
+                ctx.fillStyle = 'red';
+                ctx.fillText('Good movie', 200, 100);
+            }
+
+            requestAnimationFrame(draw);
+        }
+    </script>
+</body></html>

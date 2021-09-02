@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+
+    <style>
+        .container {
+            position: relative;
+            width: 900px;
+            height: 600px;
+            border: 2px solid white;
+        }
+
+        .img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 900px 100%;
+        }
+
+        .background-img {
+            background-image: url('https://i.pinimg.com/736x/9d/f1/1d/9df11d76d14e1cdfb6c3b3653b0652d7.jpg');
+        }
+
+        .foreground-img {
+            background-image: url('https://preview.redd.it/osd3a8jicv951.jpg?auto=webp&s=12a6a9551a4daf6c36c399dd7d1152781ccf1370');
+            width: 50%;
+        }
+
+        .slider {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class='container'>
+        <div class='img background-img'></div>
+        <div class='img foreground-img'></div>
+        <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
+    </div>
+
+    <script>
+        const slider = document.querySelector('.slider');
+        
+        slider.addEventListener('mousemove', function(e) {
+            const beforeImage = document.querySelector('.foreground-img');
+            beforeImage.style.width = slider.value + "%";
+        });
+        
+    </script>
+</body></html>

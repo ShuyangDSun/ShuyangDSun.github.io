@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button id="btn">Visualize music</button>
+    <canvas width=700 height=500></canvas>
+
+    <script>
+        canvas = document.querySelector('canvas');
+        context = canvas.getContext('2d');
+
+        // 
+        // AudioContext -> Analyser 
+        // AudioContext -> MediaElementSource
+        // MediaElementSource => Analyser => audioContext.destination
+
+        btn = document.querySelector('#btn');
+        btn.addEventListener('click', function() {
+            audio = new Audio('miracle_2-ilya_truhanov.mp3');
+            audio.addEventListener('loadedmetadata', function() {
+                audioContext = new AudioContext();
+                analyser = audioContext.createAnalyser();
+                audioSource = audioContext.createMediaElementSource(audio);
+                //
+                audioSource.connect(analyser);
+                analyser.connect(audioContext.destination);
+
+                // after load
+                audio.play();
+            });
+
+            audio.addEventListener('playing', function() {
+                draw();
+            });
+
+        });
+
+        function draw() {
+            requestAnimationFrame(draw);
+
+            //
+            context.clearRect(0, 0, 700, 500);
+
+            // 8 bit unsigned integer
+            var freqData = new Uint8Array(analyser.frequencyBinCount);
+            analyser.getByteFrequencyData(freqData);
+
+            //
+            for (var i = 0; i < freqData.length; i++) {
+                var magnitude = freqData[i];
+                if (magnitude) {
+                    console.log(i);
+                }
+                color = 'hsl(' + i % 360 + ',50%,50%)';
+                context.fillStyle = color;
+                context.fillRect(i, 500, 1, -magnitude * 2);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
+
+

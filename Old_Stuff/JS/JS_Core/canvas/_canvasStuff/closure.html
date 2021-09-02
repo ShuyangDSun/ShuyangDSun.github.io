@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <style>
+    </style>
+</head>
+<body>
+    
+    
+    <script>
+        a = 'teens programming';
+        
+        
+        test = (function() {
+            var aa = 'teens programming';
+            
+            return function() {
+                return aa;
+            }
+        })();
+        document.write(test(), '<br>')
+        
+        test = (function() {
+            var aa = 'teens programming';
+            
+            function setA(a) {
+                aa = a;
+            }
+            
+            function getA() {
+                return aa;
+            }
+            
+            return {
+                setA: setA,
+                getA: getA
+            }
+        })();
+        document.write('from closure: ', test.setA("TP"), '<br>');
+        document.write('from closure: ', test.getA(), '<br>');
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+
+    <style>
+        canvas {
+            border-style: solid;
+            background-color: white;
+        }
+
+        body {
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas width=600 height=600></canvas>
+
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+
+        enemy = {
+            x: 100,
+            y: 100,
+            w: 100,
+            h: 100,
+            color: 'blue',
+            draw: function() {
+                ctx.beginPath();
+                ctx.fillStyle = this.color;
+                ctx.fillRect(this.x, this.y, this.w, this.h);
+                ctx.fill();
+            }
+        }
+
+        missile = {
+            x: null,
+            y: null,
+            w: 10,
+            h: 50,
+            color: 'red',
+            draw: function() {
+                ctx.beginPath;
+                ctx.fillStyle = this.color;
+                ctx.fillRect(this.x, this.y, this.w, this.h);
+                ctx.fill();
+            }
+        }
+
+        window.addEventListener('mousemove', function(e) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            missile.x = e.offsetX;
+            missile.y = e.offsetY;
+
+//            if (missile.x + missile.w < enemy.x || enemy.x + enemy.w < missile.x || missile.y + missile.h < enemy.y || enemy.y + enemy.h < missile.y) {
+            if (missile.x + missile.w > enemy.x && enemy.x + enemy.w > missile.x && missile.y + missile.h > enemy.y && enemy.y + enemy.h > missile.y) {
+                enemy.color = 'red';
+            } else {
+                enemy.color = 'blue'
+            }
+
+
+            enemy.draw();
+            missile.draw();
+        })
+    </script>
+</body></html>
+
+

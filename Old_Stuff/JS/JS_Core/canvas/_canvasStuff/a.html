@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-16">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: solid 10px #66ba66;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id='canvas' width=700 height=500></canvas>
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+
+        // precedure programming -> oop
+        function Ball(x, y, radius, dx, dy) {
+            this.draw = function() {
+                ctx.beginPath();
+                ctx.arc(x, y, radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            this.update = function() {
+                x += dx;
+                y += dy;
+                if (x < radius || x + radius > 700) {
+                    dx = -dx;
+                }
+                if (y < radius || y + radius > 500) {
+                    dy = -dy;
+                }
+
+            }
+        }
+
+        ball = new Ball(50, 30, 10, 2, 3);
+
+        // 
+        (function anim() {
+            // 1 clear
+            ctx.clearRect(0, 0, 700, 500);
+
+            // 2 draw
+            ball.draw();
+
+            // 3 update
+            ball.update();
+            requestAnimationFrame(anim);
+        })();
+    </script>
+
+
+</body></html>
+
+
+

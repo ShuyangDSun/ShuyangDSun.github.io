@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>breakout</title>
+    <style>
+        canvas {
+            border: solid 10px #66ba66;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id='canvas' width=600 height=700></canvas>
+    <script>
+        var canvas = document.querySelector('canvas');
+        var ctx = canvas.getContext('2d');
+
+        // bar
+        left = false;
+        right = false;
+        bar = {
+            w: 140,
+            h: 10,
+            x: canvas.width / 2 - 140 / 2,
+            y: canvas.height - 10,
+            getCorners: function() {
+                return [
+                    [this.x, this.y],
+                    [this.x + this.w, this.y],
+                    [this.x + this.w, this.y + this.h],
+                    [this.x, this.y + this.h]
+                ];
+            },
+            draw: function() {
+                // update
+                if (left) {
+                    this.x -= 6;
+                } else if (right) {
+                    this.x += 6;
+                }
+
+                ctx.beginPath();
+                ctx.rect(this.x, this.y, this.w, this.h);
+                ctx.fillStyle = 'blue';
+                ctx.fill();
+            }
+        }
+
+        // key control bar
+        window.addEventListener('keydown', function(e) {
+            if (e.keyCode === 37) {
+                left = true;
+            } else if (e.keyCode == 39) {
+                right = true;
+            }
+        });
+        window.addEventListener('keyup', function(e) {
+            if (e.keyCode === 37) {
+                left = false;
+            } else if (e.keyCode == 39) {
+                right = false;
+            }
+        });
+
+        //
+        gameOver = false;
+        ball = {
+            x: canvas.width / 2,
+            y: canvas.height - bar.h - 10,
+            r: 10,
+            dx: 5,
+            dy: 5,
+            update: function() {
+                this.x += this.dx;
+                this.y += this.dy;
+                // hit boundary
+                if (this.x - this.r <= 0 || this.x + this.r >= canvas.width) {
+                    this.dx = -this.dx;
+                } else if (this.y - this.r <= 0) {
+                    this.dy = -this.dy;
+                }
+
+                // hit bottom
+                if (this.y + this.r >= canvas.height) {
+                    gameOver = true;
+                }
+
+                // hit bar
+                if (touchTopOrBottom() || touchCorners()) {
+                    this.dy = -this.dy;
+                }
+            },
+            draw: function() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fillStyle = 'black';
+                ctx.fill();
+            }
+        }
+        ball.draw();
+        //
+        function touchLeftOrRight() {
+            if (ball.y >= bar.y && ball.y <= bar.y + bar.h &&
+                ((ball.x + ball.r >= bar.x) && (ball.x - ball.r <= bar.x + bar.w))) {
+                return true;
+            }
+            return false;
+        }
+
+        function touchTopOrBottom() {
+            if (ball.x >= bar.x && ball.x <= bar.x + bar.w && ball.y + ball.r >= bar.y && ball.y - ball.r <= bar.y + bar.h) {
+                return true;
+            }
+            return false;
+        }
+
+        function distanceSquare(x1, y1, x2, y2) {
+            return (x1 - x2) ** 2 + (y1 - y2) ** 2;
+        }
+
+        function touchCorners() {
+            var corners = bar.getCorners();
+            for (var i = 0; i < 4; i++) {
+                var corner = corners[i];
+                if (distanceSquare(ball.x, ball.y, corner[0], corner[1]) <= ball.r ** 2) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // block
+        block = {
+            w: canvas.width / 10 - 10,
+            h: 10,
+            draw: function() {
+                ctx.beginPath();
+                ctx.rect(this.x, this.y, this.w, this.h);
+                ctx.fillStyle = 'orange';
+                ctx.fill();
+            }
+        }
+        //
+        wall = {
+            pattern: [
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+                [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+                [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+                [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+            ],
+            blocks: [],
+            buildBlocks: function() {
+                for (var i = 0; i < this.pattern.length; i++) {
+                    for (var j = 0; j < this.pattern[0].length; j++) {
+                        if (this.pattern[i][j]) {
+                            var b = {
+                                ...block
+                            }
+                            b.x = j * 60;
+                            b.y = i * 30;
+                            this.blocks.push(b);
+                        }
+                    }
+                }
+            },
+            draw: function() {
+                this.blocks.forEach(function(b, i) {
+                    b.draw();
+                });
+            }
+        }
+        wall.buildBlocks();
+
+        function drawGameOverText() {
+            ctx.font = '40px monospace';
+            ctx.fillText('Game Over', 200, 300);
+        }
+        drawGameOverText();
+
+        //
+        function loop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            //
+            ball.draw();
+            wall.draw();
+            bar.draw();
+            //
+            ball.update();
+            //
+            if (!gameOver) {
+                requestAnimationFrame(loop);
+            } else {
+                drawGameOverText();
+            }
+        }
+        loop();
+    </script>
+
+</body></html>
+
+
+

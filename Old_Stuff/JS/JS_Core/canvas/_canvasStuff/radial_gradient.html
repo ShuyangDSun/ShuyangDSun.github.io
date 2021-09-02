@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+    
+    <style>
+        canvas {
+            border-style: solid;
+            background-color: white;
+        }
+        body {
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    
+    <canvas width=600 height=600></canvas>
+    
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+        
+        g = ctx.createRadialGradient(200, 200, 50, 400, 200, 150);
+        g.addColorStop();
+    </script>
+</body>
+</html>
+
+

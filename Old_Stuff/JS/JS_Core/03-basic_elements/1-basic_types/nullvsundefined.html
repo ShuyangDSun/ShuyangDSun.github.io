@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- javascript type: 
+        1. 5 types: number, string, boolean, null, undefined 
+        2. object: object, array, function, regular expression etc.
+    -->
+
+    <script>
+        // number
+        // +,-,*,/,%
+        n = 100;
+
+        // how convert a value to number
+        s = '100';
+        ss = +s; // -,*
+        console.log(typeof ss);
+
+        ss = parseInt(s);
+        console.log(typeof ss);
+
+        s = '100px';
+        ss = parseInt(s);
+        console.log(typeof ss);
+
+        // special numbers
+        console.log(typeof NaN);
+        console.log(typeof Infinity);
+
+        // 
+        s = '100';
+        ss = 100 + +s;
+        console.log(ss);
+
+        // string
+        s = 'abc';
+        console.log(s[1]);
+        console.log(s[s.length - 1]);
+        console.log(s.toUpperCase());
+        // convert
+        n = 100;
+        s = '' + n;
+        console.log(typeof s);
+        s = String(n);
+        console.log(typeof s);
+
+        // boolean
+        b = true;
+        console.log('' + b);
+        // falsy value: a value considered as false
+        // 0, '', false, null, undefined
+        // truthy value: others are truthy value
+        if (s !== 0) {
+            console.log('not equal to 0')
+        }
+        if (s) {
+            console.log('not equal to 0')
+        }
+
+        // open console, use !! to see if a value is truthy value or not
+        !!0
+    </script>
+
+</body></html>
+
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: solid 10px #66ba66;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id='canvas' width=700 height=500></canvas>
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+
+        /*
+        When mouse cursor in circle, increase the circle size; otherwise, decrease the circle size.
+        */
+
+        function Circle() {
+            radius = 50;
+            x = 300;
+            y = 300;
+            inCircle = false;
+
+            this.draw = function() {
+                ctx.beginPath();
+                ctx.arc(x, y, radius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            this.update = function() {
+                if (inCircle) {
+                    if (radius < 200) {
+                        radius += 5;
+                    }
+                } else {
+                    if (radius >= 30) {
+                        radius -= 5;
+                    }
+                }
+
+            }
+        }
+
+        ctx.font = '30px monospace';
+
+        window.addEventListener('mousemove', function(event) {
+            mouseX = event.offsetX;
+            mouseY = event.offsetY;
+
+            //
+            ctx.clearRect(0, 0, 700, 500);
+            ctx.fillText('x ' + mouseX, 50, 50);
+            ctx.fillText('y ' + mouseY, 50, 90);
+            circle.draw();
+
+            //
+            disX = Math.abs(mouseX - x);
+            disY = Math.abs(mouseY - y);
+            distance = (disX ** 2 + disY ** 2) ** 0.5;
+            distance = Math.floor(distance);
+
+            ctx.fillText('distance: ' + distance, 50, 130);
+
+            if (distance <= radius) {
+                inCircle = true;
+            } else {
+                inCircle = false;
+            }
+
+        });
+
+        circle = new Circle();
+        (function anim() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            circle.draw();
+            circle.update();
+
+            requestAnimationFrame(anim);
+        })();
+    </script>
+
+</body></html>
+
+
+

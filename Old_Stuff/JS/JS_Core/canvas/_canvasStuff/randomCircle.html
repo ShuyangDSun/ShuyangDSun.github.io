@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create canvas</title>
+
+    <style>
+        canvas {
+            border-style: solid;
+            background-color: white;
+        }
+
+        body {
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas width=600 height=600></canvas>
+
+    <script>
+        canvas = document.querySelector('canvas');
+        ctx = canvas.getContext('2d');
+
+        for (var i = 0; i < 10; i++) {
+            ctx.beginPath()
+
+            // position
+            var x = Math.random() * 600 + 1;
+            var y = Math.random() * 600 + 1;
+            var r = Math.random() * 250 + 1;
+            ctx.arc(x, y, r, 0, Math.PI * 2, true);
+
+            // color
+            var r = Math.random() * 255;
+            var g = Math.random() * 255;
+            var b = Math.random() + 255;
+            var a = Math.random();
+            ctx.strokeStyle = "rgba(" + r + ", " + g + ", " + b + ", " + a + ")"
+            
+            // lineWidth
+            ctx.lineWidth = Math.random() * 50 + 1;
+            
+            ctx.stroke();
+        }
+    </script>
+</body></html>
+
+
