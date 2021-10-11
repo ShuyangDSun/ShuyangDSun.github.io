@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tetris</title>
+
+    <style>
+        .instructions {
+            font-family: monospace;
+            margin: 0px;
+        }
+
+        .container {
+            width: 600px;
+            height: 600px;
+            border-style: solid;
+            background-color: #191919;
+            position: absolute;
+        }
+
+        .cover {
+            width: inherit;
+            height: inherit;
+            position: inherit;
+            background-color: rgba(0, 0, 0, 0.5);
+
+            visibility: hidden;
+        }
+
+        .game_over {
+            position: inherit;
+
+            /* centers this box */
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+
+            text-align: center;
+            font-family: monospace;
+            font-size: 20px;
+            color: #c8c8c8;
+        }
+
+        .buttons {
+            background: #575757;
+
+            text-align: center;
+            font-family: monospace;
+            font-size: 20px;
+            color: #c8c8c8;
+        }
+
+        .buttons:hover {
+            background: #6c6c6c;
+        }
+
+        #play {
+            position: inherit;
+
+            width: 150px;
+            height: 50px;
+
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        body {
+            background-color: blueviolet;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <canvas id="canvas" width=600 height=600 style="position: inherit"></canvas>
+
+        <input type="button" value="Play" class="buttons" id="play">
+
+        <!--  Paused Screen  -->
+        <div class="cover" id="cover">
+            <div class="game_over">
+                <h1>Paused</h1>
+            </div>
+        </div>
+
+        <!--  Game Over Screen  -->
+        <div class="cover" id="play_again">
+            <div class="game_over">
+                <h1>Game Over!</h1>
+                <input type="button" value="Play Again" class="buttons" id="play_button">
+            </div>
+        </div>
+    </div>
+
+    <div style="position: absolute; left: 660px">
+        <h1 class="instructions">Controls:</h1>
+        <h3 class="instructions">Move Left -> Left arrow</h3>
+        <h3 class="instructions">Move Right -> Right arrow</h3>
+        <h3 class="instructions">Rotate Clockwise -> Up arrow or X key</h3>
+        <h3 class="instructions">Rotate Counter Clockwise -> Z key</h3>
+        <h3 class="instructions">Move Down Quicker -> Down key</h3>
+        <h3 class="instructions">Instant Place -> Spacebar</h3>
+        <h3 class="instructions">Pause -> Escape key</h3>
+    </div>
+
+    <script src="tetriminos.js"></script>
+    <script>
+        var canvas = document.querySelector('canvas');
+        var ctx = canvas.getContext('2d');
+
+        // playagain function 
+        play_button.addEventListener('click', function(e) {
+            play_again.style.visibility = "hidden";
+            init();
+        });
+
+        play.addEventListener('click', function(e) {
+            play.style.visibility = "hidden";
+            init();
+        });
+
+        var fontColor = "#c8c8c8";
+        //        var 
+        function init() {
+            // draw's a grid on canvas
+            function Board(x, y, width, height, blockSize) {
+                this.x = x;
+                this.y = y;
+                this.width = width;
+                this.height = height;
+                this.blockSize = blockSize;
+
+                //            this.frameCounting = 0;
+
+                this.grid = [];
+                for (var i = 0; i < height; i++) {
+                    this.grid[i] = [];
+                    for (var j = 0; j < width; j++) {
+                        this.grid[i].push(0)
+                    }
+                }
+
+                this.draw = function() {
+                    for (var i = 0; i < this.width; i++) {
+                        for (var j = 0; j < this.height; j++) {
+                            ctx.beginPath();
+                            ctx.rect(i * this.blockSize + this.x + 0.5, j * this.blockSize + this.y + 0.5, this.blockSize, this.blockSize);
+                            ctx.strokeStyle = "#c8c8c8";
+                            ctx.lineWidth = 1;
+                            ctx.stroke();
+
+                            if (this.grid[j][i] != 0) {
+                                ctx.beginPath();
+                                ctx.rect(i * this.blockSize + this.x + 0.5, j * this.blockSize + this.y + 0.5, this.blockSize, this.blockSize);
+                                ctx.fillStyle = this.grid[j][i];
+                                ctx.fill();
+                            }
+                        }
+                    }
+                }
+
+                this.clear = function() {
+                    var cleared = 0;
+                    for (var i = 0; i < this.height; i++) {
+                        if (this.canClear(i)) {
+                            cleared += 1;
+
+                            for (var j = i; j > 0; j--) {
+                                this.grid[j] = this.grid[j - 1];
+                            }
+                            this.grid[0] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+                            clearSound.play();
+                        }
+                    }
+                    //                    console.log(cleared);
+                    score.calculatePoints(cleared);
+                }
+
+                // checks if a certain line can be cleared or not
+                this.canClear = function(i) {
+                    for (var j = 0; j < this.width; j++) {
+                        //                    console.log(i, j);
+                        if (this.grid[i][j] == 0) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+            }
+
+            // piece object class
+            function Piece(m, grid) {
+                this.direction = parseInt(Math.random() * 4);
+                this.shape = m;
+                this.fallSpeed = 60;
+                this.color = tetriminos[m].color;
+                this.falling = true;
+                this.x = 4;
+                this.y = -3;
+
+                this.grid = grid
+                this.previewGrid = new Board(420, 120, 4, 4, 20);
+
+                this.fallSpeedChart = {
+                    0: 60,
+                    1: 50,
+                    2: 40,
+                    3: 30,
+                    4: 27,
+                    5: 24,
+                    6: 21,
+                    7: 18,
+                    8: 16,
+                    9: 14,
+                    10: 12,
+                    11: 10,
+                    12: 8,
+                    13: 7,
+                    14: 6,
+                    15: 5
+                }
+
+                this.keyPress = function(key) {
+                    if (key === 32) { // space
+                        var n = 0;
+                        while (this.checkNewPosition(0, n, 0)) {
+                            n++;
+                        }
+                        this.updatePosition(0, n - 1, 0);
+                        //                    this.place();
+                        frames = this.fallSpeedChart[score.level] - 1;
+
+                    } else if (key === 38 || key === 88 || key === 90) { // up arrow or x key
+                        var directions = [
+                            [0, 0],
+                            [-1, 0],
+                            [1, 0],
+                            [0, 1],
+                            [-1, 1],
+                            [1, 1],
+                            [0, -1],
+                            [-1, -1],
+                            [1, -1]
+                        ];
+
+                        var rotationDirection = (key === 90) ? -1 : 1;
+                        for (var i = 0; i < directions.length; i++) {
+                            if (this.checkNewPosition(directions[i][0], directions[i][1], rotationDirection)) {
+                                this.updatePosition(directions[i][0], directions[i][1], rotationDirection);
+                                break;
+                            }
+                        }
+
+                    }
+                }
+
+                // checks to see if the new position is ok
+                this.checkNewPosition = function(x, y, rotationDirection) {
+                    var newx = this.x + x;
+                    var newy = this.y + y;
+
+                    var rotation = (this.direction + rotationDirection) % 4;
+                    if (rotation < 0) {
+                        rotation = 3;
+                    }
+
+                    var newRotation = tetriminos[this.shape].patterns[rotation];
+
+                    for (var i = 0; i < newRotation.length; i++) {
+                        for (var j = 0; j < newRotation[0].length; j++) {
+                            if (newRotation[i][j] != 0) {
+                                if (j + newx > 9 || j + newx < 0 || i + newy > 19) { // wall boundaries
+                                    return false;
+                                } else if (i + newy < 0) { // so that you can move above the grid
+                                    continue;
+                                } else if (this.grid[i + newy][j + newx] != 0) { // make sure not to hit any other pieces
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+
+                    return true;
+                }
+
+                this.updatePosition = function(x, y, rotation) {
+                    this.x += x;
+                    this.y += y;
+                    this.direction = (this.direction + rotation) % 4;
+
+                    if (this.direction < 0) {
+                        this.direction = 3;
+                    }
+                }
+
+                this.update = function() {
+                    if (frames % 5 === 0) {
+                        if (movingLeft) { // left arrow
+                            if (this.checkNewPosition(-1, 0, 0)) {
+                                this.updatePosition(-1, 0, 0);
+                            }
+                            this.frameCounting++;
+                        }
+                        if (movingRight) { // right arrow
+                            if (this.checkNewPosition(1, 0, 0)) {
+                                this.updatePosition(1, 0, 0);
+                            }
+                        }
+                    }
+
+                    this.fallSpeed = this.fallSpeedChart[score.level];
+                    if (fastFall) {
+                        this.fallSpeed = 2;
+                    }
+                }
+
+                // checks if piece is on the ground
+                this.onGround = function() {
+                    var shape = tetriminos[this.shape].patterns[this.direction];
+
+                    for (var i = 0; i < shape.length; i++) {
+                        for (var j = 0; j < shape[0].length; j++) {
+                            if (shape[i][j] != 0 && i + this.y == 19) {
+                                // if it lands on the ground
+                                this.falling = false;
+
+                                // place the piece onto the grid array
+                                this.place();
+                                return true;
+
+                            } else if (shape[i][j] != 0 && i + this.y + 1 >= 0 && j + this.x >= 0 && this.grid[i + this.y + 1][j + this.x] != 0) {
+
+                                // if it lands on another piece
+                                this.falling = false;
+
+                                this.place();
+                                return true;
+                            }
+                        }
+                    }
+
+                    return false;
+                }
+
+                this.place = function() {
+                    var shape = tetriminos[this.shape].patterns[this.direction];
+
+                    for (var i = 0; i < shape.length; i++) {
+                        for (var j = 0; j < shape[0].length; j++) {
+                            if (shape[i][j] != 0) {
+
+                                // if piece out of bounds, end game
+                                if (i + this.y < 0) {
+                                    gameOver = true;
+                                    return false;
+                                }
+
+                                //                            console.log(i + this.y, j + this.x);
+                                this.grid[i + this.y][j + this.x] = this.color;
+                                this.grid[i + this.y][j + this.x].color = this.color;
+
+                            }
+                        }
+                    }
+
+                    var playSound = true;
+                    for (var r = 0; r < board.height; r++) {
+                        if (board.canClear(r)) {
+                            playSound = false;
+                        }
+                    }
+
+                    if (playSound) {
+                        placeSound.play();
+                    }
+                    //                console.log(this.grid);
+                }
+
+                this.preview = function() {
+                    ctx.beginPath();
+                    ctx.font = "15px Arial";
+                    ctx.fillStyle = fontColor;
+                    ctx.fillText("Next piece", 420, 120);
+
+                    var tempx = 11;
+                    var tempy = 1;
+                    var shape = tetriminos[this.shape].patterns[0];
+
+                    if (shape.length < 4) {
+                        tempx += 1;
+                        tempy += 1;
+                    }
+
+                    for (var i = 0; i < shape.length; i++) {
+                        for (var j = 0; j < shape[0].length; j++) {
+                            if (shape[i][j] != 0) {
+                                ctx.beginPath();
+                                ctx.fillStyle = this.color;
+                                ctx.rect(j * 20 + tempx * 20 + 200.5, i * 20 + tempy * 20 + 100.5, 20, 20);
+                                ctx.fill();
+                            }
+                        }
+                    }
+
+                    this.previewGrid.draw();
+                }
+
+                // draws the piece on the canvas
+                this.draw = function() {
+                    var shape = tetriminos[this.shape].patterns[this.direction];
+
+                    for (var i = 0; i < shape.length; i++) {
+                        for (var j = 0; j < shape[0].length; j++) {
+                            if (shape[i][j] != 0) {
+                                ctx.beginPath();
+                                ctx.fillStyle = this.color;
+                                ctx.rect(j * 20 + this.x * 20 + 200.5, i * 20 + this.y * 20 + 100.5, 20, 20);
+                                ctx.fill();
+                            }
+                        }
+                    }
+                }
+            }
+
+            // event handler
+            document.addEventListener('keydown', function(e) {
+                var key = e.keyCode;
+
+                if (key === 27) { // pause
+                    if (!gameOver) {
+                        play = play ^ true;
+
+                        if (play) {
+                            requestAnimationFrame(tetris);
+                            cover.style.visibility = "hidden";
+
+                        } else {
+                            //                        console.log("happened");
+                            cover.style.visibility = "visible";
+                        }
+                    }
+
+                } else if (key === 37) { // left arrow
+                    movingLeft = true;
+                } else if (key === 39) { // right arrow
+                    movingRight = true;
+                } else if (key == 40) { // down arrow
+                    fastFall = true;
+                } else {
+                    currPiece.keyPress(key);
+                }
+            });
+
+            document.addEventListener('keyup', function(e) {
+                var key = e.keyCode;
+
+                if (key == 40) { // down arrow
+                    fastFall = false;
+                } else if (key === 37) { // left arrow
+                    movingLeft = false;
+                } else if (key === 39) { // right arrow
+                    movingRight = false;
+                }
+            });
+
+            var score = {
+                points: 0,
+                linesCleared: 0,
+                level: 0,
+                calculatePoints: function(n) {
+                    this.linesCleared += n;
+
+                    if (n === 1) {
+                        this.points += 40 * (this.level + 1);
+                    } else if (n === 2) {
+                        this.points += 100 * (this.level + 1);
+                    } else if (n === 3) {
+                        this.points += 300 * (this.level + 1);
+                    } else if (n === 4) {
+                        this.points += 1200 * (this.level + 1);
+                    }
+                    if (parseInt(this.linesCleared / 10) > this.level && this.level < 15) {
+                        this.level = parseInt(this.linesCleared / 10);
+                    }
+                },
+                display: function() {
+                    ctx.beginPath();
+                    ctx.fillStyle = "#c8c8c8";
+                    ctx.font = "15px Arial";
+                    ctx.fillText("Score: " + this.points, 420, 400);
+                    ctx.fillText("Level " + this.level, 420, 450);
+                    ctx.fillText("Lines cleared: " + this.linesCleared, 420, 500);
+                }
+            }
+
+            // init the grid
+            var board = new Board(200, 100, 10, 20, 20);
+
+            // init variables
+            var frames = 0;
+            var currPiece = new Piece(parseInt(Math.random() * 7), board.grid);
+            var nextPiece = new Piece(parseInt(Math.random() * 7), board.grid);
+
+            // sounds and function
+            var placeSound = new Sound('place.wav');
+            var clearSound = new Sound('clear.wav');
+            var gameOverSound = new Sound('gameOver.wav');
+
+            function Sound(file) {
+                this.sound = new Audio(file);
+                this.play = function() {
+                    this.sound.cloneNode().play();
+                }
+            }
+
+            // other variables
+            var play = true;
+            var movingRight = false;
+            var movingLeft = false;
+            var fastFall = false;
+
+            var gameOver = false;
+
+            // play again button position
+            //            play_again.style.visibility = "visible";
+            play_again.style.top = (canvas.height / 2 - play_again.height / 2) + "px";
+            play_again.style.left = (canvas.width / 2 - play_again.width / 2) + "px";
+
+            // animation frames
+            function tetris() {
+                if (gameOver) {
+                    play = false;
+
+                    // game over sound
+                    gameOverSound.play()
+
+                    // play again button enable
+                    play_again.style.visibility = "visible";
+
+                } else {
+                    frames += 1;
+
+                    // redraw
+                    ctx.clearRect(0, 0, 600, 600)
+
+                    // draw grid and colors
+                    board.draw();
+
+                    // draw currPiece
+                    currPiece.draw();
+                    nextPiece.preview();
+
+                    score.display();
+
+                    // move down
+                    if (frames % currPiece.fallSpeed == 0) {
+                        frames = 0
+
+                        // check if piece is on the ground and place
+                        if (currPiece.onGround()) {
+                            currPiece = nextPiece;
+                            nextPiece = new Piece(parseInt(Math.random() * 7), board.grid);
+
+                            board.clear();
+                        } else {
+                            currPiece.updatePosition(0, 1, 0);
+                        }
+                    }
+
+                    currPiece.update();
+
+                    if (play) {
+                        requestAnimationFrame(tetris);
+                    }
+                }
+            }
+            tetris();
+        }
+
+    </script>
+</body>
+
+</html>
