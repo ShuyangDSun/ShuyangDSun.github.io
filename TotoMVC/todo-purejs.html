@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure JS Todo list</title>
+
+    <style>
+        .container {
+            border: solid 2px cyan;
+            display: flex;
+            flex-flow: column;
+        }
+
+        .input,
+        .todo-list,
+        .footer {
+            box-sizing: border-box;
+            width: 100%;
+            margin: 0px;
+        }
+
+        .input {
+            height: 50px;
+        }
+
+        .todo-list>.listing {
+            display: flex;
+        }
+
+        .todo-list>.listing>.content {
+            flex-grow: 1;
+        }
+
+        .footer {
+            display: flex;
+        }
+
+        .footer>* {
+            flex-grow: 1;
+        }
+
+        .options {
+            margin: 0px;
+        }
+
+        ul {
+            padding: 0px 10px;
+        }
+
+        li {
+            display: inline-block;
+        }
+
+        .line-through {
+            text-decoration: line-through;
+        }
+
+        .invis {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" class="input" name="input" placeholder="What needs to be done?">
+        <ul class="todo-list">
+            <!-- where added todo items go -->
+        </ul>
+
+        <div class="footer" style="display: none;">
+            <div class="items-left">N/A items left</div>
+            <ul class="options">
+
+                <li><a id="all" href="">All</a></li>
+                <li><a id="active" href="">Active</a></li>
+                <li><a id="completed" href="">Completed</a></li>
+
+            </ul>
+            <div class="filler"></div>
+        </div>
+    </div>
+
+    <script>
+        let items_added = 0;
+
+        function update_item_listing() {
+            let items_left = document.querySelector(".items-left");
+            let listings = document.querySelectorAll(".listing");
+
+            items_added = 0;
+            for (let i = 0; i < listings.length; i++) {
+                if (!listings[i].classList.contains("checked")) {
+                    items_added++;
+                }
+            }
+
+            let footer = document.querySelector(".footer");
+            if (items_added === 0 && listings.length === 0) {
+                footer.style = "display: none;";
+            } else {
+                footer.style = "";
+
+                if (items_added === 1) {
+                    footer.children[0].innerHTML = "1 item left";
+                } else {
+                    footer.children[0].innerHTML = items_added + " items left";
+                }
+            }
+        }
+
+        function check(event) {
+            const parent = event.target.parentElement;
+            const content = parent.children[1];
+            const checkbox = parent.children[0];
+
+            if (checkbox.checked) {
+                content.classList.add("line-through");
+                parent.classList.add("checked");
+            } else {
+                content.classList.remove("line-through");
+                parent.classList.remove("checked");
+            }
+
+            console.log("checked " + content.innerHTML);
+
+            update_item_listing();
+        }
+
+        function edit(event) {
+            if (event.keyCode === 13) {
+                const parent = event.target.parentElement;
+                const content = parent.children[1];
+
+                content.blur();
+
+                console.log("edited " + content.innerHTML);
+            }
+        }
+
+        function clear(event) {
+            event.preventDefault();
+            const parent = event.target.parentElement;
+            parent.remove();
+
+            console.log("cleared " + parent.children[1].innerHTML);
+
+            update_item_listing();
+        }
+
+        function insert_list(value) {
+            const new_node = document.createElement('li');
+            new_node.className = "listing";
+
+            const checkbox = document.createElement('input');
+            checkbox.type = "checkbox";
+            checkbox.addEventListener("change", check);
+
+            const content = document.createElement('div');
+            content.className = "content"
+            content.innerHTML = value;
+            content.contentEditable = true;
+            content.addEventListener("keypress", edit);
+
+            const x = document.createElement('a');
+            x.innerHTML = "X";
+            x.href = "";
+            x.addEventListener("click", clear);
+
+            new_node.appendChild(checkbox);
+            new_node.appendChild(content);
+            new_node.appendChild(x);
+
+            todo.appendChild(new_node);
+            update_item_listing();
+        }
+
+        let input = document.querySelector(".input");
+        input.addEventListener('keypress', function (e) {
+            if (e.keyCode === 13 && input.value) {
+                console.log("insert " + input.value);
+                insert_list(input.value);
+                input.value = "";
+            }
+        });
+
+        let todo = document.querySelector(".todo-list");
+
+        let all = document.querySelector("#all");
+        let active = document.querySelector("#active");
+        let completed = document.querySelector("#completed");
+
+        all.addEventListener("click", function (event) {
+            event.preventDefault();
+            let listings = document.querySelectorAll(".listing");
+
+            for (let i = 0; i < listings.length; i++) {
+                listings[i].classList.remove("invis");
+            }
+        });
+
+        active.addEventListener("click", function (event) {
+            event.preventDefault();
+            let listings = document.querySelectorAll(".listing");
+
+            for (let i = 0; i < listings.length; i++) {
+
+                if (listings[i].classList.contains("invis") && !listings[i].classList.contains("checked")) {
+                    listings[i].classList.remove("invis");
+                } else if (!listings[i].classList.contains("invis") && listings[i].classList.contains("checked")) {
+                    listings[i].classList.add("invis");
+                }
+            }
+        });
+
+        completed.addEventListener("click", function (event) {
+            event.preventDefault();
+            let listings = document.querySelectorAll(".listing");
+
+            console.log(listings);
+            for (let i = 0; i < listings.length; i++) {
+                if (listings[i].classList.contains("invis") && listings[i].classList.contains("checked")) {
+                    listings[i].classList.remove("invis");
+                } else if (!listings[i].classList.contains("invis") && !listings[i].classList.contains("checked")) {
+                    listings[i].classList.add("invis");
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
