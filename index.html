@@ -19,13 +19,14 @@
             list-style-type: none;
             padding-bottom: 15px;
         }
-        
+
         .badge {
-            position: absolute;
+            /* position: absolute; */
+            /* translate: 50% 50% important!; */
             display: inline-block;
-            width: 200px;
+            /* width: 200px; */
         }
-        
+
         .profile {
             background-image: url(images/Screen%20Shot%202020-02-06%20at%2012.55.52%20PM.jpg);
             background-size: cover;
@@ -361,6 +362,10 @@
             transform: translate(0, 0);
         }
 
+        .volunteer-list li {
+            list-style-type: disc;
+        }
+
         /*   screen widths   */
         @media screen and (max-height:800px) {
             .profile {
@@ -390,7 +395,13 @@
             .big {
                 width: 29vw;
             }
+            .hide {
+                display: None;
+            }
 
+            .no-top-margin {
+                margin-top: 0px;
+            }
         }
 
         @media screen and (max-width:800px) {
@@ -423,7 +434,8 @@
                     <th rowspan="2">Contacts</th>
 
                     <td>Email</td>
-                    <td><a class="dark-links" href="mailto:shuyangdanielsun@gmail.com">shuyangdanielsun@gmail.com</a></td>
+                    <td><a class="dark-links" href="mailto:shuyangdanielsun@gmail.com">shuyangdanielsun@gmail.com</a>
+                    </td>
                 </tr>
                 <tr class="font elementspacing last">
                     <td>Phone</td>
@@ -433,7 +445,8 @@
 
                 <tr class="font elementspacing last" style="vertical-align: top;">
                     <th>Github</th>
-                    <td colspan="2"><a class="dark-links" href="https://github.com/UnripedBanana/UnripedBanana.github.io">UnripedBanana</a></td>
+                    <td colspan="2"><a class="dark-links"
+                            href="https://github.com/UnripedBanana/UnripedBanana.github.io">UnripedBanana</a></td>
                 </tr>
 
 
@@ -446,13 +459,13 @@
                     <td colspan="2">Waterloo CCC Junior Distinction award 2018</td>
                 </tr>
                 <tr class="font elementspacing">
-                    <td colspan="2">Grade 9 and 10 Honour Roll</td>
-                </tr>
-                <tr class="font elementspacing">
                     <td colspan="2">Dean's List semi-finalist</td>
                 </tr>
-                <tr class="font elementspacing last">
+                <tr class="font elementspacing">
                     <td colspan="2">AP computer Science (score 5/5)</td>
+                </tr>
+                <tr class="font elementspacing last">
+                    <td colspan="2">Term distinction, fall 2021 (Overall average > 80%)</td>
                 </tr>
 
 
@@ -485,31 +498,49 @@
 
         <div class="content fade-in center" style="margin-bottom: 70px;">
 
-            <div class="block">
+            <div class="block" style="margin-right: 50px;">
                 <h2 class="title">About me</h2>
-                <p class="description">I've volunteered at various children's events such as our FLL library introductory program that our Robotics team hosts every summer. The library program teaches kids how to build and program lego robots. I have also participated in many extra curriculars outside of school such as our schools cross country and track team as well as a robotics team at Western University.</p>
+                <p class="description">I am an Oracle certified Java programmer in Java 8 (IZ0-808).</p>
+                <p class="description">I have many years of coding experience since grade 7. I have been competing in
+                    the CCC contest since
+                    grade 8 and have earned 3 Certificates of Distinction in the Senior contests.
+                </p>
+            </div>
+            <!-- I've volunteered at various children's events such as our FLL library
+            introductory program that our Robotics team hosts every summer. The library program teaches kids how
+            to build and program lego robots. I have also participated in many extra curriculars outside of
+            school such as our schools cross country and track team as well as a robotics team at Western
+            University. -->
+            <!-- <div class="circlePic"></div> -->
+            
+
+            <div class="block" style="margin-right: 50px;">
+                <h2 class="title hide">&nbsp;</h2>
+                <p class="description no-top-margin">I have experience in areas of front-end (static, interactive, and dynamic
+                    webpages), AJAX, back-end
+                    (authentication, session management, CRUD services, error handling, remote debugging, database),
+                    algorithm design and implementation, data analysis, JS canvas programming, CSS animation, and Java
+                    GUI.
+                </p>
             </div>
 
-            <div class="circlePic"></div>
-
-            <div class="block">
-                <h2 class="title">Details</h2>
-                <h4 class="subtitle">Name:</h4>
-                <div class="description">Daniel Sun</div>
-                <h4 class="subtitle">Age:</h4>
-                <div class="description">18 years</div>
+            <div class="badge fade-in">
+                <div data-iframe-width="150" data-iframe-height="270"
+                    data-share-badge-id="ac19ac5e-a265-4c30-85ab-7f91417d90ba"
+                    data-share-badge-host="https://www.credly.com"></div>
+                <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
             </div>
 
         </div>
 
     </div>
-    
+
     <!--    Skills section   -->
     <div class="main-body">
-        <img src=https://images.credly.com/size/680x680/images/a9848abf-f8bd-474d-a9b4-6086da11a916/Oracle_Associates_Badge__1_.png alt="" class="badge fade-in" style="margin-top: 20px; margin-left: 20px;">
-        
+
         <div class="content fade-in">
             <h1 class="header">Skills</h1>
+
             <hr class="rounded">
         </div>
 
@@ -521,11 +552,13 @@
                 </tr>
                 <tr class="table-rows">
                     <th class="table-cols">Data Science</th>
-                    <th class="table-cols">Python, Numpy, Pandas, Matplotlib, SQL, Jupyter Lab; requests, speech_recognition</th>
+                    <th class="table-cols">Python, Numpy, Pandas, Matplotlib, SQL, Jupyter Lab; requests,
+                        speech_recognition</th>
                 </tr>
                 <tr class="table-rows">
                     <th class="table-cols">Web Technology</th>
-                    <th class="table-cols">Python, Flask, SQL, Heroku, AJAX, Javascript HTML DOM; Bootstrap, CSS Grid; Regular expression; JS Canvas, smtplib</th>
+                    <th class="table-cols">Python, Flask, SQL, Heroku, AJAX, Javascript HTML DOM; Bootstrap, CSS Grid;
+                        Regular expression; JS Canvas, smtplib</th>
                 </tr>
                 <tr class="table-rows">
                     <th class="table-cols">Java Technology</th>
@@ -541,8 +574,9 @@
                 </tr>
                 <tr class="table-rows">
                     <th class="table-cols">Tools</th>
-                    <th class="table-cols">PyCharm, Eclipse, Brackets, Chrome Dev Tools, Terminal, VS Code, Git, UMLet, Postman Rest Client, MySQLWorkbench</th>
-                    
+                    <th class="table-cols">PyCharm, Eclipse, Brackets, Chrome Dev Tools, Terminal, VS Code, Git, UMLet,
+                        Postman Rest Client, MySQLWorkbench</th>
+
                 </tr>
                 <tr class="table-rows">
                     <th class="table-cols">OS</th>
@@ -570,7 +604,9 @@
                 </tr>
                 <tr class="table-rows">
                     <th class="table-cols">Sept 2021 - current</th>
-                    <th class="table-cols">I am currently in first year learning about the basics of functional programming, as well as the basics of proofs for Mathematical problems. I plan to double major in Computational Mathematics and Statistics.</th>
+                    <th class="table-cols">I am currently in first year learning about the basics of functional
+                        programming, as well as the basics of proofs for Mathematical problems. I plan to double major
+                        in Computational Mathematics and Statistics.</th>
                 </tr>
             </table>
 
@@ -581,9 +617,11 @@
                 </tr>
                 <tr class="table-rows">
                     <th class="table-cols">Sept 2017 - June 2021</th>
-                    <th class="table-cols">I graduated highschool, where I enjoyed doing science, math, arts, and sports activites. I balanced my academic courses with other interesting courses I wanted to take. Throughout highschool, I made small coding applications for fun.</th>
+                    <th class="table-cols">I graduated highschool, where I enjoyed doing science, math, arts, and sports
+                        activites. I balanced my academic courses with other interesting courses I wanted to take.
+                        Throughout highschool, I made small coding applications for fun.</th>
                 </tr>
-                
+
             </table>
 
         </div>
@@ -594,7 +632,7 @@
         <div class="content">
             <h2 class="title fade-in">Projects and Extracurriculars</h2>
 
-            <div class="section">
+            <div class="">
                 <table class="fade-in tables">
                     <tr class="table-rows">
                         <th class="table-cols">FRC 4814 Western Engineering Robotics Team</th>
@@ -609,14 +647,14 @@
                         <th class="table-cols">Sept 2017 - June 2021</th>
                     </tr>
                 </table>
-<!--
+                <!--
                 <p class="description fade-in">
                     I graduated highschool, where I enjoyed doing science, math, biology and arts. I realized in my third year of school that I wanted to do something with websites, and so I started making small flash/actionscript applications.
                 </p>
 -->
-                <img src="Screen%20Shot%202020-02-06%20at%2012.55.52%20PM.jpg" alt="" class="fade-in full">
+                <!-- <img src="Screen%20Shot%202020-02-06%20at%2012.55.52%20PM.jpg" alt="" class="fade-in full"> -->
             </div>
-<!--
+            <!--
             <div class="section">
                 <table class="fade-in tables">
                     <tr class="table-rows">
@@ -638,7 +676,21 @@
                 <img src="Screen%20Shot%202020-02-06%20at%2012.55.52%20PM.jpg" alt="" class="fade-in full">
             </div>
 -->
+        </div>
+        <div class="content fade-in">
+            <hr class="rounded">
+        </div>
+        <div class="content">
+            <h2 class="title fade-in">Volunteer Experience</h2>
 
+            <div class="section">
+                <ul class="volunteer-list">
+                    <li class="fade-in">FLL library introductory program that our Robotics team hosts every summer. The
+                        library program
+                        teaches kids how to build and program lego robots.</li>
+                    <li class="fade-in">First Lego League Western Competition.</li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -656,11 +708,17 @@
             <div class="halfs-wrapper">
                 <div class="big">
                     <h3 class="fade-in">Tetris</h3>
-                    <p class="description fade-in" style="padding-right: 20px;">The goal is to drop blocks, called tetrominoes, down into a playing field to make lines. Tetriminoes are made of four connected squares each There are seven different types of tetrominoes.Levels have a set goal, or number of lines to clear. When the goal number reaches zero, the player moves to the next level. As the levels go up, the tetrominoes fall faster. A player receives bonus points if he can clear more than one line with a single tetromino. Clearing four lines is called a "tetris", three lines a "triple" and two lines a "double".</p>
+                    <p class="description fade-in" style="padding-right: 20px;">The goal is to drop blocks, called
+                        tetrominoes, down into a playing field to make lines. Tetriminoes are made of four connected
+                        squares each There are seven different types of tetrominoes.Levels have a set goal, or number of
+                        lines to clear. When the goal number reaches zero, the player moves to the next level. As the
+                        levels go up, the tetrominoes fall faster. A player receives bonus points if he can clear more
+                        than one line with a single tetromino. Clearing four lines is called a "tetris", three lines a
+                        "triple" and two lines a "double".</p>
 
                     <div class="wrap fade-in">
-<!--                       <a class="button" href="Tetris/tetris.html">PLAY HERE!</a>-->
-                        
+                        <!--                       <a class="button" href="Tetris/tetris.html">PLAY HERE!</a>-->
+
                         <button class="button" onclick="window.open('Tetris/tetris.html', '_blank')">PLAY HERE!</button>
                     </div>
 
@@ -672,14 +730,18 @@
                 <img class="small fade-in" src="images/brick_breaker.png" alt="">
                 <div class="big">
                     <h3 class="fade-in" style="padding-left: 20px">Brick Breaker</h3>
-                    <p class="description fade-in" style="padding-left: 20px;">In Brick Breaker, the player must smash a wall of bricks by deflecting a bouncing ball with a paddle. The paddle may move horizontally which is controlled using the Left and Right Arrow keys. When all the bricks have been destroyed, the player wins. When the ball touches the bottom, the game is over. There are many versions of brick breaker, mine only consists of a single level with basic functionality.</p>
+                    <p class="description fade-in" style="padding-left: 20px;">In Brick Breaker, the player must smash a
+                        wall of bricks by deflecting a bouncing ball with a paddle. The paddle may move horizontally
+                        which is controlled using the Left and Right Arrow keys. When all the bricks have been
+                        destroyed, the player wins. When the ball touches the bottom, the game is over. There are many
+                        versions of brick breaker, mine only consists of a single level with basic functionality.</p>
 
                     <div class="wrap fade-in">
-                        <button class="button" onclick="window.open('BrickBreaker/BrickBreaker.html', '_blank')">PLAY HERE!</button>
+                        <button class="button" onclick="window.open('BrickBreaker/BrickBreaker.html', '_blank')">PLAY
+                            HERE!</button>
                     </div>
 
                 </div>
-
             </div>
         </div>
     </div>
@@ -734,23 +796,23 @@
             </div>
         </div>
     </div>
-    
-    
+
+
 
     <script>
         var buttons = document.querySelectorAll('.button');
         for (var i = 0; i < buttons.length; i++) {
-            buttons[i].addEventListener("mousedown", function(e) {
+            buttons[i].addEventListener("mousedown", function (e) {
                 this.classList.remove('ring');
             });
 
-            buttons[i].addEventListener("mouseup", function(e) {
+            buttons[i].addEventListener("mouseup", function (e) {
                 this.classList.add('ring');
             });
         }
 
 
-        document.addEventListener("scroll", function(e) {
+        document.addEventListener("scroll", function (e) {
 
             var pageTop = window.scrollY;
             var pageBottom = pageTop + window.innerHeight;
@@ -766,4 +828,6 @@
             }
         });
     </script>
-</body></html>
+</body>
+
+</html>
