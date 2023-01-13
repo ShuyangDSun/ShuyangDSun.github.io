@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Todo React</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+    <style>
+        ul {
+            padding: 0px 10px;
+        }
+
+        li {
+            list-style-type: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React
+        const { useRef } = React
+
+        const displayStates = {
+            ALL: 0,
+            ACTIVE: 1,
+            COMPLETE: 2
+        }
+
+        function Todo({ todo, toggleTodo, editTodo, displayState }) {
+            let display = 'list-item';
+            if (todo.complete && displayState === displayStates.ACTIVE) {
+                display = 'none';  // 5:01
+            } else if (!todo.complete && displayState === displayStates.COMPLETE) {
+                display = 'none';
+            }
+
+            const [isEditing, setEditing] = useState(false);
+
+            function handleKeyDown(event) {
+                console.log(event);
+            }
+
+            return (
+                <li style={{ display: display }}>
+                    <input onClick={() => toggleTodo(todo.id)} type="checkbox" checked={todo.complete} />
+                    <label
+                        for={todo.id}
+                        onClick={() => setEditing(true)}
+                        onBlur={() => setEditing(false)}
+                        onKeyDown={e => handleKeyDown(e)}
+                    >
+                        {todo.name}
+                    </label>
+                </li>
+            )
+        }
+
+        function TodoList({ todos, toggleTodo, editTodo, displayState }) {
+            return (
+                <ul>
+                    {todos.map(todo => {
+                        return <Todo key={todo.id} todo={todo} toggleTodo={toggleTodo} editTodo={editTodo} displayState={displayState} />
+                    })}
+                </ul>
+            )
+        }
+
+        function App() {
+            const [todos, setTodos] = useState([{ name: 'todo 1', id: 1, complete: true }, { name: 'todo 2', id: 2, complete: false }]);
+            const inputRef = useRef();
+
+            const [displayState, setDisplayState] = useState(displayStates.ALL);
+
+            function addTodo(e) {
+                if (e.key === "Enter" && inputRef.current.value !== "") {
+                    const name = inputRef.current.value;
+                    setTodos(prevTodos => {
+                        return [...prevTodos, { name: name, id: prevTodos.length + 1, complete: false }]
+                    });
+                    inputRef.current.value = "";
+                }
+            }
+
+            function toggleTodo(id) {
+                const newTodos = [...todos];
+                const todo = newTodos.find(todo => todo.id === id);
+                todo.complete = !todo.complete;
+
+                setTodos(newTodos);
+            }
+
+            function editTodo(id, newTodo) {
+                const newTodos = [...todos];
+                const todo = newTodos.find(todo => todo.id === id);
+                todo.name = newTodo;
+
+                setTodos(newTodos);
+            }
+
+            return (
+                <React.Fragment>
+                    <input placeholder="What needs to be done?" ref={inputRef} onKeyPress={e => addTodo(e)} type="text" />
+                    <TodoList todos={todos} toggleTodo={toggleTodo} editTodo={editTodo} displayState={displayState} />
+                    <button onClick={() => setDisplayState(displayStates.ALL)}>All</button>
+                    <button onClick={() => setDisplayState(displayStates.ACTIVE)}>Active</button>
+                    <button onClick={() => setDisplayState(displayStates.COMPLETE)}>Completed</button>
+                </React.Fragment>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+</body>
+
+</html>
